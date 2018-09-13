@@ -12,6 +12,21 @@ public class vikingAnimTest : MonoBehaviour
 
     private Animator animator;
 
+    // Helper method to wait
+    bool attacking = false;
+    // bool waitActive = false;
+
+    // IEnumerator Wait(){
+    //     // waitActive = true;
+    //     Debug.Log("Waiting");
+    //     yield return new WaitForSeconds (3.0f);
+    //     Debug.Log("Stopped waiting");
+    //     animator.SetBool("KickH", false);
+    //     Debug.Log("STOPPED ATTACK");
+    //     // canAttack = true;
+    //     // waitActive = false;
+    //  }
+
     // Use this for initialization
     void Start()
     {
@@ -27,13 +42,24 @@ public class vikingAnimTest : MonoBehaviour
         float z = Input.GetAxis("Vertical");
 
         move(x, z);
+        punchM();
         jump();
+        
     }
-    void jump()
+    void jump() //testing kick for now
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            Debug.Log("here");
+            Debug.Log("SPACE PRESSED");
+            animator.SetBool("KickH", true);
+        }
+    }
+    void punchM()
+    {
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            Debug.Log("P PRESSED");
+            animator.SetBool("PunchM", true);
         }
     }
 
