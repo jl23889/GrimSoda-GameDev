@@ -54,6 +54,7 @@ ModelImporter:
     100096: //RootNode
     100098: wrist_l
     100100: wrist_r
+    100102: vikingBody
     400000: armLower_l
     400002: armLower_r
     400004: armUpper_l
@@ -105,9 +106,15 @@ ModelImporter:
     400096: //RootNode
     400098: wrist_l
     400100: wrist_r
+    400102: vikingBody
     2100000: Material_001__AO
     2100002: Material_001
+    2100004: Material_001__UV
+    2100006: Material_001__metal_solid_5-l-color_jpg
+    2100008: Material_001__wood_ply_wavy-l-color_jpg
+    2100010: Material_001__gray-dotted_jpeg
     4300000: body
+    4300002: vikingBody
     7400000: Default Take
     7400002: basePose
     7400004: hitStun
@@ -121,13 +128,14 @@ ModelImporter:
     7400020: walkLoop
     9500000: //RootNode
     13700000: body
+    13700002: vikingBody
     2186277476908879412: ImportLogs
   externalObjects:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Material_001
-    second: {fileID: 2100000, guid: 215977489d11178d11005b9844295342, type: 2}
+      name: Material_001__UV
+    second: {fileID: 2100000, guid: 5d69df9d9d11e49d110086ba44295342, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -140,7 +148,11 @@ ModelImporter:
     optimizeGameObjects: 0
     motionNodeName: 
     rigImportErrors: 
-    rigImportWarnings: 
+    rigImportWarnings: "Avatar Rig Configuration mis-match. Bone length in configuration
+      does not match position in animation file:\n\t'legUpper_l' : position error
+      = 17.639536 mm\n\t'legLower_l' : position error = 56.452347 mm\n\t'legUpper_r'
+      : position error = 17.639534 mm\n\t'legLower_r' : position error = 56.452297
+      mm\n"
     animationImportErrors: 
     animationImportWarnings: "\nClip 'kickH' has import animation warnings that might
       lower retargeting quality:\nNote: Activate translation DOF on avatar to improve
@@ -151,34 +163,37 @@ ModelImporter:
       that will be discarded.\n\t'foot_r' has scale animation that will be discarded.\n\t'toes_r'
       has scale animation that will be discarded.\n\nClip 'kickL' has import animation
       warnings that might lower retargeting quality:\nNote: Activate translation DOF
-      on avatar to improve retargeting quality.\n\t'foot_l' has scale animation that
-      will be discarded.\n\t'legUpper_r' has scale animation that will be discarded.\n\t'legLower_r'
+      on avatar to improve retargeting quality.\n\t'legLower_l' has scale animation
+      that will be discarded.\n\t'legUpper_r' has scale animation that will be discarded.\n\t'legLower_r'
       has scale animation that will be discarded.\n\t'foot_r' has scale animation
       that will be discarded.\n\t'toes_r' has scale animation that will be discarded.\n\nClip
       'kickM' has import animation warnings that might lower retargeting quality:\nNote:
-      Activate translation DOF on avatar to improve retargeting quality.\n\t'foot_l'
+      Activate translation DOF on avatar to improve retargeting quality.\n\t'legLower_l'
       has scale animation that will be discarded.\n\t'legUpper_r' has scale animation
       that will be discarded.\n\t'legLower_r' has scale animation that will be discarded.\n\t'foot_r'
       has scale animation that will be discarded.\n\t'toes_r' has scale animation
       that will be discarded.\n\nClip 'knockdown' has import animation warnings that
       might lower retargeting quality:\nNote: Activate translation DOF on avatar to
-      improve retargeting quality.\n\t'legLower_l' has scale animation that will be
-      discarded.\n\t'foot_l' has scale animation that will be discarded.\n\t'legLower_r'
-      has scale animation that will be discarded.\n\t'foot_r' has scale animation
-      that will be discarded.\n\nClip 'runLoop' has import animation warnings that
-      might lower retargeting quality:\nNote: Activate translation DOF on avatar to
       improve retargeting quality.\n\t'legUpper_l' has scale animation that will be
       discarded.\n\t'legLower_l' has scale animation that will be discarded.\n\t'foot_l'
-      has scale animation that will be discarded.\n\t'toes_l' has scale animation
+      has scale animation that will be discarded.\n\t'legUpper_r' has scale animation
       that will be discarded.\n\t'legLower_r' has scale animation that will be discarded.\n\t'foot_r'
-      has scale animation that will be discarded.\n\t'toes_r' has scale animation
-      that will be discarded.\n\nClip 'walkLoop' has import animation warnings that
-      might lower retargeting quality:\nNote: Activate translation DOF on avatar to
-      improve retargeting quality.\n\t'legLower_l' has scale animation that will be
-      discarded.\n\t'foot_l' has scale animation that will be discarded.\n\t'toes_l'
+      has scale animation that will be discarded.\n\nClip 'punchMed' has import animation
+      warnings that might lower retargeting quality:\nNote: Activate translation DOF
+      on avatar to improve retargeting quality.\n\t'foot_r' has scale animation that
+      will be discarded.\n\nClip 'runLoop' has import animation warnings that might
+      lower retargeting quality:\nNote: Activate translation DOF on avatar to improve
+      retargeting quality.\n\t'legUpper_l' has scale animation that will be discarded.\n\t'legLower_l'
+      has scale animation that will be discarded.\n\t'foot_l' has scale animation
+      that will be discarded.\n\t'toes_l' has scale animation that will be discarded.\n\t'legUpper_r'
       has scale animation that will be discarded.\n\t'legLower_r' has scale animation
       that will be discarded.\n\t'foot_r' has scale animation that will be discarded.\n\t'toes_r'
-      has scale animation that will be discarded.\n"
+      has scale animation that will be discarded.\n\nClip 'walkLoop' has import animation
+      warnings that might lower retargeting quality:\nNote: Activate translation DOF
+      on avatar to improve retargeting quality.\n\t'legLower_l' has scale animation
+      that will be discarded.\n\t'toes_l' has scale animation that will be discarded.\n\t'legLower_r'
+      has scale animation that will be discarded.\n\t'toes_r' has scale animation
+      that will be discarded.\n"
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
@@ -513,7 +528,7 @@ ModelImporter:
     generateSecondaryUV: 0
     useFileUnits: 1
     optimizeMeshForGPU: 1
-    keepQuads: 1
+    keepQuads: 0
     weldVertices: 1
     preserveHierarchy: 0
     indexFormat: 0
