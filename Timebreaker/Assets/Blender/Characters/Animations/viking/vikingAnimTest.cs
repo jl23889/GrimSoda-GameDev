@@ -44,17 +44,28 @@ public class vikingAnimTest : MonoBehaviour
         if (movement != Vector3.zero)
         {
             animator.SetBool("Moving", true);
+            
             //sprinting check
             if (Input.GetKey(KeyCode.LeftShift))
             {
                 animator.SetBool("Sprinting", true);
-                movement = movement * 1.7f; // hardcoded sprint movement multiplier TODO: allow this to be set as a public variable
+                movement = movement * 2.2f; // hardcoded sprint movement multiplier TODO: allow this to be set as a public variable
+            }
+            //dodge animation check
+            else if (Input.GetKeyDown(KeyCode.M))
+            {
+                animator.SetBool("Dodging", true);
             }
             else
             {
                 animator.SetBool("Sprinting", false);
             }
             //facing the character to the correst direction
+            //dodge movement check
+            if (animator.GetBool("Dodging"))
+            {
+                movement = movement * 1.8f; // hardcoded dodge movement multiplier TODO: allow this to be set as a public variable
+            }
             transform.forward = movement;
         }
         else
