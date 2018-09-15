@@ -1,82 +1,98 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
 public class vikingAnimTest : MonoBehaviour
 {
-    public float speed;
-    public float jumpForce;
+    //public variable
+    public float speed = 10f;
+    public float jumpSpeed = 10f;
+    public float gravity = -20f;
+    public float fallMultiplier = 2.5f;
+    public float lowJumpMultiplier = 2f;
 
-    public CharacterController controller;
-    public LayerMask groundLayers;
-    public CapsuleCollider col;
+    public LayerMask groundLayer;
+    public CapsuleCollider charCollider;
 
+    //components
+    private Rigidbody rb;
     private Animator animator;
 
-    // Helper method to wait
-    bool attacking = false;
-    // bool waitActive = false;
+    private Vector3 movement = Vector3.zero;
 
-    // IEnumerator Wait(){
-    //     // waitActive = true;
-    //     Debug.Log("Waiting");
-    //     yield return new WaitForSeconds (3.0f);
-    //     Debug.Log("Stopped waiting");
-    //     animator.SetBool("KickH", false);
-    //     Debug.Log("STOPPED ATTACK");
-    //     // canAttack = true;
-    //     // waitActive = false;
-    //  }
 
     // Use this for initialization
     void Start()
     {
-        controller = GetComponent<CharacterController>();
+        rb = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
-        col = GetComponent<CapsuleCollider>();
+        Physics.gravity = new Vector3(0f, gravity, 0f);
+        movement = Vector3.zero;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        float x = Input.GetAxis("Horizontal");
-        float z = Input.GetAxis("Vertical");
-
-        move(x, z);
-        punchM();
-        jump();
-        
-    }
-    void jump() //testing kick for now
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (isGrounded())
         {
-            Debug.Log("SPACE PRESSED");
-            animator.SetBool("KickH", true);
+            //if (animator.GetBool("Jumping"))
+            //{
+            //    animator.SetBool("Jumping", false);
+            //}
+            movement.x = Input.GetAxis("Horizontal");
+            movement.z = Input.GetAxis("Vertical");
         }
-    }
-    void punchM()
-    {
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            Debug.Log("P PRESSED");
-            animator.SetBool("PunchM", true);
-        }
-    }
-
-
-    void move(float x, float z)
-    {
-        Vector3 movement = new Vector3(x, 0.0f, z);
-        movement = movement.normalized * Time.deltaTime * speed;
         if (movement != Vector3.zero)
         {
-            controller.transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(movement), 0.2f);
-            controller.transform.Translate(movement, Space.World);
+            //facing the character to the correst direction
+            transform.forward = movement;
             animator.SetBool("Moving", true);
         }
         else
         {
             animator.SetBool("Moving", false);
         }
+    }
+
+    void FixedUpdate()
+    {
+        //move
+        rb.MovePosition(transform.position + movement * speed * Time.fixedDeltaTime);
+
+        //jump
+        if (isGrounded()) // need ground checker here
+        {
+            if (Input.GetButtonDown("Jump"))
+            {
+                //rb.velocity = Vector3.up * jumpSpeed;            
+                rb.AddForce(Vector3.up * jumpSpeed, ForceMode.Impulse);
+                animator.SetBool("Jumping", true);
+            }
+            else
+            {
+                animator.SetBool("Jumping", false);
+            }
+        }
+
+        //lightAttackGround
+        if (Input.GetKeyDown(KeyCode.L) && isGrounded())
+        {
+            Debug.Log("P PRESSED");
+            animator.SetBool("L", true);
+        }
+
+        //use fallMultiplier and lowJumpMultiplier to make character fall faster and implementing short and long jump
+        if (rb.velocity.y < 0)
+        {
+            rb.velocity += Vector3.up * Physics.gravity.y * (fallMultiplier - 1) * Time.fixedDeltaTime;
+        }
+        else if (rb.velocity.y > 0 && !Input.GetButton("Jump")) // if player is not holding the jump button, do short jump
+        {
+            rb.velocity += Vector3.up * Physics.gravity.y * (lowJumpMultiplier - 1) * Time.fixedDeltaTime;
+        }
+    }
+
+    private bool isGrounded()
+    {
+        return Physics.CheckCapsule(charCollider.bounds.center, new Vector3(charCollider.bounds.center.x, charCollider.bounds.min.y, charCollider.bounds.center.z), charCollider.radius, groundLayer);
     }
 }
