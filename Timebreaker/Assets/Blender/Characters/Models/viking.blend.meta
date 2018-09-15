@@ -132,6 +132,8 @@ ModelImporter:
     7400028: jumpStart
     7400030: jumpEndIdle
     7400032: jumpMid
+    7400034: LLL
+    7400036: LLLL
     9500000: //RootNode
     13700000: body
     13700002: vikingBody
@@ -151,19 +153,20 @@ ModelImporter:
     rigImportErrors: 
     rigImportWarnings: "Avatar Rig Configuration mis-match. Bone length in configuration
       does not match position in animation file:\n\t'legUpper_l' : position error
-      = 17.639490 mm\n\t'legLower_l' : position error = 56.452347 mm\n\t'legUpper_r'
-      : position error = 17.639486 mm\n\t'legLower_r' : position error = 56.452225
+      = 17.639507 mm\n\t'legLower_l' : position error = 56.452415 mm\n\t'legUpper_r'
+      : position error = 17.639523 mm\n\t'legLower_r' : position error = 56.452274
       mm\n"
     animationImportErrors: 
     animationImportWarnings: "\nClip 'Default Take' has import animation warnings
       that might lower retargeting quality:\nNote: Activate translation DOF on avatar
       to improve retargeting quality.\n\t'legLower_l' has scale animation that will
-      be discarded.\n\t'foot_l' has scale animation that will be discarded.\n\t'legLower_r'
-      has scale animation that will be discarded.\n\t'foot_r' has scale animation
-      that will be discarded.\n\nClip 'jumpEndIdle' has import animation warnings
-      that might lower retargeting quality:\nNote: Activate translation DOF on avatar
-      to improve retargeting quality.\n\t'legLower_l' has scale animation that will
-      be discarded.\n\t'foot_l' has scale animation that will be discarded.\n\t'legLower_r'
+      be discarded.\n\t'foot_l' has scale animation that will be discarded.\n\t'toes_l'
+      has scale animation that will be discarded.\n\t'legUpper_r' has scale animation
+      that will be discarded.\n\t'legLower_r' has scale animation that will be discarded.\n\t'foot_r'
+      has scale animation that will be discarded.\n\nClip 'jumpEndIdle' has import
+      animation warnings that might lower retargeting quality:\nNote: Activate translation
+      DOF on avatar to improve retargeting quality.\n\t'legLower_l' has scale animation
+      that will be discarded.\n\t'foot_l' has scale animation that will be discarded.\n\t'legLower_r'
       has scale animation that will be discarded.\n\t'foot_r' has scale animation
       that will be discarded.\n\nClip 'jumpStart' has import animation warnings that
       might lower retargeting quality:\nNote: Activate translation DOF on avatar to
@@ -208,6 +211,16 @@ ModelImporter:
       that will be discarded.\n\t'legUpper_r' has scale animation that will be discarded.\n\t'legLower_r'
       has scale animation that will be discarded.\n\t'foot_r' has scale animation
       that will be discarded.\n\t'toes_r' has scale animation that will be discarded.\n\nClip
+      'LLL' has import animation warnings that might lower retargeting quality:\nNote:
+      Activate translation DOF on avatar to improve retargeting quality.\n\t'legLower_l'
+      has scale animation that will be discarded.\n\t'foot_l' has scale animation
+      that will be discarded.\n\t'foot_r' has scale animation that will be discarded.\n\nClip
+      'LLLL' has import animation warnings that might lower retargeting quality:\nNote:
+      Activate translation DOF on avatar to improve retargeting quality.\n\t'legLower_l'
+      has scale animation that will be discarded.\n\t'foot_l' has scale animation
+      that will be discarded.\n\t'toes_l' has scale animation that will be discarded.\n\t'legUpper_r'
+      has scale animation that will be discarded.\n\t'legLower_r' has scale animation
+      that will be discarded.\n\t'foot_r' has scale animation that will be discarded.\n\nClip
       'runLoop' has import animation warnings that might lower retargeting quality:\nNote:
       Activate translation DOF on avatar to improve retargeting quality.\n\t'legUpper_l'
       has scale animation that will be discarded.\n\t'legLower_l' has scale animation
@@ -433,7 +446,7 @@ ModelImporter:
       name: L
       takeName: L
       firstFrame: 0
-      lastFrame: 8
+      lastFrame: 9
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -443,8 +456,8 @@ ModelImporter:
       loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 1
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 0
       keepOriginalOrientation: 1
       keepOriginalPositionY: 1
       keepOriginalPositionXZ: 1
@@ -461,7 +474,7 @@ ModelImporter:
       name: LL
       takeName: LL
       firstFrame: 0
-      lastFrame: 8
+      lastFrame: 9
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -471,8 +484,8 @@ ModelImporter:
       loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 1
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 0
       keepOriginalOrientation: 1
       keepOriginalPositionY: 1
       keepOriginalPositionXZ: 1
@@ -586,6 +599,62 @@ ModelImporter:
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0
       keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: LLL
+      takeName: LLL
+      firstFrame: 0
+      lastFrame: 9
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 1
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 1
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: LLLL
+      takeName: LLLL
+      firstFrame: 0
+      lastFrame: 9
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 1
       keepOriginalPositionY: 1
       keepOriginalPositionXZ: 0
       heightFromFeet: 0

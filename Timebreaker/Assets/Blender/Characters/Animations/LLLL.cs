@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LL : StateMachineBehaviour {
+public class LLLL : StateMachineBehaviour {
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     //override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
@@ -10,25 +10,14 @@ public class LL : StateMachineBehaviour {
     //}
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
-    override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    {
-        if (Input.GetKeyDown(KeyCode.H))
-        {
-            animator.SetBool("LLH", true);
-        }
-        //lightAttackGround
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            animator.SetBool("LLL", true);
-        }
-    }
+    //override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
+    //
+    //}
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        animator.SetBool("LL", false);
-        animator.SetBool("LLL", false);
-        animator.SetBool("LLH", false);
+        animator.SetBool("LLLL", false);
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove(). Code that processes and affects root motion should be implemented here
