@@ -43,9 +43,19 @@ public class vikingAnimTest : MonoBehaviour
         }
         if (movement != Vector3.zero)
         {
+            animator.SetBool("Moving", true);
+            //sprinting check
+            if (Input.GetKey(KeyCode.LeftShift))
+            {
+                animator.SetBool("Sprinting", true);
+                movement = movement * 1.7f; // hardcoded sprint movement multiplier TODO: allow this to be set as a public variable
+            }
+            else
+            {
+                animator.SetBool("Sprinting", false);
+            }
             //facing the character to the correst direction
             transform.forward = movement;
-            animator.SetBool("Moving", true);
         }
         else
         {
@@ -58,9 +68,10 @@ public class vikingAnimTest : MonoBehaviour
         //move
         rb.MovePosition(transform.position + movement * speed * Time.fixedDeltaTime);
 
-        //jump
+        //grounded movements
         if (isGrounded()) // need ground checker here
         {
+            //jump
             if (Input.GetButtonDown("Jump"))
             {
                 //rb.velocity = Vector3.up * jumpSpeed;            
@@ -76,7 +87,6 @@ public class vikingAnimTest : MonoBehaviour
         //lightAttackGround
         if (Input.GetKeyDown(KeyCode.L) && isGrounded())
         {
-            Debug.Log("P PRESSED");
             animator.SetBool("L", true);
         }
 
