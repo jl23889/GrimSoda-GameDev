@@ -20,9 +20,6 @@ public class vikingAnimTest : MonoBehaviour
 
     private Vector3 movement = Vector3.zero;
 
-    //jumping check
-    private bool isJumping = false;
-
     // Use this for initialization
     void Start()
     {
@@ -36,29 +33,20 @@ public class vikingAnimTest : MonoBehaviour
     {
         if (isGrounded())
         {
+            animator.SetBool("Grounded", true);
             movement.x = Input.GetAxis("Horizontal");
             movement.z = Input.GetAxis("Vertical");
 
             //lightAttackGround
             if (Input.GetKeyDown(KeyCode.L))
             {
-                animator.SetBool("L", true);
-            }
-
-            //jump
-            if (Input.GetButtonDown("Jump") )
-            {
-                isJumping = true;
-                animator.SetBool("Jumping", true);
-            }
-            else if (rb.velocity.y <= 0)
-            {
-                isJumping = false;
-                animator.SetBool("Jumping", false);
+                animator.SetBool("LightAttack", true);
             }
         }
-        //jump check
-        else if (isJumping) animator.SetBool("Jumping", true);
+        else
+        {
+            animator.SetBool("Grounded", false);
+        }
 
         if (movement != Vector3.zero)
         {
@@ -111,6 +99,7 @@ public class vikingAnimTest : MonoBehaviour
             {
                 //rb.velocity = Vector3.up * jumpSpeed;            
                 rb.AddForce(Vector3.up * jumpSpeed, ForceMode.Impulse);
+                animator.SetBool("Jumping", true);
             }
         }
 
