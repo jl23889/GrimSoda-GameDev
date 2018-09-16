@@ -52,31 +52,38 @@ public class vikingAnimTest : MonoBehaviour
         {
             animator.SetBool("Moving", true);
             
-            //sprinting check
-            if (Input.GetKey(KeyCode.LeftShift))
+            //sprint and dodge
+            if (!animator.GetBool("Jumping") && !animator.GetBool("Attacking"))
             {
-                animator.SetBool("Sprinting", true);
-                // sprint movement multiplier
-                if (isGrounded())
+                //sprinting check
+                if (Input.GetKey(KeyCode.LeftShift))
                 {
+                    animator.SetBool("Sprinting", true);
+                }
+                else
+                {
+                    animator.SetBool("Sprinting", false);
+                }
+
+                //dodge check
+                if (Input.GetKeyDown(KeyCode.M))
+                {
+                    animator.SetBool("Dodging", true);
+                }
+                
+                //facing the character to the correst direction
+                //dodge movement check
+                if (animator.GetBool("Sprinting") && animator.GetBool("Grounded"))
+                {
+                    // dodge movement multiplier
                     movement = movement * 2.2f; // hardcoded sprint movement multiplier TODO: allow this to be set as a public variable
                 }
-            }
-            //dodge animation check
-            else if (Input.GetKeyDown(KeyCode.M))
-            {
-                animator.SetBool("Dodging", true);
-            }
-            else
-            {
-                animator.SetBool("Sprinting", false);
-            }
-            //facing the character to the correst direction
-            //dodge movement check
-            if (animator.GetBool("Dodging") && isGrounded())
-            {
-                // dodge movement multiplier
-                movement = movement * 1.8f; // hardcoded dodge movement multiplier TODO: allow this to be set as a public variable
+                //dodge movement check
+                else if (animator.GetBool("Dodging") && animator.GetBool("Grounded"))
+                {
+                    // dodge movement multiplier
+                    movement = movement * 1.8f; // hardcoded dodge movement multiplier TODO: allow this to be set as a public variable
+                }
             }
             transform.forward = movement;
         }
@@ -91,8 +98,8 @@ public class vikingAnimTest : MonoBehaviour
         //move
         rb.MovePosition(transform.position + movement * speed * Time.fixedDeltaTime);
 
-        //grounded movements
-        if (isGrounded()) // need ground checker here
+        //movements when grounded and not animation locked
+        if (isGrounded() && !animator.GetBool("Attacking") && !animator.GetBool("Sprinting") && !animator.GetBool("Jumping")) 
         {
             //jump
             if (Input.GetButtonDown("Jump"))
