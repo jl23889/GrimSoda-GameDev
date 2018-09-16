@@ -20,6 +20,8 @@ public class vikingAnimTest : MonoBehaviour
 
     private Vector3 movement = Vector3.zero;
 
+    //jumping check
+    private bool isJumping = false;
 
     // Use this for initialization
     void Start()
@@ -34,13 +36,30 @@ public class vikingAnimTest : MonoBehaviour
     {
         if (isGrounded())
         {
-            //if (animator.GetBool("Jumping"))
-            //{
-            //    animator.SetBool("Jumping", false);
-            //}
             movement.x = Input.GetAxis("Horizontal");
             movement.z = Input.GetAxis("Vertical");
+
+            //lightAttackGround
+            if (Input.GetKeyDown(KeyCode.L))
+            {
+                animator.SetBool("L", true);
+            }
+
+            //jump
+            if (Input.GetButtonDown("Jump") )
+            {
+                isJumping = true;
+                animator.SetBool("Jumping", true);
+            }
+            else if (rb.velocity.y <= 0)
+            {
+                isJumping = false;
+                animator.SetBool("Jumping", false);
+            }
         }
+        //jump check
+        else if (isJumping) animator.SetBool("Jumping", true);
+
         if (movement != Vector3.zero)
         {
             animator.SetBool("Moving", true);
@@ -49,7 +68,11 @@ public class vikingAnimTest : MonoBehaviour
             if (Input.GetKey(KeyCode.LeftShift))
             {
                 animator.SetBool("Sprinting", true);
-                movement = movement * 2.2f; // hardcoded sprint movement multiplier TODO: allow this to be set as a public variable
+                // sprint movement multiplier
+                if (isGrounded())
+                {
+                    movement = movement * 2.2f; // hardcoded sprint movement multiplier TODO: allow this to be set as a public variable
+                }
             }
             //dodge animation check
             else if (Input.GetKeyDown(KeyCode.M))
@@ -62,8 +85,9 @@ public class vikingAnimTest : MonoBehaviour
             }
             //facing the character to the correst direction
             //dodge movement check
-            if (animator.GetBool("Dodging"))
+            if (animator.GetBool("Dodging") && isGrounded())
             {
+                // dodge movement multiplier
                 movement = movement * 1.8f; // hardcoded dodge movement multiplier TODO: allow this to be set as a public variable
             }
             transform.forward = movement;
@@ -87,18 +111,7 @@ public class vikingAnimTest : MonoBehaviour
             {
                 //rb.velocity = Vector3.up * jumpSpeed;            
                 rb.AddForce(Vector3.up * jumpSpeed, ForceMode.Impulse);
-                animator.SetBool("Jumping", true);
             }
-            else
-            {
-                animator.SetBool("Jumping", false);
-            }
-        }
-
-        //lightAttackGround
-        if (Input.GetKeyDown(KeyCode.L) && isGrounded())
-        {
-            animator.SetBool("L", true);
         }
 
         //use fallMultiplier and lowJumpMultiplier to make character fall faster and implementing short and long jump

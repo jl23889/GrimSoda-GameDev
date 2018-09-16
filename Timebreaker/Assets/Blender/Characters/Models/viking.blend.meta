@@ -137,6 +137,7 @@ ModelImporter:
     7400038: sprintLoop
     7400040: sprintL
     7400042: runningDodge
+    7400044: jumpEndPushUp
     9500000: //RootNode
     13700000: body
     13700002: vikingBody
@@ -156,49 +157,56 @@ ModelImporter:
     rigImportErrors: 
     rigImportWarnings: "Avatar Rig Configuration mis-match. Bone length in configuration
       does not match position in animation file:\n\t'legUpper_l' : position error
-      = 17.639494 mm\n\t'legLower_l' : position error = 56.452415 mm\n\t'legUpper_r'
-      : position error = 17.639500 mm\n\t'legLower_r' : position error = 56.452106
+      = 17.639509 mm\n\t'legLower_l' : position error = 56.452389 mm\n\t'legUpper_r'
+      : position error = 17.639500 mm\n\t'legLower_r' : position error = 56.452274
       mm\n"
     animationImportErrors: 
     animationImportWarnings: "\nClip 'Default Take' has import animation warnings
       that might lower retargeting quality:\nNote: Activate translation DOF on avatar
       to improve retargeting quality.\n\t'legUpper_l' has scale animation that will
       be discarded.\n\t'legLower_l' has scale animation that will be discarded.\n\t'foot_l'
+      has scale animation that will be discarded.\n\t'legUpper_r' has scale animation
+      that will be discarded.\n\t'legLower_r' has scale animation that will be discarded.\n\t'foot_r'
+      has scale animation that will be discarded.\n\nClip 'jumpEndPushUp' has import
+      animation warnings that might lower retargeting quality:\nNote: Activate translation
+      DOF on avatar to improve retargeting quality.\n\t'legUpper_l' has scale animation
+      that will be discarded.\n\t'legLower_l' has scale animation that will be discarded.\n\t'foot_l'
+      has scale animation that will be discarded.\n\t'legUpper_r' has scale animation
+      that will be discarded.\n\t'legLower_r' has scale animation that will be discarded.\n\t'foot_r'
+      has scale animation that will be discarded.\n\nClip 'jumpEndRoll' has import
+      animation warnings that might lower retargeting quality:\nNote: Activate translation
+      DOF on avatar to improve retargeting quality.\n\t'legUpper_l' has scale animation
+      that will be discarded.\n\t'legLower_l' has scale animation that will be discarded.\n\t'foot_l'
+      has scale animation that will be discarded.\n\t'legUpper_r' has scale animation
+      that will be discarded.\n\t'legLower_r' has scale animation that will be discarded.\n\t'foot_r'
+      has scale animation that will be discarded.\n\nClip 'jumpStart' has import animation
+      warnings that might lower retargeting quality:\nNote: Activate translation DOF
+      on avatar to improve retargeting quality.\n\t'legUpper_l' has scale animation
+      that will be discarded.\n\t'legLower_l' has scale animation that will be discarded.\n\t'foot_l'
+      has scale animation that will be discarded.\n\t'legUpper_r' has scale animation
+      that will be discarded.\n\t'legLower_r' has scale animation that will be discarded.\n\t'foot_r'
+      has scale animation that will be discarded.\n\nClip 'kickH' has import animation
+      warnings that might lower retargeting quality:\nNote: Activate translation DOF
+      on avatar to improve retargeting quality.\n\t'legUpper_l' has scale animation
+      that will be discarded.\n\t'legLower_l' has scale animation that will be discarded.\n\t'foot_l'
       has scale animation that will be discarded.\n\t'toes_l' has scale animation
       that will be discarded.\n\t'legUpper_r' has scale animation that will be discarded.\n\t'legLower_r'
       has scale animation that will be discarded.\n\t'foot_r' has scale animation
       that will be discarded.\n\t'toes_r' has scale animation that will be discarded.\n\nClip
-      'jumpEndIdle' has import animation warnings that might lower retargeting quality:\nNote:
-      Activate translation DOF on avatar to improve retargeting quality.\n\t'legLower_l'
-      has scale animation that will be discarded.\n\t'foot_l' has scale animation
-      that will be discarded.\n\t'legLower_r' has scale animation that will be discarded.\n\t'foot_r'
-      has scale animation that will be discarded.\n\nClip 'jumpStart' has import animation
-      warnings that might lower retargeting quality:\nNote: Activate translation DOF
-      on avatar to improve retargeting quality.\n\t'legLower_l' has scale animation
-      that will be discarded.\n\t'foot_l' has scale animation that will be discarded.\n\t'legLower_r'
-      has scale animation that will be discarded.\n\t'foot_r' has scale animation
-      that will be discarded.\n\nClip 'kickH' has import animation warnings that might
-      lower retargeting quality:\nNote: Activate translation DOF on avatar to improve
-      retargeting quality.\n\t'legUpper_l' has scale animation that will be discarded.\n\t'legLower_l'
-      has scale animation that will be discarded.\n\t'foot_l' has scale animation
-      that will be discarded.\n\t'toes_l' has scale animation that will be discarded.\n\t'legUpper_r'
-      has scale animation that will be discarded.\n\t'legLower_r' has scale animation
-      that will be discarded.\n\t'foot_r' has scale animation that will be discarded.\n\t'toes_r'
-      has scale animation that will be discarded.\n\nClip 'kickL' has import animation
-      warnings that might lower retargeting quality:\nNote: Activate translation DOF
-      on avatar to improve retargeting quality.\n\t'legLower_l' has scale animation
-      that will be discarded.\n\t'legUpper_r' has scale animation that will be discarded.\n\t'legLower_r'
-      has scale animation that will be discarded.\n\t'foot_r' has scale animation
-      that will be discarded.\n\t'toes_r' has scale animation that will be discarded.\n\nClip
-      'kickM' has import animation warnings that might lower retargeting quality:\nNote:
+      'kickL' has import animation warnings that might lower retargeting quality:\nNote:
       Activate translation DOF on avatar to improve retargeting quality.\n\t'legLower_l'
       has scale animation that will be discarded.\n\t'legUpper_r' has scale animation
       that will be discarded.\n\t'legLower_r' has scale animation that will be discarded.\n\t'foot_r'
       has scale animation that will be discarded.\n\t'toes_r' has scale animation
-      that will be discarded.\n\nClip 'knockdown' has import animation warnings that
-      might lower retargeting quality:\nNote: Activate translation DOF on avatar to
-      improve retargeting quality.\n\t'legUpper_l' has scale animation that will be
-      discarded.\n\t'legLower_l' has scale animation that will be discarded.\n\t'foot_l'
+      that will be discarded.\n\nClip 'kickM' has import animation warnings that might
+      lower retargeting quality:\nNote: Activate translation DOF on avatar to improve
+      retargeting quality.\n\t'legLower_l' has scale animation that will be discarded.\n\t'legUpper_r'
+      has scale animation that will be discarded.\n\t'legLower_r' has scale animation
+      that will be discarded.\n\t'foot_r' has scale animation that will be discarded.\n\t'toes_r'
+      has scale animation that will be discarded.\n\nClip 'knockdown' has import animation
+      warnings that might lower retargeting quality:\nNote: Activate translation DOF
+      on avatar to improve retargeting quality.\n\t'legUpper_l' has scale animation
+      that will be discarded.\n\t'legLower_l' has scale animation that will be discarded.\n\t'foot_l'
       has scale animation that will be discarded.\n\t'legUpper_r' has scale animation
       that will be discarded.\n\t'legLower_r' has scale animation that will be discarded.\n\t'foot_r'
       has scale animation that will be discarded.\n\nClip 'L' has import animation
@@ -554,8 +562,8 @@ ModelImporter:
     - serializedVersion: 16
       name: jumpStart
       takeName: jumpStart
-      firstFrame: 0
-      lastFrame: 8
+      firstFrame: -1
+      lastFrame: 10
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -564,12 +572,12 @@ ModelImporter:
       hasAdditiveReferencePose: 0
       loopTime: 0
       loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 1
+      keepOriginalOrientation: 1
       keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
+      keepOriginalPositionXZ: 1
       heightFromFeet: 0
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
@@ -583,7 +591,7 @@ ModelImporter:
       name: jumpEndIdle
       takeName: jumpEndIdle
       firstFrame: 0
-      lastFrame: 8
+      lastFrame: 9
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -592,12 +600,12 @@ ModelImporter:
       hasAdditiveReferencePose: 0
       loopTime: 0
       loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 1
+      keepOriginalOrientation: 1
       keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
+      keepOriginalPositionXZ: 1
       heightFromFeet: 0
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
@@ -620,12 +628,12 @@ ModelImporter:
       hasAdditiveReferencePose: 0
       loopTime: 1
       loopBlend: 1
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 1
+      keepOriginalOrientation: 1
       keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
+      keepOriginalPositionXZ: 1
       heightFromFeet: 0
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
@@ -750,6 +758,34 @@ ModelImporter:
     - serializedVersion: 16
       name: runningDodge
       takeName: runningDodge
+      firstFrame: -1
+      lastFrame: 16
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 1
+      keepOriginalOrientation: 1
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 1
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: jumpEndPushUp
+      takeName: jumpEndPushUp
       firstFrame: -1
       lastFrame: 16
       wrapMode: 0

@@ -1508,6 +1508,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeToDestroy: 3
-  explosionRadius: 100
+  explosionRadius: 5
   power: 1000
   upForce: 3
