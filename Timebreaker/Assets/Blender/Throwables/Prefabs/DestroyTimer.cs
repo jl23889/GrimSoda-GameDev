@@ -18,8 +18,6 @@ public class DestroyTimer : MonoBehaviour {
 
         foreach (Rigidbody rb in rbFragments)
         {
-            Debug.Log("exploding!! " + rb);
-            Debug.Log("explosionPos" + explosionPos);
             rb.AddExplosionForce(power, explosionPos, explosionRadius, upForce);
         }
     }
