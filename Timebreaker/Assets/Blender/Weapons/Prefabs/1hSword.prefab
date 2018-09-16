@@ -21,8 +21,7 @@ GameObject:
   - component: {fileID: 4167266947623064}
   - component: {fileID: 33469229806902652}
   - component: {fileID: 23142070845100518}
-  - component: {fileID: 95997522671698966}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: 1hSword
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36,7 +35,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1212769216050978}
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalPosition: {x: -0, y: 3, z: 0}
   m_LocalScale: {x: 0.35386407, y: 0.35386407, z: 1.0812284}
   m_Children: []
   m_Father: {fileID: 0}
@@ -84,21 +83,3 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1212769216050978}
   m_Mesh: {fileID: 4300000, guid: 2a5068915a57f8046b22bd72b61c3555, type: 3}
---- !u!95 &95997522671698966
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1212769216050978}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 2a5068915a57f8046b22bd72b61c3555, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
