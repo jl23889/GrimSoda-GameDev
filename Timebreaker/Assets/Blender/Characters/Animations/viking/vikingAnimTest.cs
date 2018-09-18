@@ -38,7 +38,7 @@ public class vikingAnimTest : MonoBehaviour
             movement.z = Input.GetAxis("Vertical");
 
             //lightAttackGround
-            if (Input.GetKeyDown(KeyCode.L))
+            if (Input.GetButtonDown("LightAttack"))
             {
                 animator.SetBool("LightAttack", true);
             }
@@ -56,7 +56,7 @@ public class vikingAnimTest : MonoBehaviour
             if (!animator.GetBool("Jumping") && !animator.GetBool("Attacking"))
             {
                 //sprinting check
-                if (Input.GetKey(KeyCode.LeftShift))
+                if (Input.GetButton("Sprint"))
                 {
                     animator.SetBool("Sprinting", true);
                 }
@@ -66,7 +66,7 @@ public class vikingAnimTest : MonoBehaviour
                 }
 
                 //dodge check
-                if (Input.GetKeyDown(KeyCode.M))
+                if (Input.GetButtonDown("Dodge"))
                 {
                     animator.SetBool("Dodging", true);
                 }

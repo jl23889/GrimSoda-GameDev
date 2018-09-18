@@ -21,7 +21,7 @@ public class ThrowObject : MonoBehaviour {
 	}
 	
 	void FixedUpdate () {
-        if (Input.GetKeyDown(KeyCode.H))
+        if (Input.GetButtonDown("Throw"))
         {
             // release object if it is parented to player
             if (gameObject.transform.parent == player.transform) 
