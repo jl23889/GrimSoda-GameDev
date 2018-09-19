@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class vikingAnimTest : MonoBehaviour
+public class CharacterAnimations : MonoBehaviour
 {
     //public variable
     public float speed = 10f;
