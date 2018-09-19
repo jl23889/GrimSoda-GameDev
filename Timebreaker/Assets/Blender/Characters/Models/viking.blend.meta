@@ -136,7 +136,7 @@ ModelImporter:
     7400036: LLLL
     7400038: sprintLoop
     7400040: sprintL
-    7400042: runningDodge
+    7400042: vikingDodge
     7400044: jumpEndPushUp
     9500000: //RootNode
     13700000: body
@@ -157,20 +157,14 @@ ModelImporter:
     rigImportErrors: 
     rigImportWarnings: "Avatar Rig Configuration mis-match. Bone length in configuration
       does not match position in animation file:\n\t'legUpper_l' : position error
-      = 17.639509 mm\n\t'legLower_l' : position error = 56.452389 mm\n\t'legUpper_r'
-      : position error = 17.639500 mm\n\t'legLower_r' : position error = 56.452274
+      = 17.639631 mm\n\t'legLower_l' : position error = 56.452274 mm\n\t'legUpper_r'
+      : position error = 17.639627 mm\n\t'legLower_r' : position error = 56.452320
       mm\n"
     animationImportErrors: 
-    animationImportWarnings: "\nClip 'Default Take' has import animation warnings
+    animationImportWarnings: "\nClip 'jumpEndPushUp' has import animation warnings
       that might lower retargeting quality:\nNote: Activate translation DOF on avatar
       to improve retargeting quality.\n\t'legUpper_l' has scale animation that will
       be discarded.\n\t'legLower_l' has scale animation that will be discarded.\n\t'foot_l'
-      has scale animation that will be discarded.\n\t'legUpper_r' has scale animation
-      that will be discarded.\n\t'legLower_r' has scale animation that will be discarded.\n\t'foot_r'
-      has scale animation that will be discarded.\n\nClip 'jumpEndPushUp' has import
-      animation warnings that might lower retargeting quality:\nNote: Activate translation
-      DOF on avatar to improve retargeting quality.\n\t'legUpper_l' has scale animation
-      that will be discarded.\n\t'legLower_l' has scale animation that will be discarded.\n\t'foot_l'
       has scale animation that will be discarded.\n\t'legUpper_r' has scale animation
       that will be discarded.\n\t'legLower_r' has scale animation that will be discarded.\n\t'foot_r'
       has scale animation that will be discarded.\n\nClip 'jumpEndRoll' has import
@@ -435,34 +429,6 @@ ModelImporter:
       loopBlendOrientation: 1
       loopBlendPositionY: 1
       loopBlendPositionXZ: 1
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask: []
-      maskType: 3
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
-    - serializedVersion: 16
-      name: walkLoop
-      takeName: walkLoop
-      firstFrame: -1
-      lastFrame: 32
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      hasAdditiveReferencePose: 0
-      loopTime: 0
-      loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
       keepOriginalOrientation: 0
       keepOriginalPositionY: 1
       keepOriginalPositionXZ: 0
@@ -756,7 +722,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: runningDodge
+      name: vikingDodge
       takeName: runningDodge
       firstFrame: -1
       lastFrame: 16

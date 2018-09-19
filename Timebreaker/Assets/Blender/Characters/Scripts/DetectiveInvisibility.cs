@@ -15,8 +15,8 @@ public class DetectiveInvisibility : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		// Find body object and turn off its rendering when jumping or sprinting is active
-		if (animator.GetBool("Jumping") || animator.GetBool("Sprinting")) {
+		// Find body object and turn off its rendering 
+		if (animator.GetBool("Dodging")) {
 			body.GetComponent<SkinnedMeshRenderer>().enabled = false;
 		} else {
 			body.GetComponent<SkinnedMeshRenderer>().enabled = true;

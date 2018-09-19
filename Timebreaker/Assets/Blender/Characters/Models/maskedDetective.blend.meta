@@ -141,6 +141,8 @@ ModelImporter:
     7400020: mdJumpEnd
     7400022: mdJumpStart
     7400024: mdBasePose
+    7400026: mdDodge
+    7400028: mdSprintLoop
     9500000: //RootNode
     13700000: body
     13700002: coat
@@ -166,41 +168,40 @@ ModelImporter:
     rigImportErrors: 
     rigImportWarnings: "Avatar Rig Configuration mis-match. Bone length in configuration
       does not match position in animation file:\n\t'legUpper_l' : position error
-      = 21.775234 mm\n\t'legLower_l' : position error = 9.863023 mm\n\t'foot_l' :
-      position error = 8.463442 mm\n\t'toes_l' : position error = 11.096452 mm\n\t'legUpper_r'
-      : position error = 21.775242 mm\n\t'legLower_r' : position error = 9.863486
-      mm\n\t'foot_r' : position error = 8.463535 mm\n\t'toes_r' : position error =
-      11.096336 mm\n"
+      = 21.775232 mm\n\t'legLower_l' : position error = 9.863208 mm\n\t'foot_l' :
+      position error = 8.463396 mm\n\t'toes_l' : position error = 11.096452 mm\n\t'legUpper_r'
+      : position error = 21.775240 mm\n\t'legLower_r' : position error = 9.863626
+      mm\n\t'foot_r' : position error = 8.463582 mm\n\t'toes_r' : position error =
+      11.096347 mm\n"
     animationImportErrors: 
-    animationImportWarnings: "\nClip 'mdIdleLoop' has import animation warnings that
+    animationImportWarnings: "\nClip 'mdDodge' has import animation warnings that
       might lower retargeting quality:\nNote: Activate translation DOF on avatar to
-      improve retargeting quality.\n\t'legLower_l' has scale animation that will be
-      discarded.\n\t'foot_l' has scale animation that will be discarded.\n\t'toes_l'
-      has scale animation that will be discarded.\n\t'legLower_r' has scale animation
-      that will be discarded.\n\t'foot_r' has scale animation that will be discarded.\n\t'toes_r'
-      has scale animation that will be discarded.\n\nClip 'mdJumpEnd' has import animation
-      warnings that might lower retargeting quality:\nNote: Activate translation DOF
-      on avatar to improve retargeting quality.\n\t'legUpper_l' has scale animation
-      that will be discarded.\n\t'legLower_l' has scale animation that will be discarded.\n\t'foot_l'
-      has scale animation that will be discarded.\n\t'toes_l' has scale animation
-      that will be discarded.\n\t'legUpper_r' has scale animation that will be discarded.\n\t'legLower_r'
+      improve retargeting quality.\n\t'foot_l' has scale animation that will be discarded.\n\t'toes_l'
       has scale animation that will be discarded.\n\t'foot_r' has scale animation
       that will be discarded.\n\t'toes_r' has scale animation that will be discarded.\n\nClip
-      'mdJumpStart' has import animation warnings that might lower retargeting quality:\nNote:
+      'mdJumpEnd' has import animation warnings that might lower retargeting quality:\nNote:
       Activate translation DOF on avatar to improve retargeting quality.\n\t'legUpper_l'
       has scale animation that will be discarded.\n\t'legLower_l' has scale animation
       that will be discarded.\n\t'foot_l' has scale animation that will be discarded.\n\t'toes_l'
       has scale animation that will be discarded.\n\t'legUpper_r' has scale animation
       that will be discarded.\n\t'legLower_r' has scale animation that will be discarded.\n\t'foot_r'
       has scale animation that will be discarded.\n\t'toes_r' has scale animation
-      that will be discarded.\n\nClip 'mdRunLoop' has import animation warnings that
-      might lower retargeting quality:\nNote: Activate translation DOF on avatar to
-      improve retargeting quality.\n\t'legUpper_l' has scale animation that will be
-      discarded.\n\t'legLower_l' has scale animation that will be discarded.\n\t'foot_l'
+      that will be discarded.\n\nClip 'mdJumpStart' has import animation warnings
+      that might lower retargeting quality:\nNote: Activate translation DOF on avatar
+      to improve retargeting quality.\n\t'legUpper_l' has scale animation that will
+      be discarded.\n\t'legLower_l' has scale animation that will be discarded.\n\t'foot_l'
       has scale animation that will be discarded.\n\t'toes_l' has scale animation
       that will be discarded.\n\t'legUpper_r' has scale animation that will be discarded.\n\t'legLower_r'
       has scale animation that will be discarded.\n\t'foot_r' has scale animation
-      that will be discarded.\n\t'toes_r' has scale animation that will be discarded.\n"
+      that will be discarded.\n\t'toes_r' has scale animation that will be discarded.\n\nClip
+      'mdRunLoop' has import animation warnings that might lower retargeting quality:\nNote:
+      Activate translation DOF on avatar to improve retargeting quality.\n\t'legUpper_l'
+      has scale animation that will be discarded.\n\t'legLower_l' has scale animation
+      that will be discarded.\n\t'foot_l' has scale animation that will be discarded.\n\t'toes_l'
+      has scale animation that will be discarded.\n\t'legUpper_r' has scale animation
+      that will be discarded.\n\t'legLower_r' has scale animation that will be discarded.\n\t'foot_r'
+      has scale animation that will be discarded.\n\t'toes_r' has scale animation
+      that will be discarded.\n"
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
@@ -366,6 +367,62 @@ ModelImporter:
       hasAdditiveReferencePose: 0
       loopTime: 1
       loopBlend: 1
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 1
+      keepOriginalOrientation: 1
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 1
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: mdDodge
+      takeName: mdDodge
+      firstFrame: 0
+      lastFrame: 16
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 1
+      keepOriginalOrientation: 1
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 1
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: mdSprintLoop
+      takeName: mdSprintLoop
+      firstFrame: 0
+      lastFrame: 1
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
       loopBlendOrientation: 1
       loopBlendPositionY: 1
       loopBlendPositionXZ: 1
