@@ -140,4 +140,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f981cbca0ffbe34681eff4e18450b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  barrelFrag: {fileID: 1027308808627398, guid: d56eb1cb8e5e06b45a5a9974cf565098, type: 2}
+  throwableFrag: {fileID: 1027308808627398, guid: d56eb1cb8e5e06b45a5a9974cf565098,
+    type: 2}
+  velocityToFrag: 4
