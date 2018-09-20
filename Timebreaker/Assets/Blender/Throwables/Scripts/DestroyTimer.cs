@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class DestroyTimer : MonoBehaviour {
 
+    public GameObject throwablePrefab;
+    public GameObject respawnPoint;
+
     public float timeToDestroy = 3f;
     public float explosionRadius = 5f;
     public float power = 1000f;
     public float upForce = 3f;
-
+    
     // Use this for initialization
     void Start () {
         StartCoroutine(Destroy());
@@ -26,6 +29,7 @@ public class DestroyTimer : MonoBehaviour {
     {
         yield return new WaitForSecondsRealtime(timeToDestroy);
         Destroy(gameObject);
+        Instantiate(throwablePrefab, respawnPoint.transform.position, new Quaternion(-90, 0, 0, 1)); // respawn object; for testing purposes
     }
 
 

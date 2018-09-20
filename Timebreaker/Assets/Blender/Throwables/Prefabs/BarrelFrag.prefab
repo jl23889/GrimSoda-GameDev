@@ -1507,6 +1507,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdd8ef13f13f8704bb9f64aa9cb68ec9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  throwablePrefab: {fileID: 1609645369061784, guid: 157262300585e474ba9df051e2e5deb4,
+    type: 2}
+  respawnPoint: {fileID: 1144053491429750, guid: dac39d30ecabc7c478f6c2bb0d9b4ac8,
+    type: 2}
   timeToDestroy: 3
   explosionRadius: 5
   power: 1000
