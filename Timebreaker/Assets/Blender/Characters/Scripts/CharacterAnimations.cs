@@ -31,23 +31,29 @@ public class CharacterAnimations : MonoBehaviour
 
     void Update()
     {
-        if (isGrounded())
+        movement.x = Input.GetAxis("Horizontal");
+        movement.z = Input.GetAxis("Vertical");
+        
+        // check attack animations
+        if (Input.GetButton("HeavyAttack"))
+        {
+            animator.SetBool("HeavyAttack", true);
+        }
+        else if (Input.GetButtonDown("LightAttack"))
+        {
+            animator.SetBool("LightAttack", true);
+        }
+
+        else if (isGrounded())
         {
             animator.SetBool("Grounded", true);
-            movement.x = Input.GetAxis("Horizontal");
-            movement.z = Input.GetAxis("Vertical");
-
-            //lightAttackGround
-            if (Input.GetButtonDown("LightAttack"))
-            {
-                animator.SetBool("LightAttack", true);
-            }
         }
         else
         {
             animator.SetBool("Grounded", false);
         }
 
+        // check movement animations
         if (movement != Vector3.zero)
         {
             animator.SetBool("Moving", true);
@@ -70,22 +76,28 @@ public class CharacterAnimations : MonoBehaviour
                 {
                     animator.SetBool("Dodging", true);
                 }
-                
-                //facing the character to the correst direction
-                //dodge movement check
-                if (animator.GetBool("Sprinting") && animator.GetBool("Grounded"))
-                {
-                    // dodge movement multiplier
-                    movement = movement * 2.2f; // hardcoded sprint movement multiplier TODO: allow this to be set as a public variable
-                }
-                //dodge movement check
-                else if (animator.GetBool("Dodging") && animator.GetBool("Grounded"))
-                {
-                    // dodge movement multiplier
-                    movement = movement * 1.8f; // hardcoded dodge movement multiplier TODO: allow this to be set as a public variable
-                }
             }
-            transform.forward = movement;
+
+            //facing the character to the correst direction
+            //sprint movement check
+            if (animator.GetBool("Sprinting") && animator.GetBool("Grounded"))
+            {
+                // dodge movement multiplier
+                movement = movement * 2.2f; // hardcoded sprint movement multiplier TODO: allow this to be set as a public variable
+            }
+            //dodge movement check
+            else if (animator.GetBool("Dodging") && animator.GetBool("Grounded"))
+            {
+                // dodge movement multiplier
+                movement = movement * 1.8f; // hardcoded dodge movement multiplier TODO: allow this to be set as a public variable
+            }
+            //attack movement check
+            else if (animator.GetBool("Attacking") && animator.GetBool("Grounded"))
+            {
+                // dodge movement multiplier
+                movement = movement * .3f; // hardcoded dodge movement multiplier TODO: allow this to be set as a public variable
+            }
+            transform.forward = movement; 
         }
         else
         {
@@ -95,11 +107,11 @@ public class CharacterAnimations : MonoBehaviour
 
     void FixedUpdate()
     {
-        //move
+        //move rigidbody 
         rb.MovePosition(transform.position + movement * speed * Time.fixedDeltaTime);
 
         //movements when grounded and not animation locked
-        if (isGrounded() && !animator.GetBool("Attacking") && !animator.GetBool("Sprinting") && !animator.GetBool("Jumping")) 
+        if (isGrounded() && !animator.GetBool("Attacking") && !animator.GetBool("Sprinting") && !animator.GetBool("Jumping"))
         {
             //jump
             if (Input.GetButtonDown("Jump"))
