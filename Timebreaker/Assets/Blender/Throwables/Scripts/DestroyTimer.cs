@@ -7,6 +7,7 @@ public class DestroyTimer : MonoBehaviour {
     public GameObject throwablePrefab;
     public GameObject respawnPoint;
     public GameObject explosionFx;
+    private GameObject explosionFxInstance;
 
     public float timeToDestroy = 3f;
     public float explosionRadius = 5f;
@@ -15,9 +16,13 @@ public class DestroyTimer : MonoBehaviour {
     
     // Use this for initialization
     void Start () {
-        StartCoroutine(Destroy());
         // Instantiate particle effects
-        Instantiate(explosionFx, gameObject.transform.position, Quaternion.identity);
+        explosionFxInstance = (GameObject) Instantiate(explosionFx, gameObject.transform.position, Quaternion.identity);
+        Destroy(explosionFxInstance, timeToDestroy);
+
+        // Start Respawn timer 
+        StartCoroutine(Respawn());
+
         // add explosion force to the children
         Vector3 explosionPos = transform.position;
         Rigidbody[] rbFragments = gameObject.GetComponentsInChildren<Rigidbody>();
@@ -28,10 +33,10 @@ public class DestroyTimer : MonoBehaviour {
         }
     }
 
-    IEnumerator Destroy()
+    IEnumerator Respawn()
     {
         yield return new WaitForSecondsRealtime(timeToDestroy);
-        Destroy(gameObject);
+        Destroy(gameObject);            // remove object
         Instantiate(throwablePrefab, respawnPoint.transform.position, new Quaternion(-90, 0, 0, 1)); // respawn object; for testing purposes
     }
 
