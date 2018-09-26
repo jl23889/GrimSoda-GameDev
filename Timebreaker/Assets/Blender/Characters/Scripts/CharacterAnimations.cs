@@ -20,6 +20,9 @@ public class CharacterAnimations : MonoBehaviour
 
     private Vector3 movement = Vector3.zero;
 
+    //used to figure out how long button is held down;
+    private float dodgeButtonTime;
+
     // Use this for initialization
     void Start()
     {
@@ -27,13 +30,32 @@ public class CharacterAnimations : MonoBehaviour
         animator = GetComponent<Animator>();
         Physics.gravity = new Vector3(0f, gravity, 0f);
         movement = Vector3.zero;
+        dodgeButtonTime = 0f;
     }
 
+    //buttons should be prioritized from top to bottom
     void Update()
     {
-        movement.x = Input.GetAxis("Horizontal");
-        movement.z = Input.GetAxis("Vertical");
-        
+
+        if (!animator.GetBool("Blocking"))
+        {
+            movement.x = Input.GetAxis("Horizontal");
+            movement.z = Input.GetAxis("Vertical");
+        } else
+        {
+            movement = Vector3.zero;
+        }
+
+        //blocking
+        if (Input.GetButton("Block"))
+        {
+            animator.SetBool("Blocking", true);
+        }
+        else
+        {
+            animator.SetBool("Blocking", false);
+        }
+
         // check attack animations
         if (Input.GetButton("HeavyAttack"))
         {
@@ -61,21 +83,24 @@ public class CharacterAnimations : MonoBehaviour
             //sprint and dodge
             if (!animator.GetBool("Jumping") && !animator.GetBool("Attacking"))
             {
-                //sprinting check
-                if (Input.GetButton("Sprint"))
+                //dodge 
+                if (Input.GetButtonDown("Dodge"))
                 {
+                    animator.SetBool("Dodging", true);
+                }
+                //sprinting check
+                if (Input.GetButton("Dodge"))
+                {
+                    dodgeButtonTime = dodgeButtonTime + Time.deltaTime;
+                    if (dodgeButtonTime > 0.2f)
                     animator.SetBool("Sprinting", true);
                 }
                 else
                 {
                     animator.SetBool("Sprinting", false);
+                    dodgeButtonTime = 0f;
                 }
-
-                //dodge check
-                if (Input.GetButtonDown("Dodge"))
-                {
-                    animator.SetBool("Dodging", true);
-                }
+                
             }
 
             //facing the character to the correst direction
@@ -83,25 +108,26 @@ public class CharacterAnimations : MonoBehaviour
             if (animator.GetBool("Sprinting") && animator.GetBool("Grounded"))
             {
                 // dodge movement multiplier
-                movement = movement * 2.2f; // hardcoded sprint movement multiplier TODO: allow this to be set as a public variable
+                //movement = movement * 2.2f; // hardcoded sprint movement multiplier TODO: allow this to be set as a public variable
             }
             //dodge movement check
             else if (animator.GetBool("Dodging") && animator.GetBool("Grounded"))
             {
                 // dodge movement multiplier
-                movement = movement * 1.8f; // hardcoded dodge movement multiplier TODO: allow this to be set as a public variable
+               // movement = movement * 1.8f; // hardcoded dodge movement multiplier TODO: allow this to be set as a public variable
             }
             //attack movement check
             else if (animator.GetBool("Attacking") && animator.GetBool("Grounded"))
             {
                 // dodge movement multiplier
-                movement = movement * .3f; // hardcoded dodge movement multiplier TODO: allow this to be set as a public variable
+               // movement = movement * .3f; // hardcoded dodge movement multiplier TODO: allow this to be set as a public variable
             }
             transform.forward = movement; 
         }
         else
         {
             animator.SetBool("Moving", false);
+            animator.SetBool("Sprinting", false);
         }
     }
 
