@@ -57,10 +57,13 @@ public class CharacterAnimations : MonoBehaviour
         }
 
         // check attack animations
-        if (Input.GetButton("HeavyAttack"))
+        if (Input.GetButtonDown("HeavyAttack"))
+        {
+            animator.SetBool("HeavyAttack", true);
+        }
+        else if (Input.GetButton("HeavyAttack") && isGrounded())
         {
             animator.SetBool("ChargingAttack", true);
-            animator.SetBool("HeavyAttack", true);
         }
         else if (Input.GetButtonUp("HeavyAttack"))
         {
@@ -70,7 +73,6 @@ public class CharacterAnimations : MonoBehaviour
         {
             animator.SetBool("LightAttack", true);
         }
-
         else if (isGrounded())
         {
             animator.SetBool("Grounded", true);
