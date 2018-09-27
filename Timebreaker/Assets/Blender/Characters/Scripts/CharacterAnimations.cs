@@ -37,13 +37,13 @@ public class CharacterAnimations : MonoBehaviour
     void Update()
     {
 
-        if (!animator.GetBool("Blocking"))
+        if (animator.GetBool("Blocking") || animator.GetBool("ChargingAttack"))
+        {
+            movement = Vector3.zero;
+        } else
         {
             movement.x = Input.GetAxis("Horizontal");
             movement.z = Input.GetAxis("Vertical");
-        } else
-        {
-            movement = Vector3.zero;
         }
 
         //blocking
@@ -59,7 +59,12 @@ public class CharacterAnimations : MonoBehaviour
         // check attack animations
         if (Input.GetButton("HeavyAttack"))
         {
+            animator.SetBool("ChargingAttack", true);
             animator.SetBool("HeavyAttack", true);
+        }
+        else if (Input.GetButtonUp("HeavyAttack"))
+        {
+            animator.SetBool("ChargingAttack", false);
         }
         else if (Input.GetButtonDown("LightAttack"))
         {
