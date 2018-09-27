@@ -33,3 +33,9 @@ sysinfo.txt
 
 # Builds
 *.apk
+*.ide
+*.ide-shm
+*.ide-wal
+Timebreaker/.vs/Timebreaker/v15/Server/sqlite3/storage.ide
+Timebreaker/.vs/Timebreaker/v15/Server/sqlite3/storage.ide-shm
+Timebreaker/.vs/Timebreaker/v15/Server/sqlite3/storage.ide-wal
