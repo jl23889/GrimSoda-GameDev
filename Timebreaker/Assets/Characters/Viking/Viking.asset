@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5bc8ca53f1559854f92c99fdd40fca1a, type: 3}
+  m_Name: Viking
+  m_EditorClassIdentifier: 
+  charName: Viking
+  charPrefab: {fileID: 1961284296899036, guid: 50670b84b763567439c2514e85ef9686, type: 2}
+  healthTotal: 100
+  staminaTotal: 100
+  runSpeed: 1
+  attackList: {fileID: 11400000, guid: 582715822cd6a1742904a1af9d8430ec, type: 2}
