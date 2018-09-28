@@ -16,4 +16,8 @@ MonoBehaviour:
   healthTotal: 100
   staminaTotal: 100
   runSpeed: 1
-  attackList: {fileID: 11400000, guid: 582715822cd6a1742904a1af9d8430ec, type: 2}
+  attackList:
+  - {fileID: 11400000, guid: 06ec1594e6121cb448fc32eec8f97a2f, type: 2}
+  - {fileID: 11400000, guid: f867910f5173963428d5c92b63d13786, type: 2}
+  - {fileID: 11400000, guid: 3b9e7506867a67943a5cb3aaa4ccd021, type: 2}
+  - {fileID: 11400000, guid: 05d99beda995721479402d3a76ce6e29, type: 2}
