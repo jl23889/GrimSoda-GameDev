@@ -42,7 +42,7 @@ public class CharacterManager : MonoBehaviour {
                     _hitbox.attachHitbone(head);
                     break;
             }
-            _hitbox.resizeHitbox(new Vector3(2, 2, 6)); //TODO: we should define hitbox size in the actual attack object (this is just here for testing for now)
+            _hitbox.resizeHitbox(_attack.hitboxSize); 
             _hitbox.startHitboxCollision();
 
         } else

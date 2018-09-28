@@ -15,7 +15,7 @@ MonoBehaviour:
   animationClip: {fileID: 7400054, guid: 870ae1cf9a6294d87bdc61b40eb2fba0, type: 3}
   damage: 5
   attackLimb: rightArm
-  hitboxSize: {x: 1, y: 1, z: 1}
+  hitboxSize: {x: 1, y: 1, z: 3}
   knockback: 0
   knockdown: 0
   knockup: 0

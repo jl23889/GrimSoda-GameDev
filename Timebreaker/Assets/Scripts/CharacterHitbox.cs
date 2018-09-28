@@ -45,17 +45,10 @@ public class CharacterHitbox : MonoBehaviour {
         // we divide boxSize by 2 to get the halfSize here
         Collider[] hitColliders = Physics.OverlapBox(_boxPosition, _boxSize/2, _boxRotation, layerMask);
 
-        //int i = 0;
-        //while (i < hitColliders.Length)
-        //{
-        //    //Output all of the collider names
-        //    Debug.Log("Hit : " + hitColliders[i].name + i);
-        //    //Increase the number of Colliders in the array
-        //    i++;
-        //}
         if (hitColliders.Length > 0)
         {
             _colliderState = ColliderState.Colliding;
+            // TODO: ADD WHAT HAPPENS WHEN HITBOX HITS COLLIDER HERE
         }
         
         else
@@ -82,13 +75,13 @@ public class CharacterHitbox : MonoBehaviour {
         _boxSize = newHitboxSize;
     }
 
+    // hitbone should be a bone located on the middle of the limb we're targeting
     public void attachHitbone(GameObject hitbone)
     {
         _boxPosition = hitbone.transform.position;
     }
 
-
-
+    
     //Draw the Box Overlap as a gizmo to show where it currently is testing. Click the Gizmos button to see this
     private void OnDrawGizmos()
     {
