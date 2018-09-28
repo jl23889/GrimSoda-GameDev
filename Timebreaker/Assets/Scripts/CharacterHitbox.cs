@@ -11,18 +11,20 @@ public class CharacterHitbox : MonoBehaviour {
     private Vector3 _boxSize;       // each vector is a fullsize
     private Quaternion _boxRotation;
     private ColliderState _colliderState;
-    public enum ColliderState
+    private enum ColliderState
     {
         Inactive,
         Active,       
         Colliding   
     }
+    private Collider _hurtboxCol;    // this is the character's own hurtbox
 
     // Use this for initialization
     void Start () {
         hitboxCreated = true;
         _boxPosition = new Vector3(1, 1, 1);
         _boxSize = new Vector3(1, 1, 1);
+        _hurtboxCol = GetComponent<CapsuleCollider>(); 
         stopHitboxCollision();
     }
 	
@@ -47,8 +49,15 @@ public class CharacterHitbox : MonoBehaviour {
 
         if (hitColliders.Length > 0)
         {
-            _colliderState = ColliderState.Colliding;
-            // TODO: ADD WHAT HAPPENS WHEN HITBOX HITS COLLIDER HERE
+            foreach (Collider col in hitColliders)
+            {
+                // ensure hurtbox is on another character
+                if (col != _hurtboxCol)
+                {
+                    _colliderState = ColliderState.Colliding;
+                    // TODO: ADD WHAT HAPPENS WHEN HITBOX HITS COLLIDER HERE
+                }
+            }
         }
         
         else
