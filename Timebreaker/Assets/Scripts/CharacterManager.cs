@@ -24,7 +24,7 @@ public class CharacterManager : MonoBehaviour {
         int attackIndex = _character.attackList.FindIndex(attack => attack.animationClip == currentClip);
 
         // display name of current animation clip in console
-        Debug.Log("Starting clip : " + currentClip);
+        //Debug.Log("Starting clip : " + currentClip);
 
         if (attackIndex >= 0)
         {
