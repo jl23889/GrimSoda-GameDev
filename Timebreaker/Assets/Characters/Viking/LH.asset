@@ -11,11 +11,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33936457736dcb64a8b05fdabf90250c, type: 3}
   m_Name: LH
   m_EditorClassIdentifier: 
-  attackName: New Attack
-  animationClip: {fileID: 0}
-  damage: 1
-  attackLimb: 
-  hitboxSize: {x: 1, y: 1, z: 1}
-  knockback: 0
+  attackName: LH
+  animationClip: {fileID: 7400060, guid: 870ae1cf9a6294d87bdc61b40eb2fba0, type: 3}
+  damage: 10
+  attackLimb: leftArm
+  hitboxSize: {x: 2, y: 2, z: 3}
+  knockback: 1
   knockdown: 0
   knockup: 0

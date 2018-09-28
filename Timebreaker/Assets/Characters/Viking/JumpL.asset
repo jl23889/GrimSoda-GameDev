@@ -11,11 +11,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33936457736dcb64a8b05fdabf90250c, type: 3}
   m_Name: JumpL
   m_EditorClassIdentifier: 
-  attackName: New Attack
-  animationClip: {fileID: 0}
-  damage: 1
-  attackLimb: 
-  hitboxSize: {x: 1, y: 1, z: 1}
+  attackName: JumpL
+  animationClip: {fileID: 7400092, guid: 870ae1cf9a6294d87bdc61b40eb2fba0, type: 3}
+  damage: 5
+  attackLimb: head
+  hitboxSize: {x: 2, y: 2, z: 2}
   knockback: 0
   knockdown: 0
   knockup: 0
