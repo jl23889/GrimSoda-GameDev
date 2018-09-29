@@ -13,7 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackName: LLL
   animationClip: {fileID: 7400068, guid: 870ae1cf9a6294d87bdc61b40eb2fba0, type: 3}
-  damage: 5
+  damage: 7
   attackLimb: rightArm
   hitboxSize: {x: 1, y: 1, z: 3}
   knockback: 0
