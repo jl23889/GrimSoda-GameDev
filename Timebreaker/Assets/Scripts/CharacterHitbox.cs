@@ -6,10 +6,12 @@ public class CharacterHitbox : MonoBehaviour {
 
     private bool hitboxCreated;
     public LayerMask layerMask;
+    public Character _character;
 
     private Vector3 _boxPosition;   // this is the center of the hitbox
     private Vector3 _boxSize;       // each vector is a fullsize
     private Quaternion _boxRotation;
+    [SerializeField]
     private ColliderState _colliderState;
     private enum ColliderState
     {
@@ -25,48 +27,34 @@ public class CharacterHitbox : MonoBehaviour {
         _boxPosition = new Vector3(1, 1, 1);
         _boxSize = new Vector3(1, 1, 1);
         _hurtboxCol = GetComponent<CapsuleCollider>(); 
-        stopHitboxCollision();
-    }
-	
-	void Update () {
+        StopHitboxCollision();
     }
 
-    void FixedUpdate()
+    public Collider[] GetHurtboxCollisions()
     {
-        hurtboxCollision();
-    }
-
-    private void hurtboxCollision()
-    {
+        // return empty array if collider state is inactive
         if (_colliderState == ColliderState.Inactive) {
-            return;
+            return new Collider[0];
         }
 
         _boxRotation = transform.rotation;
         
         // we divide boxSize by 2 to get the halfSize here
         Collider[] hitColliders = Physics.OverlapBox(_boxPosition, _boxSize/2, _boxRotation, layerMask);
-
-        if (hitColliders.Length > 0)
-        {
-            foreach (Collider col in hitColliders)
-            {
-                // ensure hurtbox is on another character
-                if (col != _hurtboxCol)
-                {
-                    _colliderState = ColliderState.Colliding;
-                    // TODO: ADD WHAT HAPPENS WHEN HITBOX HITS COLLIDER HERE
-                }
-            }
-        }
-        
-        else
+        // set collider state to active if colliders are not hitting anything
+        if (hitColliders.Length == 0)
         {
             _colliderState = ColliderState.Active;
         }
+        return hitColliders;
     }
 
-    public void startHitboxCollision()
+    public void DetectCollision()
+    {
+        _colliderState = ColliderState.Colliding;
+    }
+
+    public void StartHitboxCollision()
     {
         if (_colliderState != ColliderState.Colliding) 
         {
@@ -74,18 +62,18 @@ public class CharacterHitbox : MonoBehaviour {
         }
     }
 
-    public void stopHitboxCollision()
+    public void StopHitboxCollision()
     {
         _colliderState = ColliderState.Inactive;
     }
 
-    public void resizeHitbox(Vector3 newHitboxSize)
+    public void ResizeHitbox(Vector3 newHitboxSize)
     {
         _boxSize = newHitboxSize;
     }
 
     // hitbone should be a bone located on the middle of the limb we're targeting
-    public void attachHitbone(GameObject hitbone)
+    public void AttachHitbone(GameObject hitbone)
     {
         _boxPosition = hitbone.transform.position;
     }

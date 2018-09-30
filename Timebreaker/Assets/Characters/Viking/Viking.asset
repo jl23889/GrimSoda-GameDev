@@ -8,7 +8,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5bc8ca53f1559854f92c99fdd40fca1a, type: 3}
+  m_Script: {fileID: 11500000, guid: 4f20a4844a5ac7f46b91229055eb15e1, type: 3}
   m_Name: Viking
   m_EditorClassIdentifier: 
   charName: Viking
@@ -21,9 +21,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f867910f5173963428d5c92b63d13786, type: 2}
   - {fileID: 11400000, guid: 3b9e7506867a67943a5cb3aaa4ccd021, type: 2}
   - {fileID: 11400000, guid: 05d99beda995721479402d3a76ce6e29, type: 2}
+  - {fileID: 11400000, guid: 9e7f2425c18ba3e4b98d85125bbf7400, type: 2}
   - {fileID: 11400000, guid: 9cdc1092bf13b4b409f5be4708360123, type: 2}
   - {fileID: 11400000, guid: 64290ab262c18224f8df9726205bec7b, type: 2}
   - {fileID: 11400000, guid: e9068744c02384545b93f799a4e633b2, type: 2}
-  - {fileID: 11400000, guid: 9e7f2425c18ba3e4b98d85125bbf7400, type: 2}
   - {fileID: 11400000, guid: d1a0a406542517c40a67ca03965467a2, type: 2}
   - {fileID: 11400000, guid: 2b03344218e0aa645af21e1a38e2f0a0, type: 2}

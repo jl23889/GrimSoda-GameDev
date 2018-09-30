@@ -7,7 +7,6 @@ using System.Collections.Generic;
 public class Character : ScriptableObject
 {
     public string charName = "New Character";
-    public GameObject charPrefab;
     public int healthTotal = 100;
     public int staminaTotal = 100;
     public float runSpeed = 1;

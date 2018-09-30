@@ -12,42 +12,84 @@ public class CharacterManager : MonoBehaviour {
     private Animator animator;
     private AnimationClip currentClip;
 
+    private int startingHealth = 100; //set 100 as default
+    private int startingStamina = 100;
+    private int currentHealth;
+    private int currentStamina;
+    private bool isDead;
+    private bool isHit = false;
+
+    // get/set methods
+    public int StartingHealth
+    {
+        get { return currentHealth; }
+        set { currentHealth = value; }
+    }
+    public int StartingStamina
+    {
+        get { return currentStamina; }
+        set { currentStamina = value; }
+    }
+    public int CurrentHealth
+    {
+        get { return currentHealth; }
+        set { currentHealth = value; }
+    }
+    public int CurrentStamina
+    {
+        get { return currentStamina; }
+        set { currentStamina = value; }
+    }
+    public bool IsDead { get { return isDead; } }
+    public bool IsHit {
+        get { return isHit; }
+        set { isHit = value; }
+    }
+
     // Use this for initialization
     void Start () {
         animator = GetComponent<Animator>();
+        // initialize character health and stamina
+        startingHealth = _character.healthTotal;
+        startingStamina = _character.staminaTotal;
+        currentHealth = _character.healthTotal;
+        currentStamina = _character.staminaTotal;
     }
-	
-	void FixedUpdate () {
 
-        // get the current clip playing and see if it matches an attack animation clip in the attackList
-        currentClip = animator.GetCurrentAnimatorClipInfo(0)[0].clip;
-        int attackIndex = _character.attackList.FindIndex(attack => attack.animationClip == currentClip);
+    public void TriggerKnockdown()
+    {
+        animator.SetTrigger("Knockdown");
+    }
 
-        // display name of current animation clip in console
-        //Debug.Log("Starting clip : " + currentClip);
-
-        if (attackIndex >= 0)
+    public void TakeDamage(Attack attack)
+    {
+        // Reduce current health by the amount of damage done.
+        currentHealth -= attack.damage;
+        animator.SetTrigger("GetHit");
+        isHit = true;
+        
+        if (attack.knockdown)
         {
-            // get current attack
-            Attack _attack = _character.attackList[attackIndex];
-            switch (_attack.attackLimb) //TODO: we shouldn't need to lookup the attack limb using strings, rather we should just be able to assign limbs as gameobjects in inspector
-            {
-                case "leftArm":
-                    _hitbox.attachHitbone(leftArm);
-                    break;
-                case "rightArm":
-                    _hitbox.attachHitbone(rightArm);
-                    break;
-                case "head":
-                    _hitbox.attachHitbone(head);
-                    break;
-            }
-            _hitbox.resizeHitbox(_attack.hitboxSize); 
-            _hitbox.startHitboxCollision();
-
-        } else
-        {
-            _hitbox.stopHitboxCollision();
+            TriggerKnockdown();
         }
+        
+        //Debug.Log("Attack Name: " + attack.attackName + "  Damage:" + attack.damage);
+        //Debug.Log("Knockdown: " + attack.knockdown + " Knockback: " + attack.knockback);
+
+
+        // If the current health is at or below zero and it has not yet been registered, call OnDeath.
+        if (CurrentHealth <= 0 && !isDead)
+        {
+            OnDeath();
+        }
+    }
+
+    private void OnDeath()
+    {
+        isDead = true;
+
+        // Turn the character off.
+        //gameObject.SetActive(false);
+        animator.SetBool("Dead", true);
     }
 }
