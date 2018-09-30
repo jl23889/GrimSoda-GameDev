@@ -2512,11 +2512,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d88f2c4700b8c24bae80f4deab34dd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _character: {fileID: 0}
+  _character: {fileID: 11400000, guid: aa5f433f2ee98c142aa8d6d754b9c8d7, type: 2}
   _hitbox: {fileID: 114912621179423032, guid: 50670b84b763567439c2514e85ef9686, type: 2}
   leftArm: {fileID: 1270462209517136}
   rightArm: {fileID: 1525681378613858}
   head: {fileID: 1176050123848198}
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 1
 --- !u!135 &135405467123132510
 SphereCollider:
   m_ObjectHideFlags: 1

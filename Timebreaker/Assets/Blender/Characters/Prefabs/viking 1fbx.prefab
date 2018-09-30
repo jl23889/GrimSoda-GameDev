@@ -1135,8 +1135,8 @@ GameObject:
   - component: {fileID: 95753167270904826}
   - component: {fileID: 54831793392105318}
   - component: {fileID: 136587965066052450}
-  - component: {fileID: 114751364874149796}
   - component: {fileID: 114716267352118610}
+  - component: {fileID: 114751364874149796}
   - component: {fileID: 114210281802799046}
   - component: {fileID: 114912621179423032}
   m_Layer: 9
@@ -2488,6 +2488,9 @@ MonoBehaviour:
   leftArm: {fileID: 1086414713243622}
   rightArm: {fileID: 1530433547319658}
   head: {fileID: 1450005086542382}
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 1
 --- !u!114 &114751364874149796
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2506,10 +2509,6 @@ MonoBehaviour:
   lowJumpMultiplier: 2
   _sprintMultiplier: 2
   _dodgeMultiplier: 2
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 1
-  charCollider: {fileID: 136587965066052450}
 --- !u!114 &114912621179423032
 MonoBehaviour:
   m_ObjectHideFlags: 1

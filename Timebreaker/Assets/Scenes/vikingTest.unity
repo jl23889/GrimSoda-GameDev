@@ -693,12 +693,6 @@ Prefab:
       propertyPath: m_FillImage
       value: 
       objectReference: {fileID: 1585670146}
-    - target: {fileID: 114292705979952880, guid: 519a363a639b9284a9c162029be6305a,
-        type: 2}
-      propertyPath: _character
-      value: 
-      objectReference: {fileID: 11400000, guid: aa5f433f2ee98c142aa8d6d754b9c8d7,
-        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 519a363a639b9284a9c162029be6305a, type: 2}
   m_IsPrefabAsset: 0

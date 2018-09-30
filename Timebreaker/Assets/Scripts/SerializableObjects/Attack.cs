@@ -13,4 +13,6 @@ public class Attack : ScriptableObject
     public bool knockback = false;
     public bool knockdown = false;
     public bool knockup = false;
+    public float knockbackForce = 0f;
+    public float knockupForce = 0f;
 }

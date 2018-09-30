@@ -14,9 +14,6 @@ public class CharacterControl : MonoBehaviour
     public float _sprintMultiplier = 2f;
     public float _dodgeMultiplier = 2f;
 
-    public LayerMask groundLayer;
-    public CapsuleCollider charCollider;
-
     //components
     private Rigidbody rb;
     private Animator animator;
@@ -28,13 +25,14 @@ public class CharacterControl : MonoBehaviour
     private bool _jumpKeyPress;
     private bool _jumpKeyHold;
     private Vector3 _movement = Vector3.zero;
-
+    private CharacterManager _characterManager;
 
     // Use this for initialization
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
+        _characterManager = GetComponent<CharacterManager>();
         Physics.gravity = new Vector3(0f, gravity, 0f);
         _movement = Vector3.zero;
         dodgeButtonTime = 0f;
@@ -83,14 +81,6 @@ public class CharacterControl : MonoBehaviour
         {
             animator.SetBool("LightAttack", true);
         }
-        else if (_isGrounded)
-        {
-            animator.SetBool("Grounded", true);
-        }
-        else
-        {
-            animator.SetBool("Grounded", false);
-        }
 
         // _movement animations and speed controls (might move speed control to fix update later)
         if (_movement != Vector3.zero)
@@ -137,18 +127,13 @@ public class CharacterControl : MonoBehaviour
     void FixedUpdate()
     {
         //ground checker
-        _isGrounded = isGrounded();
+        _isGrounded = _characterManager.IsGrounded;
 
         //move rigidbody 
         Move();
 
         //_movements when grounded and not animation locked
         Jump();
-    }
-
-    private bool isGrounded()
-    {
-        return Physics.CheckCapsule(charCollider.bounds.center, new Vector3(charCollider.bounds.center.x, charCollider.bounds.min.y, charCollider.bounds.center.z), charCollider.radius, groundLayer);
     }
 
     private void Move()
