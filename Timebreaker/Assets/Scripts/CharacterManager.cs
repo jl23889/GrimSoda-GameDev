@@ -23,8 +23,9 @@ public class CharacterManager : MonoBehaviour {
     private int currentHealth;
     private int currentStamina;
     private bool isDead;
-    private bool isHit = false;
     private bool isGrounded = true;
+    private float inputTimer;
+    private bool canInput = true;
     
     // get/set methods
     public int StartingHealth
@@ -48,14 +49,15 @@ public class CharacterManager : MonoBehaviour {
         set { currentStamina = value; }
     }
     public bool IsDead { get { return isDead; } }
-    public bool IsHit {
-        get { return isHit; }
-        set { isHit = value; }
-    }
     public bool IsGrounded
     {
         get { return isGrounded; }
         set { isGrounded = value; }
+    }
+    public bool CanInput
+    {
+        get { return canInput; }
+        set { canInput = value; }
     }
 
     // Use this for initialization
@@ -106,8 +108,8 @@ public class CharacterManager : MonoBehaviour {
         // Reduce current health by the amount of damage done.
         currentHealth -= attack.damage;
         animator.SetTrigger("GetHit");
-        isHit = true;
-        
+        StartCoroutine(DisableInput(attack.hitStunDuration));
+
         if (attack.knockdown)
         {
             TriggerKnockdown();
@@ -131,6 +133,21 @@ public class CharacterManager : MonoBehaviour {
     public bool GroundedCheck()
     {
         return Physics.CheckCapsule(pushbox.bounds.center, new Vector3(pushbox.bounds.center.x, pushbox.bounds.min.y, pushbox.bounds.center.z), pushbox.radius, groundLayer);
+    }
+
+    // disables player input for length of hsd
+    IEnumerator DisableInput(float hsd)
+    {
+        inputTimer = hsd;
+        canInput = false;
+        animator.SetBool("HitStun", true);
+        while (inputTimer > 0)
+        {
+            inputTimer -= Time.deltaTime;
+            yield return null;
+        }
+        canInput = true;
+        animator.SetBool("HitStun", false);
     }
 
     private void OnDeath()

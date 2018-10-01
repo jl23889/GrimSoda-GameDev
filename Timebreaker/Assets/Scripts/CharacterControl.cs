@@ -57,6 +57,11 @@ public class CharacterControl : MonoBehaviour
         // animation locks (these are resolved via scripts in the animator)
         if (animator.GetBool("Dodging")) { return; }
         if (animator.GetBool("Jumping") && animator.GetBool("Attacking")) { return; }
+        if (!_charManager.CanInput) {
+            _movement.x = 0;
+            _movement.z = 0;
+            return;
+        }
 
         _movement.x = Input.GetAxis(player + "Horizontal");
         _movement.z = Input.GetAxis(player + "Vertical");

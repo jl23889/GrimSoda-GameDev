@@ -6,7 +6,6 @@ public class CharacterHitbox : MonoBehaviour {
 
     private bool hitboxCreated;
     public LayerMask layerMask;
-    public Character _character;
 
     private Vector3 _boxPosition;   // this is the center of the hitbox
     private Vector3 _boxSize;       // each vector is a fullsize
@@ -23,6 +22,7 @@ public class CharacterHitbox : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+
         hitboxCreated = true;
         _boxPosition = new Vector3(1, 1, 1);
         _boxSize = new Vector3(1, 1, 1);

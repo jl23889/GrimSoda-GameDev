@@ -8,6 +8,7 @@ public class Attack : ScriptableObject
     public string attackName = "New Attack";
     public AnimationClip animationClip;
     public int damage = 1;
+    public float hitStunDuration = 0.5f;
     public string attackLimb;
     public Vector3 hitboxSize = new Vector3(1,1,1);
     public bool knockback = false;

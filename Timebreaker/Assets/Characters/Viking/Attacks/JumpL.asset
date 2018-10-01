@@ -14,8 +14,11 @@ MonoBehaviour:
   attackName: JumpL
   animationClip: {fileID: 7400092, guid: 870ae1cf9a6294d87bdc61b40eb2fba0, type: 3}
   damage: 5
+  hitStunDuration: 0.5
   attackLimb: head
   hitboxSize: {x: 2, y: 2, z: 2}
   knockback: 0
   knockdown: 0
   knockup: 0
+  knockbackForce: 0
+  knockupForce: 0

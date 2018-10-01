@@ -14,8 +14,11 @@ MonoBehaviour:
   attackName: LLLH
   animationClip: {fileID: 7400074, guid: 870ae1cf9a6294d87bdc61b40eb2fba0, type: 3}
   damage: 12
+  hitStunDuration: 1.5
   attackLimb: head
   hitboxSize: {x: 2, y: 2, z: 4}
   knockback: 0
   knockdown: 0
   knockup: 1
+  knockbackForce: 0
+  knockupForce: 100
