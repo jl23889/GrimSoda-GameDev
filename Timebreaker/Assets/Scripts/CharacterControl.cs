@@ -2,8 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// reads player input and translates input into actions
 public class CharacterControl : MonoBehaviour
 {
+    public enum Player {P1, P2, P3, P4};
+    public Player _player;
+    private string player;
+
     public float gravity = -20f;
     //components
     private Rigidbody rb;
@@ -29,6 +34,21 @@ public class CharacterControl : MonoBehaviour
         Physics.gravity = new Vector3(0f, gravity, 0f);
         _movement = Vector3.zero;
         dodgeButtonTime = 0f;
+        switch (_player)
+        {
+            case Player.P1:
+                player = "P1";
+                break;
+            case Player.P2:
+                player = "P2";
+                break;
+            case Player.P3:
+                player = "P3";
+                break;
+            case Player.P4:
+                player = "P4";
+                break;
+        }
     }
 
     //buttons should be prioritized from top to bottom
@@ -38,11 +58,11 @@ public class CharacterControl : MonoBehaviour
         if (animator.GetBool("Dodging")) { return; }
         if (animator.GetBool("Jumping") && animator.GetBool("Attacking")) { return; }
 
-        _movement.x = Input.GetAxis("Horizontal");
-        _movement.z = Input.GetAxis("Vertical");
+        _movement.x = Input.GetAxis(player + "Horizontal");
+        _movement.z = Input.GetAxis(player + "Vertical");
 
         //blocking
-        if (Input.GetButton("Block"))
+        if (Input.GetButton(player+"Block"))
         {
             if (!animator.GetBool("Jumping") && !animator.GetBool("Dodging") && !animator.GetBool("Sprinting"))
             {
@@ -56,24 +76,24 @@ public class CharacterControl : MonoBehaviour
         }
 
         //jumping
-        _jumpKeyHold = Input.GetButton("Jump");
-        _jumpKeyPress = Input.GetButtonDown("Jump");
+        _jumpKeyHold = Input.GetButton(player + "Jump");
+        _jumpKeyPress = Input.GetButtonDown(player + "Jump");
 
         //attacking
-        if (Input.GetButtonDown("HeavyAttack"))
+        if (Input.GetButtonDown(player + "HeavyAttack"))
         {
             animator.SetBool("HeavyAttack", true);
         }
-        else if (Input.GetButton("HeavyAttack") && _isGrounded)
+        else if (Input.GetButton(player + "HeavyAttack") && _isGrounded)
         {
             animator.SetBool("ChargingAttack", true);
         }
-        else if (Input.GetButtonUp("HeavyAttack"))
+        else if (Input.GetButtonUp(player + "HeavyAttack"))
         {
             animator.SetBool("ChargingAttack", false);
             _movement = _movement * _char.dodgeMultiplier;
         }
-        else if (Input.GetButtonDown("LightAttack"))
+        else if (Input.GetButtonDown(player + "LightAttack"))
         {
             animator.SetBool("LightAttack", true);
         }
@@ -87,7 +107,7 @@ public class CharacterControl : MonoBehaviour
             if (!animator.GetBool("Jumping") && !animator.GetBool("Attacking"))
             {
                 //sprinting
-                if (Input.GetButton("Dodge"))
+                if (Input.GetButton(player + "Dodge"))
                 {
                     dodgeButtonTime = dodgeButtonTime + Time.deltaTime; 
                     if (dodgeButtonTime > 0.2f)
@@ -98,7 +118,7 @@ public class CharacterControl : MonoBehaviour
                 }
 
                 //dodging
-                if (Input.GetButtonUp("Dodge") && dodgeButtonTime <= 0.2f)
+                if (Input.GetButtonUp(player + "Dodge") && dodgeButtonTime <= 0.2f)
                 {
                     _movement = _movement * _char.dodgeMultiplier;            //increase _movement speed by _dodgeMultiplier
                     animator.SetBool("Dodging", true);
@@ -106,7 +126,7 @@ public class CharacterControl : MonoBehaviour
                 }
 
                 //end sprinting
-                else if (Input.GetButtonUp("Dodge"))
+                else if (Input.GetButtonUp(player+"Dodge"))
                 {
                     animator.SetBool("Sprinting", false);
                     dodgeButtonTime = 0f;   //reset dodgeButtonTime

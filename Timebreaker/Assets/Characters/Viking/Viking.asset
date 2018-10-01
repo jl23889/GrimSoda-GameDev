@@ -18,8 +18,8 @@ MonoBehaviour:
   jumpSpeed: 65
   fallMultiplier: 2.5
   lowJumpMultiplier: 2
-  sprintMultiplier: 2
-  dodgeMultiplier: 2
+  sprintMultiplier: 1.8
+  dodgeMultiplier: 1.4
   attackList:
   - {fileID: 11400000, guid: 06ec1594e6121cb448fc32eec8f97a2f, type: 2}
   - {fileID: 11400000, guid: f867910f5173963428d5c92b63d13786, type: 2}
