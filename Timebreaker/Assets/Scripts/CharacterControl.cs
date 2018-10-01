@@ -4,16 +4,7 @@ using UnityEngine;
 
 public class CharacterControl : MonoBehaviour
 {
-    //public variable
-    public float speed = 8f;
-    public float jumpSpeed = 65f;
     public float gravity = -20f;
-    public float fallMultiplier = 2.5f;
-    public float lowJumpMultiplier = 2f;
-
-    public float _sprintMultiplier = 2f;
-    public float _dodgeMultiplier = 2f;
-
     //components
     private Rigidbody rb;
     private Animator animator;
@@ -25,14 +16,16 @@ public class CharacterControl : MonoBehaviour
     private bool _jumpKeyPress;
     private bool _jumpKeyHold;
     private Vector3 _movement = Vector3.zero;
-    private CharacterManager _characterManager;
+    private CharacterManager _charManager;
+    private Character _char;
 
     // Use this for initialization
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
-        _characterManager = GetComponent<CharacterManager>();
+        _charManager = GetComponent<CharacterManager>();
+        _char = _charManager._character;
         Physics.gravity = new Vector3(0f, gravity, 0f);
         _movement = Vector3.zero;
         dodgeButtonTime = 0f;
@@ -41,30 +34,32 @@ public class CharacterControl : MonoBehaviour
     //buttons should be prioritized from top to bottom
     void Update()
     {
-        _jumpKeyHold = Input.GetButton("Jump");
-        _jumpKeyPress = Input.GetButtonDown("Jump");
+        // animation locks (these are resolved via scripts in the animator)
+        if (animator.GetBool("Dodging")) { return; }
+        if (animator.GetBool("Jumping") && animator.GetBool("Attacking")) { return; }
 
-        if (animator.GetBool("Blocking") || animator.GetBool("ChargingAttack"))
-        {
-            _movement = Vector3.zero;
-        }
-        else
-        {
-            _movement.x = Input.GetAxis("Horizontal");
-            _movement.z = Input.GetAxis("Vertical");
-        }
+        _movement.x = Input.GetAxis("Horizontal");
+        _movement.z = Input.GetAxis("Vertical");
 
         //blocking
         if (Input.GetButton("Block"))
         {
-            animator.SetBool("Blocking", true);
+            if (!animator.GetBool("Jumping") && !animator.GetBool("Dodging") && !animator.GetBool("Sprinting"))
+            {
+                animator.SetBool("Blocking", true);
+                _movement = Vector3.zero;
+            }
         }
         else
         {
             animator.SetBool("Blocking", false);
         }
 
-        // check attack animations
+        //jumping
+        _jumpKeyHold = Input.GetButton("Jump");
+        _jumpKeyPress = Input.GetButtonDown("Jump");
+
+        //attacking
         if (Input.GetButtonDown("HeavyAttack"))
         {
             animator.SetBool("HeavyAttack", true);
@@ -76,6 +71,7 @@ public class CharacterControl : MonoBehaviour
         else if (Input.GetButtonUp("HeavyAttack"))
         {
             animator.SetBool("ChargingAttack", false);
+            _movement = _movement * _char.dodgeMultiplier;
         }
         else if (Input.GetButtonDown("LightAttack"))
         {
@@ -96,7 +92,7 @@ public class CharacterControl : MonoBehaviour
                     dodgeButtonTime = dodgeButtonTime + Time.deltaTime; 
                     if (dodgeButtonTime > 0.2f)
                     {
-                        _movement = _movement * _sprintMultiplier;        //increase _movement speed by _sprintMultiplier
+                        _movement = _movement * _char.sprintMultiplier;        //increase _movement speed by _sprintMultiplier
                         animator.SetBool("Sprinting", true);
                     }
                 }
@@ -104,7 +100,7 @@ public class CharacterControl : MonoBehaviour
                 //dodging
                 if (Input.GetButtonUp("Dodge") && dodgeButtonTime <= 0.2f)
                 {
-                    _movement = _movement * _dodgeMultiplier;            //increase _movement speed by _dodgeMultiplier
+                    _movement = _movement * _char.dodgeMultiplier;            //increase _movement speed by _dodgeMultiplier
                     animator.SetBool("Dodging", true);
                     dodgeButtonTime = 0f;   //reset dodgeButtonTime
                 }
@@ -117,6 +113,15 @@ public class CharacterControl : MonoBehaviour
                 }
             }
 
+            if (animator.GetBool("ChargingAttack"))
+            {
+                _movement = _movement * 0f;
+            }
+            else if (animator.GetBool("Attacking"))
+            {
+                _movement = _movement * .3f;
+            }
+
         }
         else
         {
@@ -127,7 +132,7 @@ public class CharacterControl : MonoBehaviour
     void FixedUpdate()
     {
         //ground checker
-        _isGrounded = _characterManager.IsGrounded;
+        _isGrounded = _charManager.IsGrounded;
 
         //move rigidbody 
         Move();
@@ -138,7 +143,7 @@ public class CharacterControl : MonoBehaviour
 
     private void Move()
     {
-        rb.MovePosition(transform.position + _movement * speed * Time.fixedDeltaTime);
+        rb.MovePosition(transform.position + _movement * _char.runSpeed * Time.fixedDeltaTime);
         
         //facing the character to the correst direction
         if (_movement != Vector3.zero)
@@ -155,7 +160,7 @@ public class CharacterControl : MonoBehaviour
             if (_jumpKeyPress)
             {
 
-                rb.AddForce(Vector3.up * jumpSpeed, ForceMode.Impulse);
+                rb.AddForce(Vector3.up * _char.jumpSpeed, ForceMode.Impulse);
                 animator.SetBool("Jumping", true);
             }
         }
@@ -163,11 +168,11 @@ public class CharacterControl : MonoBehaviour
         //use fallMultiplier and lowJumpMultiplier to make character fall faster and implementing short and long jump
         if (rb.velocity.y < 0)
         {
-            rb.velocity += Vector3.up * Physics.gravity.y * (fallMultiplier - 1) * Time.fixedDeltaTime;
+            rb.velocity += Vector3.up * Physics.gravity.y * (_char.fallMultiplier - 1) * Time.fixedDeltaTime;
         }
         else if (rb.velocity.y > 0 && !_jumpKeyHold) // if player is not holding the jump button, do short jump
         {
-            rb.velocity += Vector3.up * Physics.gravity.y * (lowJumpMultiplier - 1) * Time.fixedDeltaTime;
+            rb.velocity += Vector3.up * Physics.gravity.y * (_char.lowJumpMultiplier - 1) * Time.fixedDeltaTime;
         }
     }
 }

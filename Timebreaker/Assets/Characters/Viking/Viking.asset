@@ -12,10 +12,14 @@ MonoBehaviour:
   m_Name: Viking
   m_EditorClassIdentifier: 
   charName: Viking
-  charPrefab: {fileID: 1927076287007216, guid: 50670b84b763567439c2514e85ef9686, type: 2}
   healthTotal: 100
   staminaTotal: 100
-  runSpeed: 1
+  runSpeed: 8
+  jumpSpeed: 65
+  fallMultiplier: 2.5
+  lowJumpMultiplier: 2
+  sprintMultiplier: 2
+  dodgeMultiplier: 2
   attackList:
   - {fileID: 11400000, guid: 06ec1594e6121cb448fc32eec8f97a2f, type: 2}
   - {fileID: 11400000, guid: f867910f5173963428d5c92b63d13786, type: 2}
