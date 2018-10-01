@@ -76,7 +76,7 @@ public class CharacterControl : MonoBehaviour
         {
             animator.SetBool("HeavyAttack", true);
         }
-        else if (Input.GetButton(player + "HeavyAttack") && _isGrounded)
+        else if (Input.GetButton(player + "HeavyAttack") && _isGrounded && animator.GetBool("Sprinting"))
         {
             animator.SetBool("ChargingAttack", true);
         }
