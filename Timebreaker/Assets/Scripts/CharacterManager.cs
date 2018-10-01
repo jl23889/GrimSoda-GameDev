@@ -25,7 +25,8 @@ public class CharacterManager : MonoBehaviour {
     private bool isDead;
     private bool isGrounded = true;
     private float inputTimer;
-    private bool canInput = true;
+    private bool isHitStunned = false;
+    private bool isInvincible = false;
     
     // get/set methods
     public int StartingHealth
@@ -54,10 +55,15 @@ public class CharacterManager : MonoBehaviour {
         get { return isGrounded; }
         set { isGrounded = value; }
     }
-    public bool CanInput
+    public bool IsHitStunned
     {
-        get { return canInput; }
-        set { canInput = value; }
+        get { return isHitStunned; }
+        set { isHitStunned = value; }
+    }
+    public bool IsInvincible
+    {
+        get { return isInvincible; }
+        set { isInvincible = value; }
     }
 
     // Use this for initialization
@@ -105,6 +111,7 @@ public class CharacterManager : MonoBehaviour {
 
     public void TakeDamage(Attack attack)
     {
+        if (isInvincible) { return; }
         // Reduce current health by the amount of damage done.
         currentHealth -= attack.damage;
         animator.SetTrigger("GetHit");
@@ -139,14 +146,14 @@ public class CharacterManager : MonoBehaviour {
     IEnumerator DisableInput(float hsd)
     {
         inputTimer = hsd;
-        canInput = false;
+        isHitStunned = true;
         animator.SetBool("HitStun", true);
         while (inputTimer > 0)
         {
             inputTimer -= Time.deltaTime;
             yield return null;
         }
-        canInput = true;
+        isHitStunned = false;
         animator.SetBool("HitStun", false);
     }
 

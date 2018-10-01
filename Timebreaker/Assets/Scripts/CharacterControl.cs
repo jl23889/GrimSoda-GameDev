@@ -54,25 +54,12 @@ public class CharacterControl : MonoBehaviour
     //buttons should be prioritized from top to bottom
     void Update()
     {
-        // animation locks (these are resolved via scripts in the animator)
-        if (animator.GetBool("Dodging")) { return; }
-        if (animator.GetBool("Jumping") && animator.GetBool("Attacking")) { return; }
-        if (!_charManager.CanInput) {
-            _movement.x = 0;
-            _movement.z = 0;
-            return;
-        }
-
-        _movement.x = Input.GetAxis(player + "Horizontal");
-        _movement.z = Input.GetAxis(player + "Vertical");
-
         //blocking
         if (Input.GetButton(player+"Block"))
         {
             if (!animator.GetBool("Jumping") && !animator.GetBool("Dodging") && !animator.GetBool("Sprinting"))
             {
                 animator.SetBool("Blocking", true);
-                _movement = Vector3.zero;
             }
         }
         else
@@ -96,13 +83,11 @@ public class CharacterControl : MonoBehaviour
         else if (Input.GetButtonUp(player + "HeavyAttack"))
         {
             animator.SetBool("ChargingAttack", false);
-            _movement = _movement * _char.dodgeMultiplier;
         }
         else if (Input.GetButtonDown(player + "LightAttack"))
         {
             animator.SetBool("LightAttack", true);
         }
-
         // _movement animations and speed controls (might move speed control to fix update later)
         if (_movement != Vector3.zero)
         {
@@ -116,8 +101,7 @@ public class CharacterControl : MonoBehaviour
                 {
                     dodgeButtonTime = dodgeButtonTime + Time.deltaTime; 
                     if (dodgeButtonTime > 0.2f)
-                    {
-                        _movement = _movement * _char.sprintMultiplier;        //increase _movement speed by _sprintMultiplier
+                    { 
                         animator.SetBool("Sprinting", true);
                     }
                 }
@@ -125,9 +109,10 @@ public class CharacterControl : MonoBehaviour
                 //dodging
                 if (Input.GetButtonUp(player + "Dodge") && dodgeButtonTime <= 0.2f)
                 {
-                    _movement = _movement * _char.dodgeMultiplier;            //increase _movement speed by _dodgeMultiplier
                     animator.SetBool("Dodging", true);
+                    _charManager.IsInvincible = true;
                     dodgeButtonTime = 0f;   //reset dodgeButtonTime
+                    _movement = _movement * _char.dodgeMultiplier;
                 }
 
                 //end sprinting
@@ -137,21 +122,13 @@ public class CharacterControl : MonoBehaviour
                     dodgeButtonTime = 0f;   //reset dodgeButtonTime
                 }
             }
-
-            if (animator.GetBool("ChargingAttack"))
-            {
-                _movement = _movement * 0f;
-            }
-            else if (animator.GetBool("Attacking"))
-            {
-                _movement = _movement * .3f;
-            }
-
         }
         else
         {
             animator.SetBool("Moving", false);
         }
+        // Movement states
+        CalculateMovement();
     }
 
     void FixedUpdate()
@@ -164,6 +141,36 @@ public class CharacterControl : MonoBehaviour
 
         //_movements when grounded and not animation locked
         Jump();
+    }
+
+    // this calculates the movement based on the animations and current state of the character
+    private void CalculateMovement()
+    {
+        if (animator.GetBool("Dodging"))
+        {
+            return;
+        }
+
+        if (_charManager.IsHitStunned || animator.GetBool("ChargingAttack") || animator.GetBool("Blocking"))
+        {
+            _movement.x = 0;
+            _movement.z = 0;
+            return;
+        }
+
+        _movement.x = Input.GetAxis(player + "Horizontal");
+        _movement.z = Input.GetAxis(player + "Vertical");
+        _charManager.IsInvincible = false;
+
+        if (animator.GetBool("Sprinting"))
+        {
+            _movement = _movement * _char.sprintMultiplier;
+        }
+        else if (animator.GetBool("Attacking"))
+        {
+            _movement = _movement* .3f;
+        }
+
     }
 
     private void Move()
