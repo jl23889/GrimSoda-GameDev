@@ -73,12 +73,12 @@ public class AutoLock : MonoBehaviour {
                 // current target
                 if (op == _target)
                 {
-                    Gizmos.color = Color.red;
+                    Gizmos.color = Color.yellow;
                 } 
                 // other targets
                 else
                 {
-                    Gizmos.color = Color.yellow;
+                    Gizmos.color = Color.red;
                 }
 
                 Gizmos.DrawLine(_self.transform.position, op.transform.position);
