@@ -61,4 +61,28 @@ public class AutoLock : MonoBehaviour {
             _arrow.transform.localEulerAngles = new Vector3(0f, 0f, 360 - _targetAngle);
         }
     }
+
+    //Draw lines to targets as gizmos to show where it currently is testing. Click the Gizmos button to see this
+    private void OnDrawGizmos()
+    {
+        //Check that it is being run in Play Mode, so it doesn't try to draw this in Editor mode
+        if (_otherplayers != null)
+        {
+            foreach(GameObject op in _otherplayers)
+            {
+                // current target
+                if (op == _target)
+                {
+                    Gizmos.color = Color.red;
+                } 
+                // other targets
+                else
+                {
+                    Gizmos.color = Color.yellow;
+                }
+
+                Gizmos.DrawLine(_self.transform.position, op.transform.position);
+            }
+        }
+    }
 }
