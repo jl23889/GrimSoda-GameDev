@@ -59,7 +59,7 @@ GameObject:
   - component: {fileID: 4294101285243750}
   - component: {fileID: 114032291362714496}
   m_Layer: 9
-  m_Name: BarrelFrag
+  m_Name: ExplosiveBarrelFrag
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1507,6 +1507,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdd8ef13f13f8704bb9f64aa9cb68ec9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _throwable: {fileID: 11400000, guid: 60db0267424306745bef6443d53dca34, type: 2}
   throwablePrefab: {fileID: 1609645369061784, guid: 157262300585e474ba9df051e2e5deb4,
     type: 2}
   respawnPoint: {fileID: 1144053491429750, guid: dac39d30ecabc7c478f6c2bb0d9b4ac8,

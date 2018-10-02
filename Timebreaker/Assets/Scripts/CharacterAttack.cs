@@ -6,7 +6,7 @@ public class CharacterAttack : MonoBehaviour
 {
     private CharacterManager _char;
     private List<Attack> _charAttacks;
-    private CharacterHitbox _charHitbox;
+    private Hitbox _charHitbox;
     private Collider _charHurtboxCol;    // this is the character's own hurtbox collider
     private List<Collider> _hurtboxColBuffer; // this contains the colliders hit by the current attack   
     private Animator animator;
@@ -22,7 +22,7 @@ public class CharacterAttack : MonoBehaviour
     {
         _char = GetComponent<CharacterManager>();
         _charAttacks = _char._character.attackList;
-        _charHitbox = GetComponent<CharacterHitbox>();
+        _charHitbox = GetComponent<Hitbox>();
         _charHurtboxCol = GetComponent<CapsuleCollider>();
         _hurtboxColBuffer = new List<Collider>();
         _hurtboxColBuffer.Add(_charHurtboxCol);
@@ -58,15 +58,15 @@ public class CharacterAttack : MonoBehaviour
             switch (_attack.attackLimb) //TODO: we shouldn't need to lookup the attack limb using strings, rather we should just be able to assign limbs as gameobjects in inspector
             {
                 case "leftArm":
-                    _charHitbox.AttachHitbone(_char.leftArm);
+                    _charHitbox.HitboxCenterPosition(_char.leftArm);
                     vfxBone = _char.leftHand;
                     break;
                 case "rightArm":
-                    _charHitbox.AttachHitbone(_char.rightArm);
+                    _charHitbox.HitboxCenterPosition(_char.rightArm);
                     vfxBone = _char.rightHand;
                     break;
                 case "head":
-                    _charHitbox.AttachHitbone(_char.head);
+                    _charHitbox.HitboxCenterPosition(_char.head);
                     vfxBone = _char.headEnd;
                     break;
             }

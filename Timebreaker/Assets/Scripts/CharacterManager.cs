@@ -6,7 +6,6 @@ using UnityEngine;
 public class CharacterManager : MonoBehaviour {
 
     public Character _character;
-    public CharacterHitbox _hitbox;
     public GameObject leftArm;  // this should be the left arm bone
     public GameObject rightArm; // this should be the right arm bone
     public GameObject head;     // this should be the head bone
@@ -114,7 +113,7 @@ public class CharacterManager : MonoBehaviour {
     public void TriggerKnockup(float kbf)
     {
         animator.SetTrigger("Knockup");
-        rb.AddForce(new Vector3(0,1,0) * kbf, ForceMode.Impulse);
+        rb.AddForce(new Vector3(0,1,0) * kbf, ForceMode.VelocityChange);
     }
 
     public void TriggerKnockdown()
@@ -122,6 +121,7 @@ public class CharacterManager : MonoBehaviour {
         animator.SetTrigger("Knockdown");
     }
 
+    // taking damage from an attack
     public void TakeDamage(Attack attack)
     {
         if (isInvincible) { return; }
@@ -143,12 +143,44 @@ public class CharacterManager : MonoBehaviour {
         }
         else if (attack.knockup)
         {
-            TriggerKnockup(attack.knockupForce);
+            TriggerKnockup(attack.knockupVelocity);
         }
         
         //Debug.Log("Attack Name: " + attack.attackName + "  Damage:" + attack.damage);
         //Debug.Log("Knockdown: " + attack.knockdown + " Knockback: " + attack.knockback);
 
+
+        // If the current health is at or below zero and it has not yet been registered, call OnDeath.
+        if (CurrentHealth <= 0 && !isDead)
+        {
+            OnDeath();
+        }
+    }
+
+    // taking damage from a throwable fragmentation
+    public void TakeDamage(Throwable throwable)
+    {
+        if (isInvincible) { return; }
+        // Reduce current health by the amount of damage done.
+        currentHealth -= throwable.damage;
+        // Drop throwable
+        if (isGrabbingThrowable)
+        {
+            isGrabbingThrowable = false;
+        }
+
+        animator.SetTrigger("GetHit");
+        chest.GetComponent<ParticleSystem>().Play(false);
+        StartCoroutine(DisableInput(throwable.hitStunDuration));
+
+        if (throwable.knockdown)
+        {
+            TriggerKnockdown();
+        }
+        else if (throwable.knockup)
+        {
+            TriggerKnockup(throwable.knockupVelocity);
+        }
 
         // If the current health is at or below zero and it has not yet been registered, call OnDeath.
         if (CurrentHealth <= 0 && !isDead)

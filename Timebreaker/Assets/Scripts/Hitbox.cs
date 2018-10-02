@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharacterHitbox : MonoBehaviour {
+public class Hitbox : MonoBehaviour {
 
     private bool hitboxCreated;
     public LayerMask layerMask;
@@ -49,11 +49,13 @@ public class CharacterHitbox : MonoBehaviour {
         return hitColliders;
     }
 
+    // set collider state to colliding
     public void DetectCollision()
     {
         _colliderState = ColliderState.Colliding;
     }
 
+    // set collider state to active
     public void StartHitboxCollision()
     {
         if (_colliderState != ColliderState.Colliding) 
@@ -62,6 +64,7 @@ public class CharacterHitbox : MonoBehaviour {
         }
     }
 
+    // set collider state to inactive
     public void StopHitboxCollision()
     {
         _colliderState = ColliderState.Inactive;
@@ -72,10 +75,10 @@ public class CharacterHitbox : MonoBehaviour {
         _boxSize = newHitboxSize;
     }
 
-    // hitbone should be a bone located on the middle of the limb we're targeting
-    public void AttachHitbone(GameObject hitbone)
+    // hitbone should be a gameobject located on the middle of the limb we're targeting
+    public void HitboxCenterPosition(GameObject gob)
     {
-        _boxPosition = hitbone.transform.position;
+        _boxPosition = gob.transform.position;
     }
 
     

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class DestroyTimer : MonoBehaviour {
 
+    public Throwable _throwable;
     public GameObject throwablePrefab;
     public GameObject respawnPoint;
     public GameObject explosionFx;
@@ -17,7 +18,10 @@ public class DestroyTimer : MonoBehaviour {
     // Use this for initialization
     void Start () {
         // Instantiate particle effects
-        explosionFxInstance = (GameObject) Instantiate(explosionFx, gameObject.transform.position, Quaternion.identity);
+        if (_throwable.isExplosive)
+        {
+            explosionFxInstance = (GameObject)Instantiate(explosionFx, gameObject.transform.position, Quaternion.identity);
+        }
         Destroy(explosionFxInstance, timeToDestroy);
 
         // Start Respawn timer 
@@ -37,7 +41,8 @@ public class DestroyTimer : MonoBehaviour {
     {
         yield return new WaitForSecondsRealtime(timeToDestroy);
         Destroy(gameObject);            // remove object
-        Instantiate(throwablePrefab, respawnPoint.transform.position, new Quaternion(-90, 0, 0, 1)); // respawn object; for testing purposes
+        Instantiate(throwablePrefab, respawnPoint.transform.position, 
+            Quaternion.Euler(new Vector3(-90, 0, 0))); // respawn object; for testing purposes
     }
 
 
