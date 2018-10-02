@@ -6,6 +6,8 @@ public class CameraControl : MonoBehaviour
     public float m_DampTime = 0.2f;                 // Approximate time for the camera to refocus.
     public float m_ScreenEdgeBuffer = 4f;           // Space between the top/bottom most target and the screen edge.
     public float m_MinSize = 6.5f;                  // The smallest orthographic size the camera can be.
+    private Quaternion m_TransformRotation
+        = Quaternion.Euler(new Vector3(20, 45, 0)); // Rotation of the transform that the camera is attached to
        
     private Transform[] m_Targets;                  // All the targets the camera needs to encompass.
     private Camera m_Camera;                        // Used for referencing the camera.
@@ -18,6 +20,7 @@ public class CameraControl : MonoBehaviour
     {
         m_Targets = GameObject.FindGameObjectsWithTag("Player").Select(go => go.transform).ToArray();
         m_Camera = GetComponentInChildren<Camera>();
+        transform.rotation = m_TransformRotation;
     }
 
 
@@ -126,5 +129,10 @@ public class CameraControl : MonoBehaviour
 
         // Find and set the required size of the camera.
         m_Camera.orthographicSize = FindRequiredSize();
+    }
+
+    public Quaternion GetRotation()
+    {
+        return m_TransformRotation;
     }
 }
