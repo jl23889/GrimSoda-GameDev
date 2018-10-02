@@ -24,15 +24,23 @@ public class CharacterControl : MonoBehaviour
     private Vector3 _movement = Vector3.zero;
     private CharacterManager _charManager;
     private Character _char;
+    private ThrowObject _throwObj;
     public GameObject _cameraRig;
 
+    // get/set methods
+    public string PlayerString
+    {
+        get { return player; }
+    }
+
     // Use this for initialization
-    void Start()
+    void Awake()
     {
         rb = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
         _charManager = GetComponent<CharacterManager>();
         _char = _charManager._character;
+        _throwObj = GetComponent<ThrowObject>();
         Physics.gravity = new Vector3(0f, gravity, 0f);
         _movement = Vector3.zero;
         dodgeButtonTime = 0f;

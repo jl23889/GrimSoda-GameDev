@@ -31,6 +31,7 @@ public class CharacterManager : MonoBehaviour {
     private float inputTimer;
     private bool isHitStunned = false;
     private bool isInvincible = false;
+    private bool isGrabbingThrowable = false;
     
     // get/set methods
     public int StartingHealth
@@ -69,9 +70,14 @@ public class CharacterManager : MonoBehaviour {
         get { return isInvincible; }
         set { isInvincible = value; }
     }
+    public bool IsGrabbingThrowable
+    {
+        get { return isGrabbingThrowable; }
+        set { isGrabbingThrowable = value; }
+    }
 
     // Use this for initialization
-    void Start () {
+    void Awake () {
         rb = GetComponent<Rigidbody>();
         rbInitial = rb.rotation;
         animator = GetComponent<Animator>();
@@ -121,6 +127,12 @@ public class CharacterManager : MonoBehaviour {
         if (isInvincible) { return; }
         // Reduce current health by the amount of damage done.
         currentHealth -= attack.damage;
+        // Drop throwable
+        if (isGrabbingThrowable)
+        {
+            isGrabbingThrowable = false;
+        }
+
         animator.SetTrigger("GetHit");
         chest.GetComponent<ParticleSystem>().Play(false);
         StartCoroutine(DisableInput(attack.hitStunDuration));
