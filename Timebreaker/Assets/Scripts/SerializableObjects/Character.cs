@@ -10,7 +10,7 @@ public class Character : ScriptableObject
     public int healthTotal = 100;
     public int staminaTotal = 100;
     public float runSpeed = 8f;
-    public float jumpSpeed = 65f;
+    public float jumpHeight = 10f;
     public float fallMultiplier = 2.5f;
     public float lowJumpMultiplier = 2f;
     public float sprintMultiplier = 2f;

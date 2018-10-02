@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -94,7 +95,7 @@ public class CharacterControl : MonoBehaviour
             animator.SetBool("Moving", true);
 
             //hold dodge key to sprint, press dodge key to dodge
-            if (!animator.GetBool("Jumping") && !animator.GetBool("Attacking"))
+            if (!animator.GetBool("Jumping") && !animator.GetBool("Attacking") && !animator.GetBool("Dodging"))
             {
                 //sprinting
                 if (Input.GetButton(player + "Dodge"))
@@ -158,8 +159,9 @@ public class CharacterControl : MonoBehaviour
             return;
         }
 
-        _movement.x = Input.GetAxis(player + "Horizontal");
-        _movement.z = Input.GetAxis(player + "Vertical");
+        // normalized input ensures that magnitude of movement will always be the same
+        _movement = new Vector3(Input.GetAxis(player + "Horizontal"),0, Input.GetAxis(player + "Vertical")).normalized;
+
         _charManager.IsInvincible = false;
 
         if (animator.GetBool("Sprinting"))
@@ -191,8 +193,10 @@ public class CharacterControl : MonoBehaviour
             //jump
             if (_jumpKeyPress)
             {
-
-                rb.AddForce(Vector3.up * _char.jumpSpeed, ForceMode.Impulse);
+                // using the physics formula 
+                //  mgh = (1/2)mv^2  => v = sqrt(2gh)
+                // this will always make the player jump the same height
+                rb.AddForce(Vector3.up * (float) Math.Sqrt(2*-Physics.gravity.y*_char.jumpHeight), ForceMode.VelocityChange);
                 animator.SetBool("Jumping", true);
             }
         }
