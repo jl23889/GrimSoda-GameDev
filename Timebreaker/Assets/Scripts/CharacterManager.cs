@@ -81,7 +81,10 @@ public class CharacterManager : MonoBehaviour {
 
     private void Update()
     {
-        if (isGrounded)
+        // set grounded animation update here
+        //  separate the animation update from game logic so character has no lag time
+        //  between animations
+        if (GroundedCheck())
         {
             animator.SetBool("Grounded", true);
         }

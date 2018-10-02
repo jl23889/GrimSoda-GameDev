@@ -6,7 +6,7 @@ using UnityEngine;
 // reads player input and translates input into actions
 public class CharacterControl : MonoBehaviour
 {
-    public enum Player {P1, P2, P3, P4};
+    public enum Player { P1, P2, P3, P4 };
     public Player _player;
     private string player;
 
@@ -14,7 +14,7 @@ public class CharacterControl : MonoBehaviour
     //components
     private Rigidbody rb;
     private Animator animator;
-   
+
     //used to figure out how long button is held down;
     private float dodgeButtonTime;
 
@@ -24,6 +24,7 @@ public class CharacterControl : MonoBehaviour
     private Vector3 _movement = Vector3.zero;
     private CharacterManager _charManager;
     private Character _char;
+    public GameObject _cameraRig;
 
     // Use this for initialization
     void Start()
@@ -56,7 +57,7 @@ public class CharacterControl : MonoBehaviour
     void Update()
     {
         //blocking
-        if (Input.GetButton(player+"Block"))
+        if (Input.GetButton(player + "Block"))
         {
             if (!animator.GetBool("Jumping") && !animator.GetBool("Dodging") && !animator.GetBool("Sprinting"))
             {
@@ -77,7 +78,7 @@ public class CharacterControl : MonoBehaviour
         {
             animator.SetBool("HeavyAttack", true);
         }
-        else if (Input.GetButton(player + "HeavyAttack") && _isGrounded && animator.GetBool("Sprinting"))
+        else if (Input.GetButton(player + "HeavyAttack") && _isGrounded && !animator.GetBool("Sprinting"))
         {
             animator.SetBool("ChargingAttack", true);
         }
@@ -100,9 +101,9 @@ public class CharacterControl : MonoBehaviour
                 //sprinting
                 if (Input.GetButton(player + "Dodge"))
                 {
-                    dodgeButtonTime = dodgeButtonTime + Time.deltaTime; 
+                    dodgeButtonTime = dodgeButtonTime + Time.deltaTime;
                     if (dodgeButtonTime > 0.2f)
-                    { 
+                    {
                         animator.SetBool("Sprinting", true);
                     }
                 }
@@ -117,7 +118,7 @@ public class CharacterControl : MonoBehaviour
                 }
 
                 //end sprinting
-                else if (Input.GetButtonUp(player+"Dodge"))
+                else if (Input.GetButtonUp(player + "Dodge"))
                 {
                     animator.SetBool("Sprinting", false);
                     dodgeButtonTime = 0f;   //reset dodgeButtonTime
@@ -160,7 +161,17 @@ public class CharacterControl : MonoBehaviour
         }
 
         // normalized input ensures that magnitude of movement will always be the same
-        _movement = new Vector3(Input.GetAxis(player + "Horizontal"),0, Input.GetAxis(player + "Vertical")).normalized;
+        _movement = new Vector3(Input.GetAxis(player + "Horizontal"), 0, Input.GetAxis(player + "Vertical")).normalized;
+        // rotating input to match camera's perspective
+        if (_cameraRig != null)
+        {
+            var movX = _movement.x;
+            var movZ = _movement.z;
+            _movement.x = movX * Mathf.Cos(-_cameraRig.transform.eulerAngles.y * Mathf.Deg2Rad)
+                - movZ * Mathf.Sin(-_cameraRig.transform.eulerAngles.y * Mathf.Deg2Rad);
+            _movement.z = movX * Mathf.Sin(-_cameraRig.transform.eulerAngles.y * Mathf.Deg2Rad)
+                + movZ * Mathf.Cos(-_cameraRig.transform.eulerAngles.y * Mathf.Deg2Rad);
+        }
 
         _charManager.IsInvincible = false;
 
@@ -168,9 +179,9 @@ public class CharacterControl : MonoBehaviour
         {
             _movement = _movement * _char.sprintMultiplier;
         }
-        else if (animator.GetBool("Attacking"))
+        else if (animator.GetBool("Attacking") && animator.GetBool("Grounded"))
         {
-            _movement = _movement* .3f;
+            _movement = _movement * .3f;
         }
 
     }
@@ -178,7 +189,7 @@ public class CharacterControl : MonoBehaviour
     private void Move()
     {
         rb.MovePosition(transform.position + _movement * _char.runSpeed * Time.fixedDeltaTime);
-        
+
         //facing the character to the correst direction
         if (_movement != Vector3.zero)
         {
@@ -196,7 +207,7 @@ public class CharacterControl : MonoBehaviour
                 // using the physics formula 
                 //  mgh = (1/2)mv^2  => v = sqrt(2gh)
                 // this will always make the player jump the same height
-                rb.AddForce(Vector3.up * (float) Math.Sqrt(2*-Physics.gravity.y*_char.jumpHeight), ForceMode.VelocityChange);
+                rb.AddForce(Vector3.up * Mathf.Sqrt(2 * -Physics.gravity.y * _char.jumpHeight), ForceMode.VelocityChange);
                 animator.SetBool("Jumping", true);
             }
         }

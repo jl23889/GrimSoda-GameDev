@@ -2672,7 +2672,6 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 512
-  _character: {fileID: 11400000, guid: aa5f433f2ee98c142aa8d6d754b9c8d7, type: 2}
   _colliderState: 0
 --- !u!114 &114541731162296766
 MonoBehaviour:
@@ -2819,8 +2818,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c2f74fea2217b74f92925c325ad3636, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: 0
+  _player: 0
   gravity: -20
+  _cameraRig: {fileID: 0}
 --- !u!114 &114991236136439936
 MonoBehaviour:
   m_ObjectHideFlags: 1
