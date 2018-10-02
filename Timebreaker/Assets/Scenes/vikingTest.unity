@@ -216,7 +216,7 @@ Transform:
   m_Children:
   - {fileID: 2109200887}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 30, y: 0, z: 0}
 --- !u!1 &357938070
 GameObject:
@@ -362,6 +362,11 @@ Prefab:
     - target: {fileID: 1386627508743444, guid: 9a6c33ac87fc52947a4ec607588f341d, type: 2}
       propertyPath: m_Name
       value: Player1
+      objectReference: {fileID: 0}
+    - target: {fileID: 198839842388130098, guid: 9a6c33ac87fc52947a4ec607588f341d,
+        type: 2}
+      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.scalar
+      value: 30
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9a6c33ac87fc52947a4ec607588f341d, type: 2}
@@ -607,7 +612,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4278203973462172, guid: 519a363a639b9284a9c162029be6305a, type: 2}
       propertyPath: m_RootOrder
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 114233404981690860, guid: 519a363a639b9284a9c162029be6305a,
         type: 2}
@@ -890,23 +895,18 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114932308455613096, guid: 9a6c33ac87fc52947a4ec607588f341d,
+        type: 2}
+      propertyPath: _cameraRig
+      value: 
+      objectReference: {fileID: 252326884}
     - target: {fileID: 1386627508743444, guid: 9a6c33ac87fc52947a4ec607588f341d, type: 2}
       propertyPath: m_Name
       value: Player2
       objectReference: {fileID: 0}
     - target: {fileID: 114932308455613096, guid: 9a6c33ac87fc52947a4ec607588f341d,
         type: 2}
-      propertyPath: player
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114932308455613096, guid: 9a6c33ac87fc52947a4ec607588f341d,
-        type: 2}
       propertyPath: _player
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114067613039829730, guid: 9a6c33ac87fc52947a4ec607588f341d,
-        type: 2}
-      propertyPath: canInput
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []

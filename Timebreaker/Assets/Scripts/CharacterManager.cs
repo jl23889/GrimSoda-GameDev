@@ -10,6 +10,10 @@ public class CharacterManager : MonoBehaviour {
     public GameObject leftArm;  // this should be the left arm bone
     public GameObject rightArm; // this should be the right arm bone
     public GameObject head;     // this should be the head bone
+    public GameObject chest;    // chest bone
+    public GameObject leftHand;     //left hand bone
+    public GameObject rightHand;    //right hand bone
+    public GameObject headEnd;         //head_end bone
     public LayerMask groundLayer;
 
     private Animator animator;
@@ -118,6 +122,7 @@ public class CharacterManager : MonoBehaviour {
         // Reduce current health by the amount of damage done.
         currentHealth -= attack.damage;
         animator.SetTrigger("GetHit");
+        chest.GetComponent<ParticleSystem>().Play(false);
         StartCoroutine(DisableInput(attack.hitStunDuration));
 
         if (attack.knockdown)

@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class CharacterAttack : MonoBehaviour
 {
-
     private CharacterManager _char;
     private List<Attack> _charAttacks;
     private CharacterHitbox _charHitbox;
@@ -12,6 +11,7 @@ public class CharacterAttack : MonoBehaviour
     private List<Collider> _hurtboxColBuffer; // this contains the colliders hit by the current attack   
     private Animator animator;
     private AnimationClip currentClip;
+    private GameObject vfxBone;         // this is the bone that has the vfx to be played
 
 
     [HideInInspector]
@@ -54,17 +54,20 @@ public class CharacterAttack : MonoBehaviour
 
             // get current attack
             _attack = _charAttacks[attackIndex];
-
+            
             switch (_attack.attackLimb) //TODO: we shouldn't need to lookup the attack limb using strings, rather we should just be able to assign limbs as gameobjects in inspector
             {
                 case "leftArm":
                     _charHitbox.AttachHitbone(_char.leftArm);
+                    vfxBone = _char.leftHand;
                     break;
                 case "rightArm":
                     _charHitbox.AttachHitbone(_char.rightArm);
+                    vfxBone = _char.rightHand;
                     break;
                 case "head":
                     _charHitbox.AttachHitbone(_char.head);
+                    vfxBone = _char.headEnd;
                     break;
             }
             _charHitbox.ResizeHitbox(_attack.hitboxSize);
@@ -95,6 +98,9 @@ public class CharacterAttack : MonoBehaviour
 
                     if (_charHit != null)
                     {
+                        // trigger vfx on the bone that is in motion
+                        vfxBone.GetComponent<ParticleSystem>().Play(false);
+                        // make the character that is hit take damage from attack
                         _charHit.TakeDamage(_attack);
                         _charHitbox.DetectCollision();
                     }
