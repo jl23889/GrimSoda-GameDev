@@ -6,6 +6,7 @@ using UnityEngine;
 public class SpinGameObject : MonoBehaviour {
 
     public float rotationSpeed = 20f;
+    public Vector3 rotationVector = new Vector3(0,1,0);
 
 	// Use this for initialization
 	void Start () {
@@ -14,6 +15,6 @@ public class SpinGameObject : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        transform.Rotate(new Vector3(0, 0, 1) * rotationSpeed * Time.deltaTime);
+        transform.Rotate(rotationVector * rotationSpeed * Time.deltaTime);
 	}
 }

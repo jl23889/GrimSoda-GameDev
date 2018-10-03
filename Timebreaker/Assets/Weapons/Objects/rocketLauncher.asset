@@ -12,9 +12,13 @@ MonoBehaviour:
   m_Name: rocketLauncher
   m_EditorClassIdentifier: 
   weaponName: Rocket Launcher
-  projectilePrefab: {fileID: 1027308808627398, guid: d56eb1cb8e5e06b45a5a9974cf565098,
+  locationRotationScalePreset: {fileID: 2655988077585873504, guid: cf4a0d1fa64f70945bdd4d24be04d9ed,
     type: 2}
+  projectilePrefab: {fileID: 1429283479777328, guid: 6b7d411794516a942a0912e8b7b69792,
+    type: 2}
+  projectileVelocity: 50
   damage: 20
+  ammo: 5
   hitStunDuration: 2
   hitboxSize: {x: 10, y: 10, z: 10}
   knockback: 1

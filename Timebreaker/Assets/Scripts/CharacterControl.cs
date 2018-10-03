@@ -90,6 +90,7 @@ public class CharacterControl : MonoBehaviour
         //attacking
         _lightAttackPress = Input.GetButtonDown(player + "LightAttack");
         _heavyAttackPress = Input.GetButtonDown(player + "HeavyAttack");
+
         Attack();
 
         // _movement animations and speed controls (might move speed control to fix update later)
@@ -147,6 +148,15 @@ public class CharacterControl : MonoBehaviour
         else if (_lightAttackPress)
         {
             Targeting(15.0f);
+        }
+
+        // check if holding weapon
+        if (_charManager.IsHoldingWeapon)
+        {
+            if (_charManager.RangedWeapon.remainingAmmo <= 0)
+            {
+                _charManager.RangedWeapon = null;
+            }
         }
 
         //move rigidbody 
@@ -236,6 +246,15 @@ public class CharacterControl : MonoBehaviour
 
     private void Attack()
     {
+        // shoot weapon if holding weapon and not shooting
+        if (_charManager.IsHoldingWeapon && !_charManager.IsShooting)
+        {
+            if (_heavyAttackPress || _lightAttackPress)
+            {
+                _charManager.RangedWeapon.Shoot(transform.forward);
+            }
+        }
+
         if (_heavyAttackPress)
         {
             animator.SetBool("HeavyAttack", true);
