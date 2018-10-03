@@ -22,7 +22,9 @@ public class CharacterControl : MonoBehaviour
     private bool _jumpKeyPress;
     private bool _jumpKeyHold;
     private bool _lightAttackPress;
+    private bool _heavyAttackDown;
     private bool _heavyAttackPress;
+    private bool _heavyAttackUp;
 
 
     private Vector3 _movement = Vector3.zero;
@@ -89,7 +91,9 @@ public class CharacterControl : MonoBehaviour
 
         //attacking
         _lightAttackPress = Input.GetButtonDown(player + "LightAttack");
-        _heavyAttackPress = Input.GetButtonDown(player + "HeavyAttack");
+        _heavyAttackDown = Input.GetButtonDown(player + "HeavyAttack");
+        _heavyAttackPress = Input.GetButton(player + "HeavyAttack");
+        _heavyAttackUp = Input.GetButtonUp(player + "HeavyAttack");
 
         Attack();
 
@@ -141,13 +145,13 @@ public class CharacterControl : MonoBehaviour
         //ground checker
         _isGrounded = _charManager.IsGrounded;
 
-        if (_heavyAttackPress)
+        if (_heavyAttackPress || _heavyAttackDown || _heavyAttackUp)
         {
-            Targeting(60.0f);//hard code for now, replace with Attack._range
+            Targeting(18f, 60f);//hard code for now, replace with Attack._range           
         }
         else if (_lightAttackPress)
         {
-            Targeting(15.0f);
+            Targeting(8f, 120f);
         }
 
         // check if holding weapon
@@ -223,7 +227,16 @@ public class CharacterControl : MonoBehaviour
         //facing the character to the correst direction
         if (_movement != Vector3.zero)
         {
-            transform.forward = _movement;
+            // faces target if attacking and has a target 
+            if (animator.GetBool("Attacking") && _autoLock.Target != null)
+            {
+                transform.forward = _autoLock.Target.transform.position - transform.position;
+            }
+            // otherwise move in the direction of input
+            else
+            {
+                transform.forward = _movement;
+            }
         }
     }
 
@@ -255,7 +268,7 @@ public class CharacterControl : MonoBehaviour
 
     private void Attack()
     {
-        if (_heavyAttackPress)
+        if (_heavyAttackDown)
         {
             animator.SetBool("HeavyAttack", true);
         }
@@ -263,7 +276,7 @@ public class CharacterControl : MonoBehaviour
         {
             animator.SetBool("ChargingAttack", true);
         }
-        else if (_heavyAttackPress)
+        else if (_heavyAttackUp)
         {
             animator.SetBool("ChargingAttack", false);
         }
@@ -273,12 +286,9 @@ public class CharacterControl : MonoBehaviour
         }
     }
 
-    private void Targeting(float _attackRange)
+    private void Targeting(float _attackRange, float _autolockMaxAngle)
     {
         _autoLock.AttackRange = _attackRange;
-        if (_autoLock.Target != null)
-        {
-            transform.forward = _autoLock.Target.transform.position - transform.position;
-        }
+        _autoLock.AutolockMaxAngle = _autolockMaxAngle;
     }
 }
