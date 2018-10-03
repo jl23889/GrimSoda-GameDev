@@ -9,11 +9,23 @@ public class AutoLock : MonoBehaviour {
     private GameObject _target;
     private float _targetAngle;
     private float _tempAngle;
+    private float _attackRange;
+    private float _targetDistance;
 
     private Image _arrow;
 
-	// Use this for initialization
-	void Start () {
+    public GameObject Target
+    {
+        get { return _target; }
+    }
+
+    public float AttackRange
+    {
+        set { _attackRange = value; }
+    }
+
+    // Use this for initialization
+    void Start () {
         _self = gameObject;
         _target = null;
 
@@ -24,6 +36,8 @@ public class AutoLock : MonoBehaviour {
 
         _targetAngle = 180f;
         _tempAngle = 0f;
+        _attackRange = 0f;
+        _attackRange = 0f;
 
         _arrow = GetComponentInChildren<Image>();
     }
@@ -34,6 +48,23 @@ public class AutoLock : MonoBehaviour {
 
     void FixedUpdate ()
     {
+        Targeting180(_attackRange);
+        ArrowUpdate();
+    }
+
+    //Draw lines to targets as gizmos to show where it currently is testing. Click the Gizmos button to see this
+    private void OnDrawGizmos()
+    {
+        //Check that it is being run in Play Mode, so it doesn't try to draw this in Editor mode
+        if (_target != null)
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawLine(_self.transform.position, _target.transform.position);
+        }
+    }
+
+    private void Targeting180(float _attackRange)
+    {
         //initial _targetAngle
         _targetAngle = 180f;
 
@@ -43,46 +74,41 @@ public class AutoLock : MonoBehaviour {
             if (player != _self)
             {
                 _tempAngle = Vector2.Angle(new Vector2(_self.transform.forward.x, _self.transform.forward.z), new Vector2(player.transform.position.x - _self.transform.position.x, player.transform.position.z - _self.transform.position.z));
-                if (_tempAngle < _targetAngle)
+                _targetDistance = Vector3.Distance(_self.transform.position, player.transform.position);
+
+                //only targeting the character in 180 angle instead of 360
+                if (_tempAngle <= 90 && _targetDistance <= _attackRange && _tempAngle < _targetAngle)
                 {
                     _targetAngle = _tempAngle;
                     _target = player;
                 }
-            }
-        }
 
-        //pointing arrow
-        if (Vector3.Cross(new Vector2(_self.transform.forward.x, _self.transform.forward.z), new Vector2(_target.transform.position.x - _self.transform.position.x, _target.transform.position.z - _self.transform.position.z)).z > 0)
-        {
-            _arrow.transform.localEulerAngles = new Vector3(0f, 0f, _targetAngle);
-        }
-        else
-        {
-            _arrow.transform.localEulerAngles = new Vector3(0f, 0f, 360 - _targetAngle);
+                //if no target is in front, set the target to null
+                if (_targetAngle > 90)
+                {
+                    _target = null;
+                }
+            }
         }
     }
 
-    //Draw lines to targets as gizmos to show where it currently is testing. Click the Gizmos button to see this
-    private void OnDrawGizmos()
+    private void ArrowUpdate()
     {
-        //Check that it is being run in Play Mode, so it doesn't try to draw this in Editor mode
-        if (_otherplayers != null)
+        //pointing arrow
+        if (_target != null)
         {
-            foreach(GameObject op in _otherplayers)
-            {
-                // current target
-                if (op == _target)
+            if (Vector3.Cross(new Vector2(_self.transform.forward.x, _self.transform.forward.z), new Vector2(_target.transform.position.x - _self.transform.position.x, _target.transform.position.z - _self.transform.position.z)).z > 0)
                 {
-                    Gizmos.color = Color.yellow;
-                } 
-                // other targets
-                else
-                {
-                    Gizmos.color = Color.red;
+                    _arrow.transform.localEulerAngles = new Vector3(0f, 0f, _targetAngle);
                 }
-
-                Gizmos.DrawLine(_self.transform.position, op.transform.position);
+            else
+            {
+                _arrow.transform.localEulerAngles = new Vector3(0f, 0f, 360 - _targetAngle);
             }
+        }
+        else
+        {
+            _arrow.transform.localEulerAngles = new Vector3(0f, 0f, 0f);
         }
     }
 }

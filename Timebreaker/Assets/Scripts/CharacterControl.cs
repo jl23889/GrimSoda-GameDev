@@ -21,8 +21,13 @@ public class CharacterControl : MonoBehaviour
     private bool _isGrounded;
     private bool _jumpKeyPress;
     private bool _jumpKeyHold;
+    private bool _lightAttackPress;
+    private bool _heavyAttackPress;
+
+
     private Vector3 _movement = Vector3.zero;
     private CharacterManager _charManager;
+    private AutoLock _autoLock;
     private Character _char;
     private ThrowObject _throwObj;
     public GameObject _cameraRig;
@@ -39,6 +44,7 @@ public class CharacterControl : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
         _charManager = GetComponent<CharacterManager>();
+        _autoLock = GetComponent<AutoLock>();
         _char = _charManager._character;
         _throwObj = GetComponent<ThrowObject>();
         Physics.gravity = new Vector3(0f, gravity, 0f);
@@ -82,22 +88,10 @@ public class CharacterControl : MonoBehaviour
         _jumpKeyPress = Input.GetButtonDown(player + "Jump");
 
         //attacking
-        if (Input.GetButtonDown(player + "HeavyAttack"))
-        {
-            animator.SetBool("HeavyAttack", true);
-        }
-        else if (Input.GetButton(player + "HeavyAttack") && _isGrounded && !animator.GetBool("Sprinting"))
-        {
-            animator.SetBool("ChargingAttack", true);
-        }
-        else if (Input.GetButtonUp(player + "HeavyAttack"))
-        {
-            animator.SetBool("ChargingAttack", false);
-        }
-        else if (Input.GetButtonDown(player + "LightAttack"))
-        {
-            animator.SetBool("LightAttack", true);
-        }
+        _lightAttackPress = Input.GetButtonDown(player + "LightAttack");
+        _heavyAttackPress = Input.GetButtonDown(player + "HeavyAttack");
+        Attack();
+
         // _movement animations and speed controls (might move speed control to fix update later)
         if (_movement != Vector3.zero)
         {
@@ -145,6 +139,15 @@ public class CharacterControl : MonoBehaviour
     {
         //ground checker
         _isGrounded = _charManager.IsGrounded;
+
+        if (_heavyAttackPress)
+        {
+            Targeting(60.0f);//hard code for now, replace with Attack._range
+        }
+        else if (_lightAttackPress)
+        {
+            Targeting(15.0f);
+        }
 
         //move rigidbody 
         Move();
@@ -228,6 +231,35 @@ public class CharacterControl : MonoBehaviour
         else if (rb.velocity.y > 0 && !_jumpKeyHold) // if player is not holding the jump button, do short jump
         {
             rb.velocity += Vector3.up * Physics.gravity.y * (_char.lowJumpMultiplier - 1) * Time.fixedDeltaTime;
+        }
+    }
+
+    private void Attack()
+    {
+        if (_heavyAttackPress)
+        {
+            animator.SetBool("HeavyAttack", true);
+        }
+        else if (_heavyAttackPress && _isGrounded && !animator.GetBool("Sprinting"))
+        {
+            animator.SetBool("ChargingAttack", true);
+        }
+        else if (_heavyAttackPress)
+        {
+            animator.SetBool("ChargingAttack", false);
+        }
+        else if (_lightAttackPress)
+        {
+            animator.SetBool("LightAttack", true);
+        }
+    }
+
+    private void Targeting(float _attackRange)
+    {
+        _autoLock.AttackRange = _attackRange;
+        if (_autoLock.Target != null)
+        {
+            transform.forward = _autoLock.Target.transform.position - transform.position;
         }
     }
 }
