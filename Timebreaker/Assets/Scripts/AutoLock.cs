@@ -9,7 +9,9 @@ public class AutoLock : MonoBehaviour {
     private GameObject _target;
     private float _targetAngle;
     private float _tempAngle;
+
     private float _attackRange;
+    private float _autolockMaxAngle;
     private float _targetDistance;
 
     private Image _arrow;
@@ -22,6 +24,11 @@ public class AutoLock : MonoBehaviour {
     public float AttackRange
     {
         set { _attackRange = value; }
+    }
+
+    public float AutolockMaxAngle
+    {
+        set { _autolockMaxAngle = value; }
     }
 
     // Use this for initialization
@@ -55,6 +62,11 @@ public class AutoLock : MonoBehaviour {
     //Draw lines to targets as gizmos to show where it currently is testing. Click the Gizmos button to see this
     private void OnDrawGizmos()
     {
+        if (_otherplayers != null)
+        {
+            Gizmos.DrawWireSphere(_self.transform.position, _attackRange);
+        }
+
         //Check that it is being run in Play Mode, so it doesn't try to draw this in Editor mode
         if (_target != null)
         {
@@ -77,14 +89,14 @@ public class AutoLock : MonoBehaviour {
                 _targetDistance = Vector3.Distance(_self.transform.position, player.transform.position);
 
                 //only targeting the character in 180 angle instead of 360
-                if (_tempAngle <= 90 && _targetDistance <= _attackRange && _tempAngle < _targetAngle)
+                if (_tempAngle <= _autolockMaxAngle && _targetDistance <= _attackRange && _tempAngle < _targetAngle)
                 {
                     _targetAngle = _tempAngle;
                     _target = player;
                 }
 
                 //if no target is in front, set the target to null
-                if (_targetAngle > 90)
+                if (_targetAngle > _autolockMaxAngle)
                 {
                     _target = null;
                 }
