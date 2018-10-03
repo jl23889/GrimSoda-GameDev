@@ -158,6 +158,15 @@ public class CharacterControl : MonoBehaviour
                 _charManager.RangedWeapon = null;
             }
         }
+        // shoot weapon if holding weapon and not shooting
+        if (_charManager.IsHoldingWeapon && !_charManager.IsShooting)
+        {
+            if (_heavyAttackPress || _lightAttackPress)
+            {
+                _charManager.RangedWeapon.Shoot(transform.forward);
+            }
+        }
+
 
         //move rigidbody 
         Move();
@@ -246,15 +255,6 @@ public class CharacterControl : MonoBehaviour
 
     private void Attack()
     {
-        // shoot weapon if holding weapon and not shooting
-        if (_charManager.IsHoldingWeapon && !_charManager.IsShooting)
-        {
-            if (_heavyAttackPress || _lightAttackPress)
-            {
-                _charManager.RangedWeapon.Shoot(transform.forward);
-            }
-        }
-
         if (_heavyAttackPress)
         {
             animator.SetBool("HeavyAttack", true);
