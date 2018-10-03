@@ -14,8 +14,10 @@ MonoBehaviour:
   charName: Viking
   healthTotal: 100
   staminaTotal: 100
+  throwVelocity: 50
+  grabbingThrowableOffsetY: 7
   runSpeed: 8
-  jumpSpeed: 65
+  jumpHeight: 10
   fallMultiplier: 2.5
   lowJumpMultiplier: 2
   sprintMultiplier: 1.8
@@ -31,3 +33,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e9068744c02384545b93f799a4e633b2, type: 2}
   - {fileID: 11400000, guid: d1a0a406542517c40a67ca03965467a2, type: 2}
   - {fileID: 11400000, guid: 2b03344218e0aa645af21e1a38e2f0a0, type: 2}
+  shootingAnimationList:
+  - {fileID: 7400112, guid: 870ae1cf9a6294d87bdc61b40eb2fba0, type: 3}

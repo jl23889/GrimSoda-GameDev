@@ -33,7 +33,7 @@ public class CharacterManager : MonoBehaviour {
     private bool isHitStunned = false;
     private bool isInvincible = false;
     private bool isGrabbingThrowable = false;
-    private bool isShooting = false;
+    private bool canShoot = false;
     
     // get/set methods
     public int StartingHealth
@@ -86,10 +86,10 @@ public class CharacterManager : MonoBehaviour {
         get { return _rwManager; }
         set { _rwManager = value; }
     }
-    public bool IsShooting
+    public bool CanShoot
     {
-        get { return isShooting; }
-        set { isShooting = value; }
+        get { return canShoot; }
+        set { canShoot = value; }
     }
 
     // Use this for initialization
@@ -109,9 +109,9 @@ public class CharacterManager : MonoBehaviour {
     {
         // get the current clip playing 
         currentClip = animator.GetCurrentAnimatorClipInfo(0)[0].clip;
-        // detect shooting animation in progress and set flag accordingly
-        isShooting =
-            _character.shootingAnimationList.Contains(currentClip) ? true : false;
+        // set canShoot flag
+        canShoot =
+            _character.canShootAnimationList.Contains(currentClip) ? true : false;
 
         // set grounded animation update here
         //  separate the animation update from game logic so character has no lag time

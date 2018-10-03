@@ -163,9 +163,9 @@ public class CharacterControl : MonoBehaviour
             }
         }
         // shoot weapon if holding weapon and not shooting
-        if (_charManager.IsHoldingWeapon && !_charManager.IsShooting)
+        if (_charManager.IsHoldingWeapon && _charManager.CanShoot)
         {
-            if (_heavyAttackPress || _lightAttackPress)
+            if (_heavyAttackDown || _lightAttackPress)
             {
                 _charManager.RangedWeapon.Shoot(transform.forward);
             }

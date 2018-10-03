@@ -18,5 +18,5 @@ public class Character : ScriptableObject
     public float sprintMultiplier = 2f;
     public float dodgeMultiplier = 2f;
     public List<Attack> attackList;
-    public List<AnimationClip> shootingAnimationList;
+    public List<AnimationClip> canShootAnimationList;
 }
