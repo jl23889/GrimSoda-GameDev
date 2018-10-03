@@ -209,11 +209,13 @@ public class CharacterControl : MonoBehaviour
         //facing the character to the correst direction
         if (_movement != Vector3.zero)
         {
-            if (animator.GetBool("Attacking"))
+            // faces target if attacking and has a target 
+            if (animator.GetBool("Attacking") && _autoLock.Target != null)
             {
                 transform.forward = _autoLock.Target.transform.position - transform.position;
             }
-            else if (_autoLock.Target != null)
+            // otherwise move in the direction of input
+            else
             {
                 transform.forward = _movement;
             }
