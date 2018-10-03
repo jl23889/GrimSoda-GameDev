@@ -23,10 +23,19 @@ public class RangedWeaponManager : MonoBehaviour {
         }
 	}
 
-    public void Shoot(Vector3 direction)
+    public void ShootLight(Vector3 direction)
     {
         remainingAmmo--;
-        GameObject projectile = Instantiate(_rangedWeapon.projectilePrefab,
+        GameObject projectile = Instantiate(_rangedWeapon.lightProjectilePrefab,
+            transform.position,
+            Quaternion.identity);
+        projectile.GetComponent<Rigidbody>().AddForce(direction * _rangedWeapon.projectileVelocity, ForceMode.VelocityChange);
+    }
+
+    public void ShootHeavy(Vector3 direction)
+    {
+        remainingAmmo = remainingAmmo - 3;
+        GameObject projectile = Instantiate(_rangedWeapon.heavyProjectilePrefab,
             transform.position,
             Quaternion.identity);
         projectile.GetComponent<Rigidbody>().AddForce(direction * _rangedWeapon.projectileVelocity, ForceMode.VelocityChange);

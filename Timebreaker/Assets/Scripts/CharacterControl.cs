@@ -155,20 +155,13 @@ public class CharacterControl : MonoBehaviour
         }
 
         // check if holding weapon
-        if (_charManager.IsHoldingWeapon)
-        {
-            if (_charManager.RangedWeapon.remainingAmmo <= 0)
-            {
-                _charManager.RangedWeapon = null;
-            }
-        }
+        if (_charManager.IsHoldingWeapon && _charManager.RangedWeapon.remainingAmmo <= 0)
+        { _charManager.RangedWeapon = null; }
         // shoot weapon if holding weapon and not shooting
         if (_charManager.IsHoldingWeapon && _charManager.CanShoot)
         {
-            if (_heavyAttackDown || _lightAttackPress)
-            {
-                _charManager.RangedWeapon.Shoot(transform.forward);
-            }
+            if (_lightAttackPress){ _charManager.RangedWeapon.ShootLight(transform.forward); } 
+            else if (_heavyAttackDown){ _charManager.RangedWeapon.ShootHeavy(transform.forward); }
         }
 
 
