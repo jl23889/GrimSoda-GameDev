@@ -13,6 +13,14 @@ public class ThrowObject : MonoBehaviour {
     private Collider col;   // collider of throwableObject
     private GameObject throwableObject;
 
+    public LayerMask layerMask;
+    public float _pickUpRadius;
+
+    private bool _throwKeyPress;
+    private AutoLock _autolock;
+    private CharacterControl _characterControl;
+    private bool _throwObjectCreated;
+
     private CharacterManager _charManager;
     private Animator animator;
     private string playerStr; 
@@ -28,29 +36,18 @@ public class ThrowObject : MonoBehaviour {
         throwVelocity = _charManager._character.throwVelocity;
         animator = GetComponent<Animator>();
         playerStr = GetComponent<CharacterControl>().PlayerString;
-	}
 
-    // detect player collision and allow pickup
-    void OnCollisionStay(Collision collision)
-    {
-        if (Input.GetButtonDown(playerStr + "Throw") && collision.gameObject.tag == "Throwable")
-        {
-            throwableObject = collision.gameObject;
-            rb = throwableObject.GetComponent<Rigidbody>();
-            col = throwableObject.GetComponent<Collider>();
-            
-            // make gameobject child of player (so it moves with player)
-            throwableObject.transform.parent = transform;
-            // set isGrabbing flag to true
-            _charManager.IsGrabbingThrowable = true;
-
-            rb.isKinematic = true; //disable unity physics
-            col.enabled = false;   //disable collider
-        }
+        _autolock = GetComponent<AutoLock>();
+        _characterControl = GetComponent<CharacterControl>();
+        _throwKeyPress = false;
+        _throwObjectCreated = true;
     }
 
     void Update()
     {
+        if (Input.GetButtonDown(playerStr + "Throw"))
+            _throwKeyPress = true;
+
         if (_charManager.IsGrabbingThrowable)
         {
             animator.SetBool("GrabbingThrowable", true);
@@ -70,14 +67,50 @@ public class ThrowObject : MonoBehaviour {
         }
 
         // throw object
-        if (Input.GetButtonDown(playerStr + "Throw"))
+        if (_throwKeyPress)
         {
-            ReleaseThrowable(true);
+            if (_charManager.IsGrabbingThrowable)
+            {
+                _characterControl.Targeting(40, 60);
+                if (_autolock.Target != null)
+                    transform.LookAt(_autolock.Target.transform);
+                ReleaseThrowable(true);
+            }
+            else
+            {
+                //try pick things up
+                Collider[] hitColliders = Physics.OverlapSphere(transform.position + transform.forward * 5f + transform.up * 3f, _pickUpRadius, layerMask);
+                if (hitColliders.Length != 0)
+                {
+                    foreach (Collider i in hitColliders)
+                    {
+                        if (i.gameObject.tag == "Throwable" && !_charManager.IsGrabbingThrowable)
+                        {
+                            throwableObject = i.gameObject;
+                            rb = throwableObject.GetComponent<Rigidbody>();
+                            col = throwableObject.GetComponent<MeshCollider>();
+
+                            // make gameobject child of player (so it moves with player)
+                            throwableObject.transform.parent = transform;
+                            // set isGrabbing flag to true
+                            _charManager.IsGrabbingThrowable = true;
+
+                            rb.isKinematic = true; //disable unity physics
+                            col.enabled = false;   //disable collider
+                        }
+                    }
+                }
+
+            }
         }
-        else if (!_charManager.IsGrabbingThrowable)
+        
+        // drop the item
+        if (!_charManager.IsGrabbingThrowable)
         {
             ReleaseThrowable();
         }
+
+        _throwKeyPress = false;
     }
 
     public void ReleaseThrowable(bool addForce = false)
@@ -95,12 +128,22 @@ public class ThrowObject : MonoBehaviour {
 
             if (addForce)
             {
-                rb.AddForce(transform.forward * throwVelocity, ForceMode.VelocityChange);
+                rb.AddForce((transform.forward + transform.up) * throwVelocity *0.8f, ForceMode.Impulse);
+                rb.AddTorque(Random.Range(-500,500), Random.Range(-500, 500), Random.Range(-500, 500), ForceMode.Impulse);
             }
 
             throwableObject = null;
             rb = null;
             col = null;
+        }
+    }
+
+    private void OnDrawGizmos()
+    {
+        if (_throwObjectCreated)
+        {
+            Gizmos.color = Color.green;
+            Gizmos.DrawWireSphere(transform.position + transform.forward * 5f + transform.up * 3f, _pickUpRadius);
         }
     }
 }

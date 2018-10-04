@@ -13,6 +13,7 @@ public class AutoLock : MonoBehaviour {
     private float _attackRange;
     private float _autolockMaxAngle;
     private float _targetDistance;
+    private bool _autoLockCreated;
 
     private Image _arrow;
 
@@ -33,6 +34,7 @@ public class AutoLock : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+        _autoLockCreated = true;
         _self = gameObject;
         _target = null;
 
@@ -50,9 +52,6 @@ public class AutoLock : MonoBehaviour {
     }
 	
 	// Update is called once per frame
-	void Update () {        
-    }
-
     void FixedUpdate ()
     {
         Targeting180(_attackRange);
@@ -62,16 +61,19 @@ public class AutoLock : MonoBehaviour {
     //Draw lines to targets as gizmos to show where it currently is testing. Click the Gizmos button to see this
     private void OnDrawGizmos()
     {
-        if (_otherplayers != null)
+        if (_autoLockCreated)
         {
-            Gizmos.DrawWireSphere(_self.transform.position, _attackRange);
-        }
+            if (_otherplayers != null)
+            {
+                Gizmos.DrawWireSphere(_self.transform.position, _attackRange);
+            }
 
-        //Check that it is being run in Play Mode, so it doesn't try to draw this in Editor mode
-        if (_target != null)
-        {
-            Gizmos.color = Color.red;
-            Gizmos.DrawLine(_self.transform.position, _target.transform.position);
+            //Check that it is being run in Play Mode, so it doesn't try to draw this in Editor mode
+            if (_target != null)
+            {
+                Gizmos.color = Color.red;
+                Gizmos.DrawLine(_self.transform.position, _target.transform.position);
+            }
         }
     }
 

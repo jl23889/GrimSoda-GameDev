@@ -217,19 +217,15 @@ public class CharacterControl : MonoBehaviour
     {
         rb.MovePosition(transform.position + _movement * _char.runSpeed * Time.fixedDeltaTime);
 
-        //facing the character to the correst direction
-        if (_movement != Vector3.zero)
+        // faces target if attacking and has a target 
+        if (animator.GetBool("Attacking") && _autoLock.Target != null)
         {
-            // faces target if attacking and has a target 
-            if (animator.GetBool("Attacking") && _autoLock.Target != null)
-            {
-                transform.forward = _autoLock.Target.transform.position - transform.position;
-            }
-            // otherwise move in the direction of input
-            else
-            {
-                transform.forward = _movement;
-            }
+            transform.LookAt(_autoLock.Target.transform.position);
+        }
+        // otherwise move in the direction of input
+        else if (_movement != Vector3.zero)
+        {
+            transform.forward = _movement;
         }
     }
 
@@ -279,7 +275,7 @@ public class CharacterControl : MonoBehaviour
         }
     }
 
-    private void Targeting(float _attackRange, float _autolockMaxAngle)
+    public void Targeting(float _attackRange, float _autolockMaxAngle)
     {
         _autoLock.AttackRange = _attackRange;
         _autoLock.AutolockMaxAngle = _autolockMaxAngle;
