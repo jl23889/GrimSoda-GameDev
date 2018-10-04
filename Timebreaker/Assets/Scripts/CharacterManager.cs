@@ -21,6 +21,8 @@ public class CharacterManager : MonoBehaviour {
     private CapsuleCollider pushbox;
     private Quaternion rbInitial;
 
+    private RangedWeaponManager _rwManager = null; // currently equipped weapon; null if false
+
     private int startingHealth = 100; //set 100 as default
     private int startingStamina = 100;
     private int currentHealth;
@@ -31,6 +33,7 @@ public class CharacterManager : MonoBehaviour {
     private bool isHitStunned = false;
     private bool isInvincible = false;
     private bool isGrabbingThrowable = false;
+    private bool canShoot = false;
     
     // get/set methods
     public int StartingHealth
@@ -74,6 +77,20 @@ public class CharacterManager : MonoBehaviour {
         get { return isGrabbingThrowable; }
         set { isGrabbingThrowable = value; }
     }
+    public bool IsHoldingWeapon
+    {
+        get { return _rwManager!=null ? true : false; }
+    }
+    public RangedWeaponManager RangedWeapon
+    {
+        get { return _rwManager; }
+        set { _rwManager = value; }
+    }
+    public bool CanShoot
+    {
+        get { return canShoot; }
+        set { canShoot = value; }
+    }
 
     // Use this for initialization
     void Awake () {
@@ -90,6 +107,12 @@ public class CharacterManager : MonoBehaviour {
 
     private void Update()
     {
+        // get the current clip playing 
+        currentClip = animator.GetCurrentAnimatorClipInfo(0)[0].clip;
+        // set canShoot flag
+        canShoot =
+            _character.canShootAnimationList.Contains(currentClip) ? true : false;
+
         // set grounded animation update here
         //  separate the animation update from game logic so character has no lag time
         //  between animations
@@ -102,6 +125,12 @@ public class CharacterManager : MonoBehaviour {
             animator.SetBool("Grounded", false);
         }
 
+        // weapon check 
+        if (_rwManager != null)
+        {
+            animator.SetBool("RangedWeapon", true);
+        }
+        else animator.SetBool("RangedWeapon", false);
     }
 
     void FixedUpdate()

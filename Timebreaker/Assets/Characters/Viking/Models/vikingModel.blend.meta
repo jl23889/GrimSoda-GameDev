@@ -169,6 +169,10 @@ ModelImporter:
     7400100: vikingJumpEnd
     7400102: vikingKnockback
     7400104: vikingDodge
+    7400106: vikingIdleHoldingBigGun
+    7400108: vikingJumpHoldingBigGun
+    7400110: vikingRunHoldingBigGun
+    7400112: vikingShootBigGun
     9500000: //RootNode
     13700000: vikingBeard
     13700002: vikingBody
@@ -192,8 +196,8 @@ ModelImporter:
     animationImportErrors: 
     animationImportWarnings: "\nClip 'Default Take' has import animation warnings
       that might lower retargeting quality:\nNote: Activate translation DOF on avatar
-      to improve retargeting quality.\n\t'legUpper_l' has scale animation that will
-      be discarded.\n\t'legLower_l' has scale animation that will be discarded.\n\t'legUpper_r'
+      to improve retargeting quality.\n\t'legLower_l' has scale animation that will
+      be discarded.\n\t'foot_l' has scale animation that will be discarded.\n\t'legUpper_r'
       has scale animation that will be discarded.\n\t'legLower_r' has scale animation
       that will be discarded.\n\t'foot_r' has scale animation that will be discarded.\n\nClip
       'jumpEndPushUp' has import animation warnings that might lower retargeting quality:\nNote:
@@ -285,6 +289,11 @@ ModelImporter:
       has scale animation that will be discarded.\n\t'toes_l' has scale animation
       that will be discarded.\n\t'legUpper_r' has scale animation that will be discarded.\n\t'legLower_r'
       has scale animation that will be discarded.\n\t'foot_r' has scale animation
+      that will be discarded.\n\nClip 'vikingJumpHoldingBigGun' has import animation
+      warnings that might lower retargeting quality:\nNote: Activate translation DOF
+      on avatar to improve retargeting quality.\n\t'legLower_l' has scale animation
+      that will be discarded.\n\t'legUpper_r' has scale animation that will be discarded.\n\t'legLower_r'
+      has scale animation that will be discarded.\n\t'foot_r' has scale animation
       that will be discarded.\n\nClip 'vikingJumpHoldingThrowable' has import animation
       warnings that might lower retargeting quality:\nNote: Activate translation DOF
       on avatar to improve retargeting quality.\n\t'legUpper_l' has scale animation
@@ -351,7 +360,7 @@ ModelImporter:
       translation DOF on avatar to improve retargeting quality.\n\t'legLower_l' has
       scale animation that will be discarded.\n\t'legUpper_r' has scale animation
       that will be discarded.\n\t'legLower_r' has scale animation that will be discarded.\n\t'foot_r'
-      has scale animation that will be discarded.\n\nClip 'vikingRunHoldingThrowable'
+      has scale animation that will be discarded.\n\nClip 'vikingRunHoldingBigGun'
       has import animation warnings that might lower retargeting quality:\nNote: Activate
       translation DOF on avatar to improve retargeting quality.\n\t'legUpper_l' has
       scale animation that will be discarded.\n\t'legLower_l' has scale animation
@@ -359,14 +368,27 @@ ModelImporter:
       has scale animation that will be discarded.\n\t'legUpper_r' has scale animation
       that will be discarded.\n\t'legLower_r' has scale animation that will be discarded.\n\t'foot_r'
       has scale animation that will be discarded.\n\t'toes_r' has scale animation
-      that will be discarded.\n\nClip 'vikingRunLoop' has import animation warnings
-      that might lower retargeting quality:\nNote: Activate translation DOF on avatar
-      to improve retargeting quality.\n\t'legUpper_l' has scale animation that will
-      be discarded.\n\t'legLower_l' has scale animation that will be discarded.\n\t'foot_l'
+      that will be discarded.\n\nClip 'vikingRunHoldingThrowable' has import animation
+      warnings that might lower retargeting quality:\nNote: Activate translation DOF
+      on avatar to improve retargeting quality.\n\t'legUpper_l' has scale animation
+      that will be discarded.\n\t'legLower_l' has scale animation that will be discarded.\n\t'foot_l'
       has scale animation that will be discarded.\n\t'toes_l' has scale animation
       that will be discarded.\n\t'legUpper_r' has scale animation that will be discarded.\n\t'legLower_r'
       has scale animation that will be discarded.\n\t'foot_r' has scale animation
       that will be discarded.\n\t'toes_r' has scale animation that will be discarded.\n\nClip
+      'vikingRunLoop' has import animation warnings that might lower retargeting quality:\nNote:
+      Activate translation DOF on avatar to improve retargeting quality.\n\t'legUpper_l'
+      has scale animation that will be discarded.\n\t'legLower_l' has scale animation
+      that will be discarded.\n\t'foot_l' has scale animation that will be discarded.\n\t'toes_l'
+      has scale animation that will be discarded.\n\t'legUpper_r' has scale animation
+      that will be discarded.\n\t'legLower_r' has scale animation that will be discarded.\n\t'foot_r'
+      has scale animation that will be discarded.\n\t'toes_r' has scale animation
+      that will be discarded.\n\nClip 'vikingShootBigGun' has import animation warnings
+      that might lower retargeting quality:\nNote: Activate translation DOF on avatar
+      to improve retargeting quality.\n\t'legLower_l' has scale animation that will
+      be discarded.\n\t'foot_l' has scale animation that will be discarded.\n\t'legUpper_r'
+      has scale animation that will be discarded.\n\t'legLower_r' has scale animation
+      that will be discarded.\n\t'foot_r' has scale animation that will be discarded.\n\nClip
       'walkLoop' has import animation warnings that might lower retargeting quality:\nNote:
       Activate translation DOF on avatar to improve retargeting quality.\n\t'legLower_l'
       has scale animation that will be discarded.\n\t'toes_l' has scale animation
@@ -1280,16 +1302,128 @@ ModelImporter:
       maskType: 3
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: vikingIdleHoldingBigGun
+      takeName: vikingIdleHoldingBigGun
+      firstFrame: -1
+      lastFrame: 39
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 1
+      keepOriginalOrientation: 1
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 1
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: vikingJumpHoldingBigGun
+      takeName: vikingJumpHoldingBigGun
+      firstFrame: -1
+      lastFrame: 8
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 1
+      keepOriginalOrientation: 1
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 1
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: vikingRunHoldingBigGun
+      takeName: vikingRunHoldingBigGun
+      firstFrame: -1
+      lastFrame: 23
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 1
+      keepOriginalOrientation: 1
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 1
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: vikingShootBigGun
+      takeName: vikingShootBigGun
+      firstFrame: -1
+      lastFrame: 3
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 1
+      keepOriginalOrientation: 1
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 1
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     isReadable: 1
   meshes:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
     addColliders: 0
-    importVisibility: 1
+    importVisibility: 0
     importBlendShapes: 1
-    importCameras: 1
-    importLights: 1
+    importCameras: 0
+    importLights: 0
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1

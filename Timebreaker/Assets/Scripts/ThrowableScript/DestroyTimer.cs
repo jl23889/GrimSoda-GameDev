@@ -41,8 +41,8 @@ public class DestroyTimer : MonoBehaviour {
     {
         yield return new WaitForSecondsRealtime(timeToDestroy);
         Destroy(gameObject);            // remove object
-        Instantiate(throwablePrefab, respawnPoint.transform.position, 
-            Quaternion.Euler(new Vector3(-90, 0, 0))); // respawn object; for testing purposes
+        //Instantiate(throwablePrefab, respawnPoint.transform.position, 
+         //   Quaternion.Euler(new Vector3(-90, 0, 0))); // respawn object; for testing purposes
     }
 
 

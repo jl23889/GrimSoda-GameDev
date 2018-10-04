@@ -154,6 +154,17 @@ public class CharacterControl : MonoBehaviour
             Targeting(8f, 120f);
         }
 
+        // check if holding weapon
+        if (_charManager.IsHoldingWeapon && _charManager.RangedWeapon.remainingAmmo <= 0)
+        { _charManager.RangedWeapon = null; }
+        // shoot weapon if holding weapon and not shooting
+        if (_charManager.IsHoldingWeapon && _charManager.CanShoot)
+        {
+            if (_lightAttackPress){ _charManager.RangedWeapon.ShootLight(transform.forward); } 
+            else if (_heavyAttackDown){ _charManager.RangedWeapon.ShootHeavy(transform.forward); }
+        }
+
+
         //move rigidbody 
         Move();
 

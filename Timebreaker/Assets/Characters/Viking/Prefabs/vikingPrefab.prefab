@@ -609,7 +609,7 @@ GameObject:
   - component: {fileID: 114991236136439936}
   - component: {fileID: 114434859947558980}
   m_Layer: 9
-  m_Name: Player
+  m_Name: vikingPrefab
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2591,7 +2591,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _character: {fileID: 11400000, guid: aa5f433f2ee98c142aa8d6d754b9c8d7, type: 2}
-  _hitbox: {fileID: 114534201870079558}
   leftArm: {fileID: 1570341822801000}
   rightArm: {fileID: 1508963926854400}
   head: {fileID: 1662164241591248}
