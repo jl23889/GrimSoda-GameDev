@@ -220,7 +220,7 @@ public class CharacterControl : MonoBehaviour
         // faces target if attacking and has a target 
         if (animator.GetBool("Attacking") && _autoLock.Target != null)
         {
-            transform.LookAt(_autoLock.Target.transform.position);
+            transform.LookAt(new Vector3(_autoLock.Target.transform.position.x, transform.position.y, _autoLock.Target.transform.position.z));
         }
         // otherwise move in the direction of input
         else if (_movement != Vector3.zero)
