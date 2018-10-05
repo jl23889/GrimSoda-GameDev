@@ -111,6 +111,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rangedWeapon: {fileID: 11400000, guid: 592a827c21661d3418ed1775bbf6cbba, type: 2}
   remainingAmmo: 5
+  _respawnPointGob: {fileID: 0}
+  timeToRespawn: 3
 --- !u!114 &114988111935685004
 MonoBehaviour:
   m_ObjectHideFlags: 1
