@@ -139,7 +139,7 @@ public class ThrowObject : MonoBehaviour {
                     velocity = Launch(throwableObject.transform, _autolock.Target.transform, 45);
                 }
 
-                rb.AddForce(velocity, ForceMode.VelocityChange);
+                rb.velocity = velocity;
                 rb.AddTorque(Random.Range(-500,500), Random.Range(-500, 500), Random.Range(-500, 500), ForceMode.Impulse);
             }
 
