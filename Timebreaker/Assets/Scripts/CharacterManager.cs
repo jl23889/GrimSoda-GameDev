@@ -151,8 +151,10 @@ public class CharacterManager : MonoBehaviour {
     }
 
     // taking damage from an attack
-    public void TakeDamage(Attack attack)
+    public void TakeDamage(Attack attack, Transform attackFrom)
     {
+        transform.LookAt(new Vector3(attackFrom.position.x, transform.position.y, attackFrom.position.z));
+
         if (isInvincible) { return; }
         // Reduce current health by the amount of damage done.
         currentHealth -= attack.damage;
@@ -173,6 +175,11 @@ public class CharacterManager : MonoBehaviour {
         else if (attack.knockup)
         {
             TriggerKnockup(attack.knockupVelocity);
+        }
+
+        if (attack.knockback)
+        {
+            TriggerKnockback(attackFrom, attack.knockbackVelocity);
         }
         
         //Debug.Log("Attack Name: " + attack.attackName + "  Damage:" + attack.damage);
@@ -245,5 +252,12 @@ public class CharacterManager : MonoBehaviour {
         // Turn off character input
         GetComponent<CharacterControl>().enabled = false;
         animator.SetBool("Dead", true);
+    }
+
+    private void TriggerKnockback(Transform attackFrom, float knockBackForce)
+    {
+        Vector3 direction = new Vector3(transform.position.x - attackFrom.position.x, 0f, transform.position.z - attackFrom.position.z).normalized;
+        Debug.Log(direction);
+        rb.AddForce(direction * knockBackForce, ForceMode.VelocityChange);
     }
 }

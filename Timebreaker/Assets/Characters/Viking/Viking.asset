@@ -14,7 +14,7 @@ MonoBehaviour:
   charName: Viking
   healthTotal: 100
   staminaTotal: 100
-  throwVelocity: 50
+  throwVelocity: 17
   grabbingThrowableOffsetY: 7
   runSpeed: 8
   jumpHeight: 10

@@ -66,19 +66,26 @@ public class ThrowObject : MonoBehaviour {
             rb.MovePosition(transform.position + (new Vector3(0, offsetY)));
         }
 
+        if (_charManager.IsGrabbingThrowable)
+        {
+            _characterControl.Targeting(40, 75);
+        }
+        else
+        {
+            ReleaseThrowable();
+        }
+
         // throw object
         if (_throwKeyPress)
         {
             if (_charManager.IsGrabbingThrowable)
-            {
-                _characterControl.Targeting(40, 60);
+            {               
                 if (_autolock.Target != null)
-                    transform.LookAt(_autolock.Target.transform);
+                    transform.LookAt(new Vector3(_autolock.Target.transform.position.x, transform.position.y ,_autolock.Target.transform.position.z));
                 ReleaseThrowable(true);
             }
-            else
+            else //try pick things up
             {
-                //try pick things up
                 Collider[] hitColliders = Physics.OverlapSphere(transform.position + transform.forward * 5f + transform.up * 3f, _pickUpRadius, layerMask);
                 if (hitColliders.Length != 0)
                 {
@@ -104,12 +111,6 @@ public class ThrowObject : MonoBehaviour {
             }
         }
         
-        // drop the item
-        if (!_charManager.IsGrabbingThrowable)
-        {
-            ReleaseThrowable();
-        }
-
         _throwKeyPress = false;
     }
 
@@ -128,7 +129,17 @@ public class ThrowObject : MonoBehaviour {
 
             if (addForce)
             {
-                rb.AddForce((transform.forward + transform.up) * throwVelocity *0.8f, ForceMode.Impulse);
+                Vector3 velocity = Vector3.zero;
+                if (_autolock.Target == null)
+                {
+                    velocity = (transform.forward.normalized + Vector3.up) * throwVelocity;
+                }
+                else
+                {
+                    velocity = Launch(throwableObject.transform, _autolock.Target.transform, 45);
+                }
+
+                rb.AddForce(velocity, ForceMode.VelocityChange);
                 rb.AddTorque(Random.Range(-500,500), Random.Range(-500, 500), Random.Range(-500, 500), ForceMode.Impulse);
             }
 
@@ -145,5 +156,34 @@ public class ThrowObject : MonoBehaviour {
             Gizmos.color = Color.green;
             Gizmos.DrawWireSphere(transform.position + transform.forward * 5f + transform.up * 3f, _pickUpRadius);
         }
+    }
+
+    Vector3 Launch(Transform throwableObject, Transform TargetObjectTF, float LaunchAngle)
+    {
+        // think of it as top-down view of vectors: 
+        //   we don't care about the y-component(height) of the initial and target position.
+        Vector3 throwableXZPos = new Vector3(throwableObject.transform.position.x, throwableObject.position.y, throwableObject.transform.position.z);
+        Vector3 targetXZPos = new Vector3(TargetObjectTF.position.x, throwableObject.position.y, TargetObjectTF.position.z);
+
+        // rotate the object to face the target
+        throwableObject.LookAt(targetXZPos);
+
+        // shorthands for the formula
+        float R = Vector3.Distance(throwableXZPos, targetXZPos);
+        float G = Physics.gravity.y;
+        float tanAlpha = Mathf.Tan(LaunchAngle * Mathf.Deg2Rad);
+        float H = TargetObjectTF.position.y - throwableObject.transform.position.y;
+
+        // calculate the local space components of the velocity 
+        // required to land the projectile on the target object 
+        float Vz = Mathf.Sqrt(G * R * R / (2.0f * (H - R * tanAlpha)));
+        float Vy = tanAlpha * Vz;
+
+        // create the velocity vector in local space and get it in global space
+        Vector3 localVelocity = new Vector3(0f, Vy, Vz);
+        Vector3 globalVelocity = throwableObject.transform.TransformDirection(localVelocity);
+
+        // launch the object by setting its initial velocity and flipping its state
+        return globalVelocity;
     }
 }
