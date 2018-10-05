@@ -20,4 +20,4 @@ MonoBehaviour:
     type: 2}
   projectileVelocity: 50
   damage: 20
-  ammo: 9000
+  ammo: 5
