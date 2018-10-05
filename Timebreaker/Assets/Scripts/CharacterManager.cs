@@ -242,8 +242,8 @@ public class CharacterManager : MonoBehaviour {
     {
         isDead = true;
 
-        // Turn the character off.
-        //gameObject.SetActive(false);
+        // Turn off character input
+        GetComponent<CharacterControl>().enabled = false;
         animator.SetBool("Dead", true);
     }
 }
