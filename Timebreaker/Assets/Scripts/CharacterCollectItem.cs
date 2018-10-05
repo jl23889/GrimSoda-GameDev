@@ -25,7 +25,9 @@ public class CharacterCollectItem : MonoBehaviour {
             
             // set rotation on weapon off
             _weapon.GetComponent<SpinGameObject>().rotationSpeed = 0;
-            _charManager.RangedWeapon = _rwManager; 
+            _charManager.RangedWeapon = _rwManager;
+
+            _rwManager.GetComponent<Collider>().enabled = false; //disable weapon collider
         }
     }
 

@@ -60,6 +60,8 @@ public class RangedWeaponManager : MonoBehaviour {
     {
         yield return new WaitForSecondsRealtime(timeToRespawn);
         remainingAmmo = _rangedWeapon.ammo;
+        GetComponent<Collider>().enabled = true; // enable collider
+
         transform.parent = _respawnPoint.transform; // make weapon child of respawn point
         transform.position = _respawnPoint.transform.position + new Vector3(0, offsetY, 0);
         if (resetRotation) transform.rotation = Quaternion.Euler(initialRotation);
