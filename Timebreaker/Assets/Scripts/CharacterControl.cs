@@ -257,21 +257,23 @@ public class CharacterControl : MonoBehaviour
 
     private void Attack()
     {
-        if (_heavyAttackDown)
-        {
-            animator.SetBool("HeavyAttack", true);
-        }
-        else if (_heavyAttackPress && _isGrounded && !animator.GetBool("Sprinting"))
-        {
-            animator.SetBool("ChargingAttack", true);
-        }
-        else if (_heavyAttackUp)
-        {
-            animator.SetBool("ChargingAttack", false);
-        }
-        else if (_lightAttackPress)
-        {
-            animator.SetBool("LightAttack", true);
+        if (!_charManager.IsHoldingWeapon) {
+            if (_heavyAttackDown)
+            {
+                animator.SetBool("HeavyAttack", true);
+            }
+            else if (_heavyAttackPress && _isGrounded && !animator.GetBool("Sprinting"))
+            {
+                animator.SetBool("ChargingAttack", true);
+            }
+            else if (_heavyAttackUp)
+            {
+                animator.SetBool("ChargingAttack", false);
+            }
+            else if (_lightAttackPress)
+            {
+                animator.SetBool("LightAttack", true);
+            }
         }
     }
 
