@@ -19,13 +19,14 @@ public class CharacterControl : MonoBehaviour
     private float dodgeButtonTime;
 
     private bool _isGrounded;
+
+    //input keys
     private bool _jumpKeyPress;
     private bool _jumpKeyHold;
     private bool _lightAttackPress;   
     private bool _heavyAttackPress;
     private bool _heavyAttackHold;
     private bool _heavyAttackUp;
-
 
     private Vector3 _movement = Vector3.zero;
     private CharacterManager _charManager;
@@ -86,9 +87,9 @@ public class CharacterControl : MonoBehaviour
         }
 
         TakeInput();
-
         Attack();
-
+        DodgeAndSprint();
+        
         // _movement animations and speed controls (might move speed control to fix update later)
         if (_movement != Vector3.zero)
         {
@@ -199,6 +200,57 @@ public class CharacterControl : MonoBehaviour
         if (Input.GetButtonUp(player + "HeavyAttack"))
         {
             _heavyAttackUp = true;
+        }
+    }
+
+    private void DodgeAndSprint()
+    {
+        // _movement animations and speed controls (might move speed control to fix update later)
+        if (_movement != Vector3.zero)
+        {
+            animator.SetBool("Moving", true);
+
+            //hold dodge key to sprint, press dodge key to dodge
+            if (!animator.GetBool("Jumping") && !animator.GetBool("Attacking") && !animator.GetBool("Dodging"))
+            {
+                //sprinting
+                if (Input.GetButton(player + "Dodge"))
+                {
+                    dodgeButtonTime = dodgeButtonTime + Time.deltaTime;
+                    if (dodgeButtonTime > 0.2f)
+                    {
+                        animator.SetBool("Sprinting", true);
+                    }
+                }
+
+                //dodging
+                if (Input.GetButtonUp(player + "Dodge") && dodgeButtonTime <= 0.2f)
+                {
+                    animator.SetBool("Dodging", true);
+                    _charManager.IsInvincible = true;
+                    dodgeButtonTime = 0f;   //reset dodgeButtonTime
+                    _movement = _movement * _char.dodgeMultiplier;
+                }
+
+                //end sprinting
+                else if (Input.GetButtonUp(player + "Dodge"))
+                {
+                    animator.SetBool("Sprinting", false);
+                    dodgeButtonTime = 0f;   //reset dodgeButtonTime
+                }
+            }
+        }
+        else
+        {
+            
+            if (Input.GetButtonUp(player + "Dodge") &&!animator.GetBool("Jumping") && !animator.GetBool("Attacking") && !animator.GetBool("Dodging"))
+            {
+                animator.SetBool("Dodging", true);
+                _charManager.IsInvincible = true;
+                _movement = transform.forward * _char.dodgeMultiplier;
+            }
+            animator.SetBool("Moving", false);
+            animator.SetBool("Sprinting", false);
         }
     }
 
