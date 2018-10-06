@@ -137,6 +137,9 @@ public class CharacterManager : MonoBehaviour {
     {
         // check if character is grounded on regular interval
         isGrounded = GroundedCheck();
+
+        // refill stamina
+        FillStamina(1);
     }
 
     public void TriggerKnockup(float kbf)
@@ -223,6 +226,23 @@ public class CharacterManager : MonoBehaviour {
         {
             OnDeath();
         }
+    }
+
+    // consumes stamina
+    public void UseStamina(int stm)
+    {
+        currentStamina -= stm;
+
+        if (currentStamina < 0)
+            currentStamina = 0;
+            
+    }
+
+    public void FillStamina(int stm)
+    {
+        currentStamina += stm;
+        if (currentStamina > startingStamina)
+            currentStamina = startingStamina;
     }
 
     public bool GroundedCheck()
