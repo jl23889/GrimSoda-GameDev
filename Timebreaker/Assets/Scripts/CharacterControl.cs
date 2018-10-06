@@ -202,11 +202,12 @@ public class CharacterControl : MonoBehaviour
         else
         {
             
-            if (Input.GetButtonUp(player + "Dodge") &&!animator.GetBool("Jumping") && !animator.GetBool("Attacking") && !animator.GetBool("Dodging"))
+            if (Input.GetButtonUp(player + "Dodge") && _charManager.CurrentStamina >= 70 && !animator.GetBool("Jumping") && !animator.GetBool("Attacking") && !animator.GetBool("Dodging"))
             {
                 animator.SetBool("Dodging", true);
                 _charManager.IsInvincible = true;
                 _movement = transform.forward * _char.dodgeMultiplier;
+                _charManager.UseStamina(70);
             }
             animator.SetBool("Moving", false);
             animator.SetBool("Sprinting", false);

@@ -34,6 +34,8 @@ public class CharacterManager : MonoBehaviour {
     private bool isInvincible = false;
     private bool isGrabbingThrowable = false;
     private bool canShoot = false;
+
+    private int _staminaCooldown = 60;
     
     // get/set methods
     public int StartingHealth
@@ -139,7 +141,11 @@ public class CharacterManager : MonoBehaviour {
         isGrounded = GroundedCheck();
 
         // refill stamina
-        FillStamina(1);
+        _staminaCooldown -= 1;
+        if (_staminaCooldown <= 0)
+        {
+            FillStamina(1);
+        }
     }
 
     public void TriggerKnockup(float kbf)
@@ -232,6 +238,7 @@ public class CharacterManager : MonoBehaviour {
     public void UseStamina(int stm)
     {
         currentStamina -= stm;
+        _staminaCooldown = 60;
 
         if (currentStamina < 0)
             currentStamina = 0;
