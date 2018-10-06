@@ -18,10 +18,13 @@ public class RangedWeaponManager : MonoBehaviour {
     private float initialSpinSpeed;
     private Vector3 initialRotation;
 
+    private AudioSource _audioSource;
+
     // Use this for initialization
     void Awake () {
         _renderer = GetComponent<MeshRenderer>();
         _spinScript = GetComponent<SpinGameObject>();
+        _audioSource = GetComponent<AudioSource>();
 
         remainingAmmo = _rangedWeapon.ammo;
         isResetting = false;
@@ -72,6 +75,8 @@ public class RangedWeaponManager : MonoBehaviour {
 
     public void ShootLight(Vector3 direction)
     {
+        _audioSource.Play();
+
         remainingAmmo--;
         GameObject projectile = Instantiate(_rangedWeapon.lightProjectilePrefab,
             transform.position,
@@ -81,6 +86,8 @@ public class RangedWeaponManager : MonoBehaviour {
 
     public void ShootHeavy(Vector3 direction)
     {
+        _audioSource.Play();
+
         remainingAmmo = remainingAmmo - 3;
         GameObject projectile = Instantiate(_rangedWeapon.heavyProjectilePrefab,
             transform.position,

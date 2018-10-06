@@ -17,6 +17,8 @@ public class DestroyTimer : MonoBehaviour {
     
     // Use this for initialization
     void Start () {
+        //play sound
+        GetComponent<AudioSource>().Play();
         // Instantiate particle effects
         if (_throwable.isExplosive)
         {

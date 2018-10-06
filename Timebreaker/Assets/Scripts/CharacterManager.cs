@@ -20,6 +20,7 @@ public class CharacterManager : MonoBehaviour {
     private Rigidbody rb;
     private CapsuleCollider pushbox;
     private Quaternion rbInitial;
+    private AudioSource _audioSource;
 
     private RangedWeaponManager _rwManager = null; // currently equipped weapon; null if false
 
@@ -100,6 +101,7 @@ public class CharacterManager : MonoBehaviour {
         rbInitial = rb.rotation;
         animator = GetComponent<Animator>();
         pushbox = GetComponent<CapsuleCollider>();
+        _audioSource = GetComponent<AudioSource>();
         // initialize character health and stamina
         startingHealth = _character.healthTotal;
         startingStamina = _character.staminaTotal;
@@ -165,6 +167,9 @@ public class CharacterManager : MonoBehaviour {
         transform.LookAt(new Vector3(attackFrom.position.x, transform.position.y, attackFrom.position.z));
 
         if (isInvincible) { return; }
+        // play getting hit sound
+        _audioSource.Play();
+
         // Reduce current health by the amount of damage done.
         currentHealth -= attack.damage;
         // Drop throwable
