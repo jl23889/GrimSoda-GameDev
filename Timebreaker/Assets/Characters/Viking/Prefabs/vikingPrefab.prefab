@@ -2674,7 +2674,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _player: 0
-  gravity: -20
+  gravity: -35
   _cameraRig: {fileID: 0}
 --- !u!114 &114985288753969948
 MonoBehaviour:

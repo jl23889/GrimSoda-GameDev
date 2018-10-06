@@ -68,7 +68,7 @@ public class ThrowObject : MonoBehaviour {
 
         if (_charManager.IsGrabbingThrowable)
         {
-            _characterControl.Targeting(40, 75);
+            _characterControl.Targeting(40f, 75f);
         }
         else
         {
