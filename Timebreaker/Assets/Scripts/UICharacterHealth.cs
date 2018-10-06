@@ -33,6 +33,6 @@ public class UICharacterHealth : MonoBehaviour
         m_Slider.value = _charManager.CurrentHealth;
 
         // Interpolate the color of the bar between the choosen colours based on the current percentage of the starting health.
-        m_FillImage.color = Color.Lerp(m_ZeroHealthColor, m_FullHealthColor, _charManager.CurrentHealth / _charManager.StartingHealth);
+        // m_FillImage.color = Color.Lerp(m_ZeroHealthColor, m_FullHealthColor, _charManager.CurrentHealth / _charManager.StartingHealth);
     }
 }
