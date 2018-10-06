@@ -89,51 +89,6 @@ public class CharacterControl : MonoBehaviour
         TakeInput();
         Attack();
         DodgeAndSprint();
-        
-        // _movement animations and speed controls (might move speed control to fix update later)
-        if (_movement != Vector3.zero)
-        {
-            animator.SetBool("Moving", true);
-
-            //hold dodge key to sprint, press dodge key to dodge
-            if (!animator.GetBool("Jumping") && !animator.GetBool("Attacking") && !animator.GetBool("Dodging"))
-            {
-                //sprinting
-                if (Input.GetButton(player + "Dodge") && _charManager.CurrentStamina == 100)
-                {
-                    dodgeButtonTime = dodgeButtonTime + Time.deltaTime;
-                    if (dodgeButtonTime > 0.2f)
-                    {
-                        animator.SetBool("Sprinting", true);
-                    }
-                }
-                // cancel sprint if stamina is too low
-                if (_charManager.CurrentStamina <= 0)
-                {
-                    animator.SetBool("Sprinting", false);
-                }
-                //dodging
-                if (Input.GetButtonUp(player + "Dodge") && dodgeButtonTime <= 0.2f && _charManager.CurrentStamina >= 70)
-                {
-                    animator.SetBool("Dodging", true);
-                    _charManager.IsInvincible = true;
-                    dodgeButtonTime = 0f;   //reset dodgeButtonTime
-                    _movement = _movement * _char.dodgeMultiplier;
-                    _charManager.UseStamina(70); 
-                }
-
-                //end sprinting
-                else if (Input.GetButtonUp(player + "Dodge"))
-                {
-                    animator.SetBool("Sprinting", false);
-                    dodgeButtonTime = 0f;   //reset dodgeButtonTime
-                }
-            }
-        }
-        else
-        {
-            animator.SetBool("Moving", false);
-        }
         // Movement states
         CalculateMovement();
     }
@@ -214,7 +169,7 @@ public class CharacterControl : MonoBehaviour
             if (!animator.GetBool("Jumping") && !animator.GetBool("Attacking") && !animator.GetBool("Dodging"))
             {
                 //sprinting
-                if (Input.GetButton(player + "Dodge"))
+                if (Input.GetButton(player + "Dodge") && _charManager.CurrentStamina == 100)
                 {
                     dodgeButtonTime = dodgeButtonTime + Time.deltaTime;
                     if (dodgeButtonTime > 0.2f)
@@ -222,14 +177,18 @@ public class CharacterControl : MonoBehaviour
                         animator.SetBool("Sprinting", true);
                     }
                 }
+                // cancel sprint if stamina is too low 
+                if (_charManager.CurrentStamina <= 0)
+                    animator.SetBool("Sprinting", false);
 
                 //dodging
-                if (Input.GetButtonUp(player + "Dodge") && dodgeButtonTime <= 0.2f)
+                if (Input.GetButtonUp(player + "Dodge") && dodgeButtonTime <= 0.2f && _charManager.CurrentStamina >= 70)
                 {
                     animator.SetBool("Dodging", true);
                     _charManager.IsInvincible = true;
                     dodgeButtonTime = 0f;   //reset dodgeButtonTime
                     _movement = _movement * _char.dodgeMultiplier;
+                    _charManager.UseStamina(70);
                 }
 
                 //end sprinting
