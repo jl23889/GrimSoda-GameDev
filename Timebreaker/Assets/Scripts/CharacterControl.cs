@@ -21,9 +21,9 @@ public class CharacterControl : MonoBehaviour
     private bool _isGrounded;
     private bool _jumpKeyPress;
     private bool _jumpKeyHold;
-    private bool _lightAttackPress;
-    private bool _heavyAttackDown;
+    private bool _lightAttackPress;   
     private bool _heavyAttackPress;
+    private bool _heavyAttackHold;
     private bool _heavyAttackUp;
 
 
@@ -85,15 +85,7 @@ public class CharacterControl : MonoBehaviour
             animator.SetBool("Blocking", false);
         }
 
-        //jumping
-        _jumpKeyHold = Input.GetButton(player + "Jump");
-        _jumpKeyPress = Input.GetButtonDown(player + "Jump");
-
-        //attacking
-        _lightAttackPress = Input.GetButtonDown(player + "LightAttack");
-        _heavyAttackDown = Input.GetButtonDown(player + "HeavyAttack");
-        _heavyAttackPress = Input.GetButton(player + "HeavyAttack");
-        _heavyAttackUp = Input.GetButtonUp(player + "HeavyAttack");
+        TakeInput();
 
         Attack();
 
@@ -145,7 +137,7 @@ public class CharacterControl : MonoBehaviour
         //ground checker
         _isGrounded = _charManager.IsGrounded;
 
-        if (_heavyAttackPress || _heavyAttackDown || _heavyAttackUp)
+        if (_heavyAttackPress || _heavyAttackHold || _heavyAttackUp)
         {
             Targeting(18f, 60f);//hard code for now, replace with Attack._range           
         }
@@ -161,7 +153,7 @@ public class CharacterControl : MonoBehaviour
         if (_charManager.IsHoldingWeapon && _charManager.CanShoot)
         {
             if (_lightAttackPress){ _charManager.RangedWeapon.ShootLight(transform.forward); } 
-            else if (_heavyAttackDown){ _charManager.RangedWeapon.ShootHeavy(transform.forward); }
+            else if (_heavyAttackHold) { _charManager.RangedWeapon.ShootHeavy(transform.forward); }
         }
 
 
@@ -170,6 +162,49 @@ public class CharacterControl : MonoBehaviour
 
         //_movements when grounded and not animation locked
         Jump();
+
+        ResetInput();
+    }
+
+    private void TakeInput()
+    {
+        //jumping
+        if (Input.GetButton(player + "Jump"))
+        {
+            _jumpKeyHold = true;
+        }
+        if (Input.GetButtonDown(player + "Jump"))
+        {
+            _jumpKeyPress = true;
+        }
+
+        //attacking
+        if (Input.GetButtonDown(player + "LightAttack"))
+        {
+            _lightAttackPress = true;
+        }
+        if (Input.GetButtonDown(player + "HeavyAttack"))
+        {
+            _heavyAttackPress = true;
+        }
+        if (Input.GetButton(player + "HeavyAttack"))
+        {
+            _heavyAttackHold = true;
+        }
+        if (Input.GetButtonUp(player + "HeavyAttack"))
+        {
+            _heavyAttackUp = true;
+        }
+    }
+
+    private void ResetInput()
+    {
+        _jumpKeyPress = false;
+        _jumpKeyHold = false;
+        _lightAttackPress = false;
+        _heavyAttackPress = false;
+        _heavyAttackHold = false;
+        _heavyAttackUp = false;
     }
 
     // this calculates the movement based on the animations and current state of the character
@@ -258,19 +293,22 @@ public class CharacterControl : MonoBehaviour
     private void Attack()
     {
         if (!_charManager.IsHoldingWeapon) {
-            if (_heavyAttackDown)
+            if (_heavyAttackPress)
             {
                 animator.SetBool("HeavyAttack", true);
             }
-            else if (_heavyAttackPress && _isGrounded && !animator.GetBool("Sprinting"))
+
+            if (_heavyAttackHold && _isGrounded && !animator.GetBool("Sprinting"))
             {
                 animator.SetBool("ChargingAttack", true);
             }
-            else if (_heavyAttackUp)
+             
+            if (_heavyAttackUp)
             {
                 animator.SetBool("ChargingAttack", false);
             }
-            else if (_lightAttackPress)
+
+            if (_lightAttackPress)
             {
                 animator.SetBool("LightAttack", true);
             }
