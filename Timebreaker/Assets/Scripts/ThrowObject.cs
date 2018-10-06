@@ -91,7 +91,8 @@ public class ThrowObject : MonoBehaviour {
                 {
                     foreach (Collider i in hitColliders)
                     {
-                        if (i.gameObject.tag == "Throwable" && !_charManager.IsGrabbingThrowable)
+                        if (i.gameObject.tag == "Throwable" && !_charManager.IsGrabbingThrowable 
+                            && !_charManager.IsHoldingWeapon && !animator.GetBool("Sprinting"))
                         {
                             throwableObject = i.gameObject;
                             rb = throwableObject.GetComponent<Rigidbody>();
