@@ -46,6 +46,11 @@ public class CharacterControl : MonoBehaviour
         get { return player; }
     }
 
+    public Vector3 Movement
+    {
+        set { _movement = value; }
+    }
+
     // Use this for initialization
     void Awake()
     {

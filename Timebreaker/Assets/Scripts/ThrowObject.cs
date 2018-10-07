@@ -22,6 +22,7 @@ public class ThrowObject : MonoBehaviour {
     private bool _throwObjectCreated;
 
     private CharacterManager _charManager;
+    private CharacterControl _charControl;
     private Animator animator;
     private string playerStr; 
 
@@ -32,6 +33,8 @@ public class ThrowObject : MonoBehaviour {
         throwableObject = null;
 
         _charManager = GetComponent<CharacterManager>();
+        _charControl = GetComponent<CharacterControl>();
+
         offsetY = _charManager._character.grabbingThrowableOffsetY;
         throwVelocity = _charManager._character.throwVelocity;
         animator = GetComponent<Animator>();
@@ -75,19 +78,32 @@ public class ThrowObject : MonoBehaviour {
             ReleaseThrowable();
         }
 
+        if (_charManager.IsHoldingWeapon)
+        {
+            _characterControl.Targeting(40f, 75f);
+        }
+
         // throw object
         if (_throwKeyPress)
         {
             // shoot weapon if holding weapon and not shooting
             if (_charManager.IsHoldingWeapon && _charManager.CanShoot)
             {
+                if (_autolock.Target != null)
+                {
+                    _characterControl.Movement = Vector3.zero;
+                    transform.LookAt(new Vector3(_autolock.Target.transform.position.x, transform.position.y, _autolock.Target.transform.position.z));
+                }
                 ShootBigGun();
             }
 
             if (_charManager.IsGrabbingThrowable)
-            {               
+            {
                 if (_autolock.Target != null)
-                    transform.LookAt(new Vector3(_autolock.Target.transform.position.x, transform.position.y ,_autolock.Target.transform.position.z));
+                {
+                    _characterControl.Movement = Vector3.zero;
+                    transform.LookAt(new Vector3(_autolock.Target.transform.position.x, transform.position.y, _autolock.Target.transform.position.z));
+                }
                 ReleaseThrowable(true);
             }
             else //try pick things up
