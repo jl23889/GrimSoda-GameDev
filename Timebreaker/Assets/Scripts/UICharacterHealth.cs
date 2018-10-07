@@ -5,7 +5,8 @@ using UnityEngine.UI;
 
 public class UICharacterHealth : MonoBehaviour
 {
-    public Slider m_Slider;                             // The slider to represent how much health the character currently has.
+    private GameObject _playerUI;
+    private Slider m_Slider;                             // The slider to represent how much health the character currently has.
     private Image m_FillImage;
     private Color m_FullHealthColor = Color.green;        // The color the health bar will be when on full health.
     private Color m_ZeroHealthColor = Color.red;         // The color the health bar will be when on no health.
@@ -15,6 +16,8 @@ public class UICharacterHealth : MonoBehaviour
 
     private void OnEnable()
     {
+        _playerUI = GetComponent<CharacterControl>()._playerUI;
+        m_Slider = _playerUI.transform.GetChild(0).GetComponent<Slider>();
         m_FillImage = m_Slider.transform.GetChild(1).GetChild(0).GetComponent<Image>();
         _charManager = GetComponent<CharacterManager>();
         if (_charManager != null)
