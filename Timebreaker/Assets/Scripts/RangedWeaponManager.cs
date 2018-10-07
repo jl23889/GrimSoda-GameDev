@@ -81,7 +81,21 @@ public class RangedWeaponManager : MonoBehaviour {
         GameObject projectile = Instantiate(_rangedWeapon.lightProjectilePrefab,
             transform.position,
             Quaternion.identity);
-        projectile.GetComponent<Rigidbody>().AddForce(direction * _rangedWeapon.projectileVelocity, ForceMode.VelocityChange);
+        projectile.GetComponent<Rigidbody>().AddRelativeForce(direction * _rangedWeapon.projectileVelocity, ForceMode.VelocityChange);
+        projectile.GetComponent<Rigidbody>().useGravity = false;    
+    }
+
+    public void ShootLight(AutoLock autoLock)
+    {
+        _audioSource.Play();
+
+        remainingAmmo--;
+        GameObject projectile = Instantiate(_rangedWeapon.lightProjectilePrefab,
+            transform.position,
+            Quaternion.identity);
+        Vector3 direction = (autoLock.Target.transform.position + new Vector3(0, 2.12f, 0) - transform.position).normalized;
+        projectile.GetComponent<Rigidbody>().AddRelativeForce(direction * _rangedWeapon.projectileVelocity, ForceMode.VelocityChange);
+        projectile.GetComponent<Rigidbody>().useGravity = false;
     }
 
     public void ShootHeavy(Vector3 direction)

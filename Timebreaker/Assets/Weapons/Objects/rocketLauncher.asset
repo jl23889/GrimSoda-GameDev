@@ -20,6 +20,6 @@ MonoBehaviour:
     type: 2}
   heavyProjectilePrefab: {fileID: 1609645369061784, guid: 157262300585e474ba9df051e2e5deb4,
     type: 2}
-  projectileVelocity: 70
+  projectileVelocity: 40
   damage: 20
   ammo: 5

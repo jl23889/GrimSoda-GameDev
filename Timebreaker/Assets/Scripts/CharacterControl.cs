@@ -236,10 +236,7 @@ public class CharacterControl : MonoBehaviour
     // this calculates the movement based on the animations and current state of the character
     private void CalculateMovement()
     {
-        if (animator.GetBool("Dodging"))
-        {
-            return;
-        }
+        MovementByCamera();
 
         if (_charManager.IsHitStunned || animator.GetBool("ChargingAttack") || animator.GetBool("Blocking") || animator.GetBool("ShootingBigGun"))
         {
@@ -248,17 +245,9 @@ public class CharacterControl : MonoBehaviour
             return;
         }
 
-        // normalized input ensures that magnitude of movement will always be the same
-        _movement = new Vector3(Input.GetAxis(player + "Horizontal"), 0, Input.GetAxis(player + "Vertical")).normalized;
-        // rotating input to match camera's perspective
-        if (_cameraRig != null)
+        if (animator.GetBool("Dodging"))
         {
-            var movX = _movement.x;
-            var movZ = _movement.z;
-            _movement.x = movX * Mathf.Cos(-_cameraRig.transform.eulerAngles.y * Mathf.Deg2Rad)
-                - movZ * Mathf.Sin(-_cameraRig.transform.eulerAngles.y * Mathf.Deg2Rad);
-            _movement.z = movX * Mathf.Sin(-_cameraRig.transform.eulerAngles.y * Mathf.Deg2Rad)
-                + movZ * Mathf.Cos(-_cameraRig.transform.eulerAngles.y * Mathf.Deg2Rad);
+            return;
         }
 
         _charManager.IsInvincible = false;
@@ -273,6 +262,22 @@ public class CharacterControl : MonoBehaviour
             _movement = _movement * .3f;
         }
 
+    }
+
+    private void MovementByCamera()
+    {
+        // normalized input ensures that magnitude of movement will always be the same
+        _movement = new Vector3(Input.GetAxis(player + "Horizontal"), 0, Input.GetAxis(player + "Vertical")).normalized;
+        // rotating input to match camera's perspective
+        if (_cameraRig != null)
+        {
+            var movX = _movement.x;
+            var movZ = _movement.z;
+            _movement.x = movX * Mathf.Cos(-_cameraRig.transform.eulerAngles.y * Mathf.Deg2Rad)
+                - movZ * Mathf.Sin(-_cameraRig.transform.eulerAngles.y * Mathf.Deg2Rad);
+            _movement.z = movX * Mathf.Sin(-_cameraRig.transform.eulerAngles.y * Mathf.Deg2Rad)
+                + movZ * Mathf.Cos(-_cameraRig.transform.eulerAngles.y * Mathf.Deg2Rad);
+        }
     }
 
     private void Move()

@@ -180,7 +180,14 @@ public class ThrowObject : MonoBehaviour {
             _charManager.RangedWeapon.transform.parent = _charManager.rightHand.transform;
             _charManager.RangedWeapon._rangedWeapon.handLocRotPreset.ApplyTo(_charManager.RangedWeapon.transform);
             animator.SetBool("ShootingBigGun", true);
-            _charManager.RangedWeapon.ShootLight(transform.forward);
+            if (_autolock.Target != null)
+            {
+                _charManager.RangedWeapon.ShootLight(_autolock);
+            }
+            else
+            {
+                _charManager.RangedWeapon.ShootLight(transform.forward);
+            }
 
             // reattach gun to hand
             StartCoroutine(PlaceBigGunChest(0.5f));
