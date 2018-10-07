@@ -24,10 +24,10 @@ public class CharacterManager : MonoBehaviour {
 
     private RangedWeaponManager _rwManager = null; // currently equipped weapon; null if false
 
-    private int startingHealth = 100; //set 100 as default
-    private int startingStamina = 100;
-    private int currentHealth;
-    private int currentStamina;
+    private float startingHealth = 100f; //set 100 as default
+    private float startingStamina = 100f;
+    private float currentHealth;
+    private float currentStamina;
     private bool isDead;
     private bool isGrounded = true;
     private float inputTimer;
@@ -39,22 +39,22 @@ public class CharacterManager : MonoBehaviour {
     private int _staminaCooldown = 60;
     
     // get/set methods
-    public int StartingHealth
+    public float StartingHealth
+    {
+        get { return startingHealth; }
+        set { startingHealth = value; }
+    }
+    public float StartingStamina
+    {
+        get { return startingStamina; }
+        set { startingStamina = value; }
+    }
+    public float CurrentHealth
     {
         get { return currentHealth; }
         set { currentHealth = value; }
     }
-    public int StartingStamina
-    {
-        get { return currentStamina; }
-        set { currentStamina = value; }
-    }
-    public int CurrentHealth
-    {
-        get { return currentHealth; }
-        set { currentHealth = value; }
-    }
-    public int CurrentStamina
+    public float CurrentStamina
     {
         get { return currentStamina; }
         set { currentStamina = value; }
@@ -128,13 +128,6 @@ public class CharacterManager : MonoBehaviour {
         {
             animator.SetBool("Grounded", false);
         }
-
-        // weapon check 
-        if (_rwManager != null)
-        {
-            animator.SetBool("RangedWeapon", true);
-        }
-        else animator.SetBool("RangedWeapon", false);
     }
 
     void FixedUpdate()
@@ -142,11 +135,15 @@ public class CharacterManager : MonoBehaviour {
         // check if character is grounded on regular interval
         isGrounded = GroundedCheck();
 
+        // check if holding weapon
+        if (IsHoldingWeapon && RangedWeapon.remainingAmmo <= 0)
+        { RangedWeapon = null; }
+
         // refill stamina
         _staminaCooldown -= 1;
         if (_staminaCooldown <= 0)
         {
-            FillStamina(1);
+            FillStamina(1f);
         }
     }
 
@@ -240,7 +237,7 @@ public class CharacterManager : MonoBehaviour {
     }
 
     // consumes stamina
-    public void UseStamina(int stm)
+    public void UseStamina(float stm)
     {
         currentStamina -= stm;
         _staminaCooldown = 60;
@@ -250,7 +247,7 @@ public class CharacterManager : MonoBehaviour {
             
     }
 
-    public void FillStamina(int stm)
+    public void FillStamina(float stm)
     {
         currentStamina += stm;
         if (currentStamina > startingStamina)
@@ -289,7 +286,6 @@ public class CharacterManager : MonoBehaviour {
     private void TriggerKnockback(Transform attackFrom, float knockBackForce)
     {
         Vector3 direction = new Vector3(transform.position.x - attackFrom.position.x, 0f, transform.position.z - attackFrom.position.z).normalized;
-        Debug.Log(direction);
         rb.AddForce(direction * knockBackForce, ForceMode.VelocityChange);
     }
 }

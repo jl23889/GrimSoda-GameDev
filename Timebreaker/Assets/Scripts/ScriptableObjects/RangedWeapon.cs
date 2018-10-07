@@ -9,7 +9,8 @@ using UnityEditor.Presets;
 public class RangedWeapon : ScriptableObject
 {
     public string weaponName = "New Ranged Weapon";
-    public Preset locationRotationScalePreset;
+    public Preset handLocRotPreset;
+    public Preset chestLocRotPreset;
     public GameObject lightProjectilePrefab;
     public GameObject heavyProjectilePrefab;
     public float projectileVelocity = 30f;

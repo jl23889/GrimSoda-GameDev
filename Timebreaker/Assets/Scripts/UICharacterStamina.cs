@@ -5,10 +5,10 @@ using UnityEngine.UI;
 
 public class UICharacterStamina : MonoBehaviour
 {
-    public Slider m_Slider;                             // The slider to represent how much Stamina the character currently has.
+    public Slider m_Slider;                              // The slider to represent how much Stamina the character currently has.
     private Image m_FillImage;                           // The image component of the slider.
-    public Color m_FullStaminaColor = Color.green;       // The color the Stamina bar will be when on full Stamina.
-    public Color m_ZeroStaminaColor = Color.red;         // The color the Stamina bar will be when on no Stamina.
+    private Color m_FullStaminaColor = Color.yellow;       // The color the Stamina bar will be when on full Stamina.
+    private Color m_ZeroStaminaColor = Color.red;         // The color the Stamina bar will be when on no Stamina.
     private CharacterManager _charManager;
     private int currentStamina;
     private int maxStamina;
@@ -21,6 +21,8 @@ public class UICharacterStamina : MonoBehaviour
         {
             SetStaminaUI();
         }
+
+        m_FillImage.color = m_FullStaminaColor;
     }
 
     void Update()
@@ -34,6 +36,7 @@ public class UICharacterStamina : MonoBehaviour
         m_Slider.value = _charManager.CurrentStamina;
 
         // Interpolate the color of the bar between the choosen colours based on the current percentage of the starting Stamina.
-        m_FillImage.color = Color.Lerp(m_ZeroStaminaColor, m_FullStaminaColor, _charManager.CurrentStamina / _charManager.StartingStamina);
+        m_FillImage.color = Color.Lerp(m_ZeroStaminaColor, m_FullStaminaColor, (_charManager.CurrentStamina * 1.0f) / (_charManager.StartingStamina * 1.0f));
+
     }
 }

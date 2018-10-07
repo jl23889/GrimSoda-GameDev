@@ -7,8 +7,8 @@ public class UICharacterHealth : MonoBehaviour
 {
     public Slider m_Slider;                             // The slider to represent how much health the character currently has.
     private Image m_FillImage;
-    public Color m_FullHealthColor = Color.red;       // The color the health bar will be when on full health.
-    public Color m_ZeroHealthColor = Color.red;         // The color the health bar will be when on no health.
+    private Color m_FullHealthColor = Color.green;        // The color the health bar will be when on full health.
+    private Color m_ZeroHealthColor = Color.red;         // The color the health bar will be when on no health.
     private CharacterManager _charManager;
     private int currentHealth;
     private int maxHealth;
@@ -21,6 +21,8 @@ public class UICharacterHealth : MonoBehaviour
         {
             SetHealthUI();
         }
+
+        m_FillImage.color = m_FullHealthColor;
     }
 
     void Update()
@@ -34,6 +36,7 @@ public class UICharacterHealth : MonoBehaviour
         m_Slider.value = _charManager.CurrentHealth;
 
         // Interpolate the color of the bar between the choosen colours based on the current percentage of the starting health.
-        m_FillImage.color = Color.Lerp(m_ZeroHealthColor, m_FullHealthColor, _charManager.CurrentHealth / _charManager.StartingHealth);
+        m_FillImage.color = Color.Lerp(m_ZeroHealthColor, m_FullHealthColor, ((_charManager.CurrentHealth*1.0f) / (_charManager.StartingHealth * 1.0f)));
+
     }
 }
