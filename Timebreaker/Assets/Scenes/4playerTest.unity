@@ -939,6 +939,21 @@ Prefab:
       propertyPath: m_Slider
       value: 
       objectReference: {fileID: 712613237}
+    - target: {fileID: 114046328914644430, guid: 9a6c33ac87fc52947a4ec607588f341d,
+        type: 2}
+      propertyPath: m_FullHealthColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114046328914644430, guid: 9a6c33ac87fc52947a4ec607588f341d,
+        type: 2}
+      propertyPath: m_FullHealthColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114046328914644430, guid: 9a6c33ac87fc52947a4ec607588f341d,
+        type: 2}
+      propertyPath: m_FullHealthColor.b
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9a6c33ac87fc52947a4ec607588f341d, type: 2}
   m_IsPrefabAsset: 0
