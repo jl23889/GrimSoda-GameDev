@@ -27,6 +27,8 @@ public class CharacterControl : MonoBehaviour
     private bool _heavyAttackPress;
     private bool _heavyAttackHold;
     private bool _heavyAttackUp;
+    private bool _dodgeKeyHold;
+    private bool _dodgeKeyUp;
 
     private Vector3 _movement = Vector3.zero;
     private CharacterManager _charManager;
@@ -106,7 +108,6 @@ public class CharacterControl : MonoBehaviour
         {
             Targeting(8f, 120f);
         }
-
         //move rigidbody 
         Move();
 
@@ -118,33 +119,47 @@ public class CharacterControl : MonoBehaviour
 
     private void TakeInput()
     {
-        //jumping
-        if (Input.GetButton(player + "Jump"))
-        {
-            _jumpKeyHold = true;
-        }
-        if (Input.GetButtonDown(player + "Jump"))
-        {
-            _jumpKeyPress = true;
-        }
+        _dodgeKeyHold = Input.GetButton(player + "Dodge");
+        _dodgeKeyUp = Input.GetButtonUp(player + "Dodge");
 
-        //attacking
-        if (Input.GetButtonDown(player + "LightAttack"))
+        if (!_dodgeKeyHold && !_dodgeKeyUp)
         {
-            _lightAttackPress = true;
+            //jumping
+            if (Input.GetButton(player + "Jump"))
+            {
+                _jumpKeyHold = true;
+            }
+            if (Input.GetButtonDown(player + "Jump"))
+            {
+                _jumpKeyPress = true;
+            }
+
+            if (!_jumpKeyHold && !_jumpKeyPress)
+            {
+                //heavy attack
+                if (Input.GetButtonDown(player + "HeavyAttack"))
+                {
+                    _heavyAttackPress = true;
+                }
+                if (Input.GetButton(player + "HeavyAttack"))
+                {
+                    _heavyAttackHold = true;
+                }
+                if (Input.GetButtonUp(player + "HeavyAttack"))
+                {
+                    _heavyAttackUp = true;
+                }
+
+                if (!_heavyAttackPress && !_heavyAttackHold && !_heavyAttackUp)
+                {
+                    if (Input.GetButtonDown(player + "LightAttack"))
+                    {
+                        _lightAttackPress = true;
+                    }
+                }
+            }
         }
-        if (Input.GetButtonDown(player + "HeavyAttack"))
-        {
-            _heavyAttackPress = true;
-        }
-        if (Input.GetButton(player + "HeavyAttack"))
-        {
-            _heavyAttackHold = true;
-        }
-        if (Input.GetButtonUp(player + "HeavyAttack"))
-        {
-            _heavyAttackUp = true;
-        }
+        
     }
 
     private void DodgeAndSprint()
@@ -155,10 +170,10 @@ public class CharacterControl : MonoBehaviour
             animator.SetBool("Moving", true);
 
             //hold dodge key to sprint, press dodge key to dodge
-            if (!animator.GetBool("Jumping") && !animator.GetBool("Attacking") && !animator.GetBool("Dodging"))
+            if (!animator.GetBool("Jumping") && !animator.GetBool("Attacking") && !animator.GetBool("Dodging") && !animator.GetBool("GrabbingThrowable"))
             {
                 //sprinting
-                if (Input.GetButton(player + "Dodge") && _charManager.CurrentStamina == 100)
+                if (_dodgeKeyHold && _charManager.CurrentStamina >= 100f)
                 {
                     dodgeButtonTime = dodgeButtonTime + Time.deltaTime;
                     if (dodgeButtonTime > 0.2f)
@@ -167,21 +182,21 @@ public class CharacterControl : MonoBehaviour
                     }
                 }
                 // cancel sprint if stamina is too low 
-                if (_charManager.CurrentStamina <= 0)
+                if (_charManager.CurrentStamina <= 0f)
                     animator.SetBool("Sprinting", false);
 
                 //dodging
-                if (Input.GetButtonUp(player + "Dodge") && dodgeButtonTime <= 0.2f && _charManager.CurrentStamina >= 70)
+                if (_dodgeKeyUp && dodgeButtonTime <= 0.2f && _charManager.CurrentStamina >= 70f)
                 {
                     animator.SetBool("Dodging", true);
                     _charManager.IsInvincible = true;
                     dodgeButtonTime = 0f;   //reset dodgeButtonTime
                     _movement = _movement * _char.dodgeMultiplier;
-                    _charManager.UseStamina(70);
+                    _charManager.UseStamina(70f);
                 }
 
                 //end sprinting
-                else if (Input.GetButtonUp(player + "Dodge"))
+                else if (_dodgeKeyUp)
                 {
                     animator.SetBool("Sprinting", false);
                     dodgeButtonTime = 0f;   //reset dodgeButtonTime
@@ -191,12 +206,12 @@ public class CharacterControl : MonoBehaviour
         else
         {
             
-            if (Input.GetButtonUp(player + "Dodge") && _charManager.CurrentStamina >= 70 && !animator.GetBool("Jumping") && !animator.GetBool("Attacking") && !animator.GetBool("Dodging"))
+            if (Input.GetButtonUp(player + "Dodge") && _charManager.CurrentStamina >= 70f && !animator.GetBool("Jumping") && !animator.GetBool("Attacking") && !animator.GetBool("Dodging") && !animator.GetBool("GrabbingThrowable"))
             {
                 animator.SetBool("Dodging", true);
                 _charManager.IsInvincible = true;
                 _movement = transform.forward * _char.dodgeMultiplier;
-                _charManager.UseStamina(70);
+                _charManager.UseStamina(70f);
             }
             animator.SetBool("Moving", false);
             animator.SetBool("Sprinting", false);
@@ -246,7 +261,7 @@ public class CharacterControl : MonoBehaviour
         if (animator.GetBool("Sprinting"))
         {
             _movement = _movement * _char.sprintMultiplier;
-            _charManager.UseStamina(2);
+            _charManager.UseStamina(2f);
         }
         else if (animator.GetBool("Attacking") && animator.GetBool("Grounded"))
         {
