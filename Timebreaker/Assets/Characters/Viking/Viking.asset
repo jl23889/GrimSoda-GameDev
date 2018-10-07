@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Name: Viking
   m_EditorClassIdentifier: 
   charName: Viking
-  healthTotal: 100
-  staminaTotal: 100
+  healthTotal: 200
+  staminaTotal: 200
   throwVelocity: 17
   grabbingThrowableOffsetY: 7
   runSpeed: 8
