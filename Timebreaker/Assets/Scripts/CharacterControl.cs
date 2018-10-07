@@ -107,17 +107,6 @@ public class CharacterControl : MonoBehaviour
             Targeting(8f, 120f);
         }
 
-        // check if holding weapon
-        if (_charManager.IsHoldingWeapon && _charManager.RangedWeapon.remainingAmmo <= 0)
-        { _charManager.RangedWeapon = null; }
-        // shoot weapon if holding weapon and not shooting
-        if (_charManager.IsHoldingWeapon && _charManager.CanShoot)
-        {
-            if (_lightAttackPress){ _charManager.RangedWeapon.ShootLight(transform.forward); } 
-            else if (_heavyAttackHold) { _charManager.RangedWeapon.ShootHeavy(transform.forward); }
-        }
-
-
         //move rigidbody 
         Move();
 
@@ -232,7 +221,7 @@ public class CharacterControl : MonoBehaviour
             return;
         }
 
-        if (_charManager.IsHitStunned || animator.GetBool("ChargingAttack") || animator.GetBool("Blocking"))
+        if (_charManager.IsHitStunned || animator.GetBool("ChargingAttack") || animator.GetBool("Blocking") || animator.GetBool("ShootingBigGun"))
         {
             _movement.x = 0;
             _movement.z = 0;
@@ -310,26 +299,24 @@ public class CharacterControl : MonoBehaviour
 
     private void Attack()
     {
-        if (!_charManager.IsHoldingWeapon) {
-            if (_heavyAttackPress)
-            {
-                animator.SetBool("HeavyAttack", true);
-            }
+        if (_heavyAttackPress)
+        {
+            animator.SetBool("HeavyAttack", true);
+        }
 
-            if (_heavyAttackHold && _isGrounded && !animator.GetBool("Sprinting"))
-            {
-                animator.SetBool("ChargingAttack", true);
-            }
+        if (_heavyAttackHold && _isGrounded && !animator.GetBool("Sprinting"))
+        {
+            animator.SetBool("ChargingAttack", true);
+        }
              
-            if (_heavyAttackUp)
-            {
-                animator.SetBool("ChargingAttack", false);
-            }
+        if (_heavyAttackUp)
+        {
+            animator.SetBool("ChargingAttack", false);
+        }
 
-            if (_lightAttackPress)
-            {
-                animator.SetBool("LightAttack", true);
-            }
+        if (_lightAttackPress)
+        {
+            animator.SetBool("LightAttack", true);
         }
     }
 

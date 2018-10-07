@@ -78,6 +78,12 @@ public class ThrowObject : MonoBehaviour {
         // throw object
         if (_throwKeyPress)
         {
+            // shoot weapon if holding weapon and not shooting
+            if (_charManager.IsHoldingWeapon && _charManager.CanShoot)
+            {
+                ShootBigGun();
+            }
+
             if (_charManager.IsGrabbingThrowable)
             {               
                 if (_autolock.Target != null)
@@ -148,6 +154,29 @@ public class ThrowObject : MonoBehaviour {
             rb = null;
             col = null;
         }
+    }
+
+    public void ShootBigGun()
+    {
+        if (_throwKeyPress)
+        {
+            // attach gun to hand
+            _charManager.RangedWeapon.transform.parent = _charManager.rightHand.transform;
+            _charManager.RangedWeapon._rangedWeapon.handLocRotPreset.ApplyTo(_charManager.RangedWeapon.transform);
+            animator.SetBool("ShootingBigGun", true);
+            _charManager.RangedWeapon.ShootLight(transform.forward);
+
+            // reattach gun to hand
+            StartCoroutine(PlaceBigGunChest(0.5f));
+        }
+    }
+
+    IEnumerator PlaceBigGunChest(float time)
+    {
+        yield return new WaitForSeconds(time);
+        animator.SetBool("ShootingBigGun", false);
+        _charManager.RangedWeapon.transform.parent = _charManager.chest.transform;
+        _charManager.RangedWeapon._rangedWeapon.chestLocRotPreset.ApplyTo(_charManager.RangedWeapon.transform);
     }
 
     private void OnDrawGizmos()

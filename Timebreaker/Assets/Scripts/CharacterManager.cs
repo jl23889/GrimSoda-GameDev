@@ -128,19 +128,16 @@ public class CharacterManager : MonoBehaviour {
         {
             animator.SetBool("Grounded", false);
         }
-
-        // weapon check 
-        if (_rwManager != null)
-        {
-            animator.SetBool("RangedWeapon", true);
-        }
-        else animator.SetBool("RangedWeapon", false);
     }
 
     void FixedUpdate()
     {
         // check if character is grounded on regular interval
         isGrounded = GroundedCheck();
+
+        // check if holding weapon
+        if (IsHoldingWeapon && RangedWeapon.remainingAmmo <= 0)
+        { RangedWeapon = null; }
 
         // refill stamina
         _staminaCooldown -= 1;
