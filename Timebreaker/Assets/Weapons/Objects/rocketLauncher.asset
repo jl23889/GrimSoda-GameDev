@@ -12,12 +12,14 @@ MonoBehaviour:
   m_Name: rocketLauncher
   m_EditorClassIdentifier: 
   weaponName: Rocket Launcher
-  locationRotationScalePreset: {fileID: 2655988077585873504, guid: cf4a0d1fa64f70945bdd4d24be04d9ed,
+  handLocRotPreset: {fileID: 2655988077585873504, guid: cf4a0d1fa64f70945bdd4d24be04d9ed,
+    type: 2}
+  chestLocRotPreset: {fileID: 2655988077585873504, guid: 055cb8c32626a6f4980260995bb1eeb6,
     type: 2}
   lightProjectilePrefab: {fileID: 1429283479777328, guid: 6b7d411794516a942a0912e8b7b69792,
     type: 2}
   heavyProjectilePrefab: {fileID: 1609645369061784, guid: 157262300585e474ba9df051e2e5deb4,
     type: 2}
-  projectileVelocity: 50
+  projectileVelocity: 70
   damage: 20
   ammo: 5
