@@ -34,6 +34,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d1a0a406542517c40a67ca03965467a2, type: 2}
   - {fileID: 11400000, guid: 2b03344218e0aa645af21e1a38e2f0a0, type: 2}
   canShootAnimationList:
-  - {fileID: 7400106, guid: 870ae1cf9a6294d87bdc61b40eb2fba0, type: 3}
-  - {fileID: 7400110, guid: 870ae1cf9a6294d87bdc61b40eb2fba0, type: 3}
-  - {fileID: 7400108, guid: 870ae1cf9a6294d87bdc61b40eb2fba0, type: 3}
+  - {fileID: 7400038, guid: 870ae1cf9a6294d87bdc61b40eb2fba0, type: 3}
+  - {fileID: 7400040, guid: 870ae1cf9a6294d87bdc61b40eb2fba0, type: 3}

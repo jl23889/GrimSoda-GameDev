@@ -5,7 +5,7 @@ Preset:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: vikingRocketLauncherPreset
+  m_Name: vikingHandRocketLauncherPreset
   m_TargetType:
     m_NativeTypeID: 4
     m_ManagedTypePPtr: {fileID: 0}
