@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 // reads player input and translates input into actions
 public class CharacterControl : MonoBehaviour
@@ -9,6 +10,8 @@ public class CharacterControl : MonoBehaviour
     public enum Player { P1, P2, P3, P4 };
     public Player _player;
     private string player;
+    public GameObject _playerUI;
+    public Material material;
 
     public float gravity = -20f;
     //components
@@ -52,6 +55,7 @@ public class CharacterControl : MonoBehaviour
         _autoLock = GetComponent<AutoLock>();
         _char = _charManager._character;
         _throwObj = GetComponent<ThrowObject>();
+
         Physics.gravity = new Vector3(0f, gravity, 0f);
         _movement = Vector3.zero;
         dodgeButtonTime = 0f;
@@ -59,17 +63,21 @@ public class CharacterControl : MonoBehaviour
         {
             case Player.P1:
                 player = "P1";
+                _playerUI.transform.GetChild(2).GetComponent<RawImage>().color = Color.red;
                 break;
             case Player.P2:
                 player = "P2";
+                _playerUI.transform.GetChild(2).GetComponent<RawImage>().color = Color.green;
                 break;
             case Player.P3:
                 player = "P3";
                 break;
             case Player.P4:
                 player = "P4";
+                _playerUI.transform.GetChild(2).GetComponent<RawImage>().color = new Color(255,176,0,255);
                 break;
         }
+        transform.GetChild(1).GetComponent<SkinnedMeshRenderer>().material = material;
     }
 
     //buttons should be prioritized from top to bottom

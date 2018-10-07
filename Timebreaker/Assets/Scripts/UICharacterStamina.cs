@@ -5,7 +5,8 @@ using UnityEngine.UI;
 
 public class UICharacterStamina : MonoBehaviour
 {
-    public Slider m_Slider;                              // The slider to represent how much Stamina the character currently has.
+    private GameObject _playerUI;
+    private Slider m_Slider;                              // The slider to represent how much Stamina the character currently has.
     private Image m_FillImage;                           // The image component of the slider.
     private Color m_FullStaminaColor = Color.yellow;       // The color the Stamina bar will be when on full Stamina.
     private Color m_ZeroStaminaColor = Color.red;         // The color the Stamina bar will be when on no Stamina.
@@ -15,6 +16,8 @@ public class UICharacterStamina : MonoBehaviour
 
     private void OnEnable()
     {
+        _playerUI = GetComponent<CharacterControl>()._playerUI;
+        m_Slider = _playerUI.transform.GetChild(4).GetComponent<Slider>();
         m_FillImage = m_Slider.transform.GetChild(1).GetChild(0).GetComponent<Image>();
         _charManager = GetComponent<CharacterManager>();
         if (_charManager != null)

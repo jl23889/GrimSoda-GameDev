@@ -2619,8 +2619,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Slider: {fileID: 0}
-  m_FullHealthColor: {r: 1, g: 0, b: 0, a: 1}
-  m_ZeroHealthColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!114 &114067613039829730
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2771,6 +2769,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _player: 0
+  _playerUI: {fileID: 0}
   gravity: -35
   _cameraRig: {fileID: 0}
 --- !u!114 &114985288753969948
@@ -2785,8 +2784,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Slider: {fileID: 0}
-  m_FullStaminaColor: {r: 0, g: 1, b: 0, a: 1}
-  m_ZeroStaminaColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!114 &114991236136439936
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3037,7 +3034,6 @@ SkinnedMeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: a6aa1d551cd1fef44977c4cda58a8bb6, type: 3}
   - {fileID: 2100000, guid: a6aa1d551cd1fef44977c4cda58a8bb6, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
