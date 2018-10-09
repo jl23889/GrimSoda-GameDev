@@ -27,7 +27,7 @@ GameObject:
   - component: {fileID: 114980657119573958}
   m_Layer: 0
   m_Name: RocketAmmo
-  m_TagString: Throwable
+  m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
