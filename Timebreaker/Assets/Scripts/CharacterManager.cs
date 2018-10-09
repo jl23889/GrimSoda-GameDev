@@ -19,7 +19,6 @@ public class CharacterManager : MonoBehaviour {
     private AnimationClip currentClip;
     private Rigidbody rb;
     private CapsuleCollider pushbox;
-    private Quaternion rbInitial;
     private AudioSource _audioSource;
 
     private RangedWeaponManager _rwManager = null; // currently equipped weapon; null if false
@@ -98,7 +97,6 @@ public class CharacterManager : MonoBehaviour {
     // Use this for initialization
     void Awake () {
         rb = GetComponent<Rigidbody>();
-        rbInitial = rb.rotation;
         animator = GetComponent<Animator>();
         pushbox = GetComponent<CapsuleCollider>();
         _audioSource = GetComponent<AudioSource>();
@@ -145,6 +143,11 @@ public class CharacterManager : MonoBehaviour {
         {
             FillStamina(1f);
         }
+
+        if (!animator.GetBool("Recovery") && !animator.GetBool("Dodging"))
+        {
+            isInvincible = false;
+        }
     }
 
     public void TriggerKnockup(float kbf)
@@ -155,7 +158,13 @@ public class CharacterManager : MonoBehaviour {
 
     public void TriggerKnockdown()
     {
-        animator.SetTrigger("Knockdown");
+        animator.SetBool("Knockdown", true);
+    }
+
+    public void TriggerKnockback(Transform attackFrom, float knockBackForce)
+    {
+        Vector3 direction = new Vector3(transform.position.x - attackFrom.position.x, 0f, transform.position.z - attackFrom.position.z).normalized;
+        rb.AddForce(direction * knockBackForce, ForceMode.VelocityChange);
     }
 
     // taking damage from an attack
@@ -281,11 +290,5 @@ public class CharacterManager : MonoBehaviour {
         // Turn off character input
         GetComponent<CharacterControl>().enabled = false;
         animator.SetBool("Dead", true);
-    }
-
-    private void TriggerKnockback(Transform attackFrom, float knockBackForce)
-    {
-        Vector3 direction = new Vector3(transform.position.x - attackFrom.position.x, 0f, transform.position.z - attackFrom.position.z).normalized;
-        rb.AddForce(direction * knockBackForce, ForceMode.VelocityChange);
     }
 }

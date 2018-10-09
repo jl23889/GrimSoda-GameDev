@@ -18,7 +18,6 @@ public class ThrowObject : MonoBehaviour {
 
     private bool _throwKeyPress;
     private AutoLock _autolock;
-    private CharacterControl _characterControl;
     private bool _throwObjectCreated;
 
     private CharacterManager _charManager;
@@ -41,7 +40,7 @@ public class ThrowObject : MonoBehaviour {
         playerStr = GetComponent<CharacterControl>().PlayerString;
 
         _autolock = GetComponent<AutoLock>();
-        _characterControl = GetComponent<CharacterControl>();
+        _charControl = GetComponent<CharacterControl>();
         _throwKeyPress = false;
         _throwObjectCreated = true;
     }
@@ -63,7 +62,7 @@ public class ThrowObject : MonoBehaviour {
 
     void FixedUpdate()
     {
-        // move throwable above player if it exists
+        //// move throwable above player if it exists
         if (rb != null)
         {
             rb.MovePosition(transform.position + (new Vector3(0, offsetY)));
@@ -71,7 +70,7 @@ public class ThrowObject : MonoBehaviour {
 
         if (_charManager.IsGrabbingThrowable)
         {
-            _characterControl.Targeting(40f, 75f);
+            _charControl.Targeting(40f, 75f);
         }
         else
         {
@@ -80,7 +79,7 @@ public class ThrowObject : MonoBehaviour {
 
         if (_charManager.IsHoldingWeapon)
         {
-            _characterControl.Targeting(40f, 75f);
+            _charControl.Targeting(40f, 75f);
         }
 
         // throw object
@@ -91,7 +90,7 @@ public class ThrowObject : MonoBehaviour {
             {
                 if (_autolock.Target != null)
                 {
-                    _characterControl.Movement = Vector3.zero;
+                    _charControl.Movement = Vector3.zero;
                     transform.LookAt(new Vector3(_autolock.Target.transform.position.x, transform.position.y, _autolock.Target.transform.position.z));
                 }
                 ShootBigGun();
@@ -101,7 +100,7 @@ public class ThrowObject : MonoBehaviour {
             {
                 if (_autolock.Target != null)
                 {
-                    _characterControl.Movement = Vector3.zero;
+                    _charControl.Movement = Vector3.zero;
                     transform.LookAt(new Vector3(_autolock.Target.transform.position.x, transform.position.y, _autolock.Target.transform.position.z));
                 }
                 ReleaseThrowable(true);
@@ -121,9 +120,10 @@ public class ThrowObject : MonoBehaviour {
                             col = throwableObject.GetComponent<MeshCollider>();
 
                             // make gameobject child of player (so it moves with player)
-                            throwableObject.transform.parent = transform;
+                            throwableObject.transform.parent = _charManager.rightHand.transform;
                             // set isGrabbing flag to true
                             _charManager.IsGrabbingThrowable = true;
+                            animator.SetBool("GrabbingThrowable", true);
 
                             rb.isKinematic = true; //disable unity physics
                             col.enabled = false;   //disable collider
@@ -149,6 +149,7 @@ public class ThrowObject : MonoBehaviour {
             throwableObject.transform.parent = null;
             // set is grabbing flag to false
             _charManager.IsGrabbingThrowable = false;
+            animator.SetBool("GrabbingThrowable", false);
 
             if (addForce)
             {

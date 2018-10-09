@@ -12,7 +12,6 @@ public class CharacterAttack : MonoBehaviour
     private Animator animator;
     private AnimationClip currentClip;
     private GameObject vfxBone;         // this is the bone that has the vfx to be played
-    private bool attackInProgress;
 
     [HideInInspector]
     private Attack _attack; // the current attack
@@ -81,8 +80,6 @@ public class CharacterAttack : MonoBehaviour
             ClearHurtboxBuffer();
             _attack = null;
         }
-
-        attackInProgress = false;
     }
 
     // trigger a hit for every hurtbox collider in the list

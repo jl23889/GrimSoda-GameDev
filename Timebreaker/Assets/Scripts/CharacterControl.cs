@@ -37,7 +37,6 @@ public class CharacterControl : MonoBehaviour
     private CharacterManager _charManager;
     private AutoLock _autoLock;
     private Character _char;
-    private ThrowObject _throwObj;
     public GameObject _cameraRig;
 
     // get/set methods
@@ -59,7 +58,6 @@ public class CharacterControl : MonoBehaviour
         _charManager = GetComponent<CharacterManager>();
         _autoLock = GetComponent<AutoLock>();
         _char = _charManager._character;
-        _throwObj = GetComponent<ThrowObject>();
 
         Physics.gravity = new Vector3(0f, gravity, 0f);
         _movement = Vector3.zero;
@@ -206,6 +204,7 @@ public class CharacterControl : MonoBehaviour
                 if (_dodgeKeyUp && dodgeButtonTime <= 0.2f && _charManager.CurrentStamina >= 70f)
                 {
                     animator.SetBool("Dodging", true);
+                    StartCoroutine(DodgeInvincibility(1.4f));
                     _charManager.IsInvincible = true;
                     dodgeButtonTime = 0f;   //reset dodgeButtonTime
                     _movement = _movement * _char.dodgeMultiplier;
@@ -223,9 +222,12 @@ public class CharacterControl : MonoBehaviour
         else
         {
             
-            if (Input.GetButtonUp(player + "Dodge") && _charManager.CurrentStamina >= 70f && !animator.GetBool("Jumping") && !animator.GetBool("Attacking") && !animator.GetBool("Dodging") && !animator.GetBool("GrabbingThrowable"))
+            if (Input.GetButtonUp(player + "Dodge") && _charManager.CurrentStamina >= 70f 
+                && !animator.GetBool("Jumping") && !animator.GetBool("Attacking") 
+                && !animator.GetBool("Dodging") && !animator.GetBool("GrabbingThrowable"))
             {
                 animator.SetBool("Dodging", true);
+                StartCoroutine(DodgeInvincibility(1.4f));
                 _charManager.IsInvincible = true;
                 _movement = transform.forward * _char.dodgeMultiplier;
                 _charManager.UseStamina(70f);
@@ -257,12 +259,23 @@ public class CharacterControl : MonoBehaviour
             return;
         }
 
+        // recovery
+        if (animator.GetBool("Knockdown") && !animator.GetBool("HitStun"))
+        {
+            // if character is moving from knockdown while not hitstunned
+            if (_movement.x != 0 || _movement.z != 0)
+            {
+                _charManager.IsInvincible = true;
+                animator.SetBool("Recovery", true);
+                StartCoroutine(RecoveryInvincibility(1.3f));
+                return;
+            }
+        }
+
         if (animator.GetBool("Dodging"))
         {
             return;
         }
-
-        _charManager.IsInvincible = false;
 
         if (animator.GetBool("Sprinting"))
         {
@@ -361,5 +374,19 @@ public class CharacterControl : MonoBehaviour
     {
         _autoLock.AttackRange = _attackRange;
         _autoLock.AutolockMaxAngle = _autolockMaxAngle;
+    }
+
+    private IEnumerator DodgeInvincibility(float duration)
+    {
+        yield return new WaitForSeconds(duration);
+        _charManager.IsInvincible = false;
+        animator.SetBool("Dodging", false);
+    }
+
+    private IEnumerator RecoveryInvincibility(float duration)
+    {
+        yield return new WaitForSeconds(duration);
+        _charManager.IsInvincible = false;
+        animator.SetBool("Recovery", false);
     }
 }

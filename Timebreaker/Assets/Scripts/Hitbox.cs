@@ -18,7 +18,6 @@ public class Hitbox : MonoBehaviour {
         Active,       
         Colliding   
     }
-    private Collider _hurtboxCol;    // this is the character's own hurtbox
 
     // Use this for initialization
     void Start () {
@@ -26,7 +25,6 @@ public class Hitbox : MonoBehaviour {
         hitboxCreated = true;
         _boxPosition = new Vector3(1, 1, 1);
         _boxSize = new Vector3(1, 1, 1);
-        _hurtboxCol = GetComponent<CapsuleCollider>(); 
         StopHitboxCollision();
     }
 

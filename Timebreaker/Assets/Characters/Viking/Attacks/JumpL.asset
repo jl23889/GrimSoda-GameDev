@@ -17,8 +17,8 @@ MonoBehaviour:
   hitStunDuration: 0.5
   attackLimb: head
   hitboxSize: {x: 2, y: 2, z: 2}
-  knockback: 0
+  knockback: 1
   knockdown: 0
   knockup: 0
-  knockbackForce: 0
-  knockupForce: 0
+  knockbackVelocity: 0
+  knockupVelocity: 0
