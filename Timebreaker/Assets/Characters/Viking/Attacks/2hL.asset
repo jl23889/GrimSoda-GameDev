@@ -20,5 +20,5 @@ MonoBehaviour:
   knockback: 1
   knockdown: 0
   knockup: 1
-  knockbackVelocity: 200
+  knockbackVelocity: 120
   knockupVelocity: 15

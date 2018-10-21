@@ -70,7 +70,8 @@ public class CharacterAttack : MonoBehaviour
                     vfxBone = _char.headEnd;
                     break;
                 case "weapon":
-                    _charHitbox.HitboxCollider(_char.Weapon.GetComponent<BoxCollider>());
+                    if (_char.IsHoldingMeleeWeapon)
+                        _charHitbox.HitboxCollider(_char.Weapon.GetComponent<BoxCollider>());
                     break;
             }
             _charHitbox.ResizeHitbox(_attack.hitboxSize);
@@ -107,6 +108,10 @@ public class CharacterAttack : MonoBehaviour
                         // make the character that is hit take damage from attack
                         _charHit.TakeDamage(_attack, transform);
                         _charHitbox.DetectCollision();
+
+                        // subtract a charge from weapon
+                        if (_char.IsHoldingMeleeWeapon)
+                            _char.Weapon.UseCharge();
                     }
 
                     // add the colider to the buffer so that it is not affected by the same attack

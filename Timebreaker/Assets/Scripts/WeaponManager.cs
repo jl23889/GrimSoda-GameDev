@@ -72,6 +72,14 @@ public class WeaponManager : MonoBehaviour {
         isResetting = false;
     }
 
+    public void UseCharge()
+    {
+        if (_audioSource != null)
+            _audioSource.Play();
+
+        remainingCharges--;
+    }
+
     public void ShootLight(Vector3 direction)
     {
         _audioSource.Play();

@@ -134,8 +134,11 @@ public class CharacterControl : MonoBehaviour
 
     private void TakeInput()
     {
-        _dodgeKeyHold = Input.GetButton(player + "Dodge");
-        _dodgeKeyUp = Input.GetButtonUp(player + "Dodge");
+        if (!_charManager.IsHoldingMeleeWeapon)
+        {
+            _dodgeKeyHold = Input.GetButton(player + "Dodge");
+            _dodgeKeyUp = Input.GetButtonUp(player + "Dodge");
+        }
 
         if (!_dodgeKeyHold && !_dodgeKeyUp)
         {
@@ -352,6 +355,8 @@ public class CharacterControl : MonoBehaviour
         if (_heavyAttackPress)
         {
             animator.SetBool("HeavyAttack", true);
+            if (_charManager.IsHoldingMeleeWeapon)
+                return;
         }
 
         if (_heavyAttackHold && _isGrounded && !animator.GetBool("Sprinting"))
