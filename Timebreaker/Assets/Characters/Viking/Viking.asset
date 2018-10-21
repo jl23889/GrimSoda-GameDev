@@ -33,6 +33,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e9068744c02384545b93f799a4e633b2, type: 2}
   - {fileID: 11400000, guid: d1a0a406542517c40a67ca03965467a2, type: 2}
   - {fileID: 11400000, guid: 2b03344218e0aa645af21e1a38e2f0a0, type: 2}
+  - {fileID: 11400000, guid: 933a250388d91c340844c63d6ee82a2b, type: 2}
+  - {fileID: 11400000, guid: 00dbfbefe603015499f1d390f8d19fae, type: 2}
   canShootAnimationList:
   - {fileID: 7400038, guid: 870ae1cf9a6294d87bdc61b40eb2fba0, type: 3}
   - {fileID: 7400040, guid: 870ae1cf9a6294d87bdc61b40eb2fba0, type: 3}

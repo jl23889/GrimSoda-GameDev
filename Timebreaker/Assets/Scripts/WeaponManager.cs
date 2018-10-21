@@ -12,7 +12,6 @@ public class WeaponManager : MonoBehaviour {
     private SpinGameObject _spinScript;
     private MeshRenderer _renderer;
     public float timeToRespawn = 3f; // set value to negative if should not respawn
-    public GameObject hitboxObject; // this is the object to attach hitbox to
     private bool isResetting;
     private float offsetY;
     private float initialSpinSpeed;

@@ -25,6 +25,7 @@ public class Hitbox : MonoBehaviour {
         hitboxCreated = true;
         _boxPosition = new Vector3(1, 1, 1);
         _boxSize = new Vector3(1, 1, 1);
+        _boxRotation = new Quaternion(0, 0, 0, 1);
         StopHitboxCollision();
     }
 
@@ -74,12 +75,16 @@ public class Hitbox : MonoBehaviour {
     }
 
     // hitbone should be a gameobject located on the middle of the limb we're targeting
-    public void HitboxCenterPosition(GameObject gob)
+    public void HitboxCenterGameObject(GameObject gob)
     {
         _boxPosition = gob.transform.position;
     }
 
-    
+    public void HitboxCollider(BoxCollider col)
+    {
+        _boxPosition = col.transform.TransformPoint(col.center);
+    }
+
     //Draw the Box Overlap as a gizmo to show where it currently is testing. Click the Gizmos button to see this
     private void OnDrawGizmos()
     {

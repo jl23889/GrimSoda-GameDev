@@ -367,8 +367,6 @@ public class CharacterControl : MonoBehaviour
         if (_lightAttackPress)
         {
             animator.SetBool("LightAttack", true);
-            if (_charManager.IsHoldingMeleeWeapon)
-                SwingWeapon();
         }
     }
 
@@ -390,23 +388,5 @@ public class CharacterControl : MonoBehaviour
         yield return new WaitForSeconds(duration);
         _charManager.IsInvincible = false;
         animator.SetBool("Recovery", false);
-    }
-
-    // attach weapon model to hand
-    public void SwingWeapon()
-    {
-        // attach weapon to hand
-        _charManager.Weapon.transform.parent = _charManager.rightHand.transform;
-        _charManager.Weapon._weapon.handLocRotPreset.ApplyTo(_charManager.Weapon.transform);
-
-        // reattach weapon to back
-        StartCoroutine(PlaceWeaponChest(.8f));
-    }
-
-    IEnumerator PlaceWeaponChest(float time)
-    {
-        yield return new WaitForSeconds(time);
-        _charManager.Weapon.transform.parent = _charManager.chest.transform;
-        _charManager.Weapon._weapon.chestLocRotPreset.ApplyTo(_charManager.Weapon.transform);
     }
 }

@@ -15,19 +15,28 @@ public class CharacterCollectItem : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.CompareTag("Weapon") && !_charManager.IsHoldingWeapon)
+        if(other.gameObject.CompareTag("Weapon") && !_charManager.IsHoldingWeapon && other.gameObject.transform.parent == null)
         {
             GameObject _weapon = other.gameObject;
             WeaponManager _wManager = _weapon.GetComponent<WeaponManager>();
-        
-            _weapon.transform.parent = _charManager.chest.transform;
-            _wManager._weapon.chestLocRotPreset.ApplyTo(_weapon.transform);
+
+            switch (_wManager._weapon.weaponType)
+            {
+                case EquippableWeapon.WeaponType.TwoHandMelee:
+                    _weapon.transform.parent = _charManager.rightHand.transform;
+                    _wManager._weapon.handLocRotPreset.ApplyTo(_weapon.transform);
+                    break;
+                case EquippableWeapon.WeaponType.BigGun:
+                    _weapon.transform.parent = _charManager.chest.transform;
+                    _wManager._weapon.chestLocRotPreset.ApplyTo(_weapon.transform);
+                    break;
+            }
             
             // set rotation on weapon off
             _weapon.GetComponent<SpinGameObject>().rotationSpeed = 0;
             _charManager.Weapon = _wManager;
 
-            _wManager.GetComponent<Collider>().enabled = false; //disable weapon collider
+            //_wManager.GetComponent<Collider>().enabled = false; //disable weapon collider
         }
     }
 

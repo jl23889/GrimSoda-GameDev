@@ -58,19 +58,19 @@ public class CharacterAttack : MonoBehaviour
             switch (_attack.attackLimb) //TODO: we shouldn't need to lookup the attack limb using strings, rather we should just be able to assign limbs as gameobjects in inspector
             {
                 case "leftArm":
-                    _charHitbox.HitboxCenterPosition(_char.leftArm);
+                    _charHitbox.HitboxCenterGameObject(_char.leftArm);
                     vfxBone = _char.leftHand;
                     break;
                 case "rightArm":
-                    _charHitbox.HitboxCenterPosition(_char.rightArm);
+                    _charHitbox.HitboxCenterGameObject(_char.rightArm);
                     vfxBone = _char.rightHand;
                     break;
                 case "head":
-                    _charHitbox.HitboxCenterPosition(_char.head);
+                    _charHitbox.HitboxCenterGameObject(_char.head);
                     vfxBone = _char.headEnd;
                     break;
                 case "weapon":
-                    _charHitbox.HitboxCenterPosition(_char.Weapon.gameObject.transform.GetChild(0).gameObject);
+                    _charHitbox.HitboxCollider(_char.Weapon.GetComponent<BoxCollider>());
                     break;
             }
             _charHitbox.ResizeHitbox(_attack.hitboxSize);

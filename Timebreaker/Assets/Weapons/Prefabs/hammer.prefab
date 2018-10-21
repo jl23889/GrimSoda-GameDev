@@ -228,4 +228,3 @@ MonoBehaviour:
   remainingCharges: 5
   _respawnPoint: {fileID: 0}
   timeToRespawn: 3
-  hitboxObject: {fileID: 100002, guid: 65afdcd3bb3b04f4f92f4c11198fb450, type: 3}
