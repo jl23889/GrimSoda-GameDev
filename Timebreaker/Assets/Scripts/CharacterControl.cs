@@ -134,10 +134,15 @@ public class CharacterControl : MonoBehaviour
 
     private void TakeInput()
     {
+        // only allow dodge and sprint when not holding weapon
         if (!_charManager.IsHoldingMeleeWeapon)
         {
             _dodgeKeyHold = Input.GetButton(player + "Dodge");
             _dodgeKeyUp = Input.GetButtonUp(player + "Dodge");
+        } else
+        {
+            _dodgeKeyHold = false;
+            _dodgeKeyUp = false;
         }
 
         if (!_dodgeKeyHold && !_dodgeKeyUp)
@@ -356,7 +361,9 @@ public class CharacterControl : MonoBehaviour
         {
             animator.SetBool("HeavyAttack", true);
             if (_charManager.IsHoldingMeleeWeapon)
+            {
                 return;
+            }
         }
 
         if (_heavyAttackHold && _isGrounded && !animator.GetBool("Sprinting"))

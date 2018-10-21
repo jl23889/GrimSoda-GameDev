@@ -12,6 +12,7 @@ public class CharacterAttack : MonoBehaviour
     private Animator animator;
     private AnimationClip currentClip;
     private GameObject vfxBone;         // this is the bone that has the vfx to be played
+    private int audioPlaying = -1;  
 
     [HideInInspector]
     private Attack _attack; // the current attack
@@ -42,6 +43,15 @@ public class CharacterAttack : MonoBehaviour
 
         if (attackIndex >= 0)
         {
+            // play startup Audio
+            if (audioPlaying != attackIndex && _char.IsHoldingMeleeWeapon)
+            {
+                _char.Weapon.PlayAudio();
+                audioPlaying = attackIndex;
+            }
+
+
+
             // check if animation is the same attack
             //  if not, we clear the hurtbox buffer so we can triggerhits again
             if (_attack != null)
@@ -83,6 +93,7 @@ public class CharacterAttack : MonoBehaviour
             _charHitbox.StopHitboxCollision();
             ClearHurtboxBuffer();
             _attack = null;
+            audioPlaying = -1;
         }
     }
 
