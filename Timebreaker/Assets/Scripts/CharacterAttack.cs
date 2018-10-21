@@ -69,6 +69,9 @@ public class CharacterAttack : MonoBehaviour
                     _charHitbox.HitboxCenterPosition(_char.head);
                     vfxBone = _char.headEnd;
                     break;
+                case "weapon":
+                    _charHitbox.HitboxCenterPosition(_char.Weapon.gameObject.transform.GetChild(0).gameObject);
+                    break;
             }
             _charHitbox.ResizeHitbox(_attack.hitboxSize);
             _charHitbox.StartHitboxCollision();
@@ -99,7 +102,8 @@ public class CharacterAttack : MonoBehaviour
                     if (_charHit != null)
                     {
                         // trigger vfx on the bone that is in motion
-                        vfxBone.GetComponent<ParticleSystem>().Play(false);
+                        if (_attack.attackLimb != "weapon")
+                            vfxBone.GetComponent<ParticleSystem>().Play(false);
                         // make the character that is hit take damage from attack
                         _charHit.TakeDamage(_attack, transform);
                         _charHitbox.DetectCollision();

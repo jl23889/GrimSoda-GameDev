@@ -175,6 +175,7 @@ ModelImporter:
     7400112: vikingShootBigGun
     7400114: vikingRollLoop
     7400116: vikingRunHolding2H
+    7400118: viking2hL
     9500000: //RootNode
     13700000: vikingBeard
     13700002: vikingBody
@@ -196,66 +197,67 @@ ModelImporter:
     rigImportErrors: 
     rigImportWarnings: 
     animationImportErrors: 
-    animationImportWarnings: "\nClip 'Default Take' has import animation warnings
+    animationImportWarnings: "\nClip 'jumpEndPushUp' has import animation warnings
       that might lower retargeting quality:\nNote: Activate translation DOF on avatar
       to improve retargeting quality.\n\t'legUpper_l' has scale animation that will
       be discarded.\n\t'legLower_l' has scale animation that will be discarded.\n\t'foot_l'
+      has scale animation that will be discarded.\n\t'legUpper_r' has scale animation
+      that will be discarded.\n\t'legLower_r' has scale animation that will be discarded.\n\t'foot_r'
+      has scale animation that will be discarded.\n\nClip 'kickH' has import animation
+      warnings that might lower retargeting quality:\nNote: Activate translation DOF
+      on avatar to improve retargeting quality.\n\t'legUpper_l' has scale animation
+      that will be discarded.\n\t'legLower_l' has scale animation that will be discarded.\n\t'foot_l'
       has scale animation that will be discarded.\n\t'toes_l' has scale animation
       that will be discarded.\n\t'legUpper_r' has scale animation that will be discarded.\n\t'legLower_r'
       has scale animation that will be discarded.\n\t'foot_r' has scale animation
       that will be discarded.\n\t'toes_r' has scale animation that will be discarded.\n\nClip
-      'jumpEndPushUp' has import animation warnings that might lower retargeting quality:\nNote:
-      Activate translation DOF on avatar to improve retargeting quality.\n\t'legUpper_l'
-      has scale animation that will be discarded.\n\t'legLower_l' has scale animation
-      that will be discarded.\n\t'foot_l' has scale animation that will be discarded.\n\t'legUpper_r'
+      'kickL' has import animation warnings that might lower retargeting quality:\nNote:
+      Activate translation DOF on avatar to improve retargeting quality.\n\t'legLower_l'
+      has scale animation that will be discarded.\n\t'legUpper_r' has scale animation
+      that will be discarded.\n\t'legLower_r' has scale animation that will be discarded.\n\t'foot_r'
+      has scale animation that will be discarded.\n\t'toes_r' has scale animation
+      that will be discarded.\n\nClip 'kickM' has import animation warnings that might
+      lower retargeting quality:\nNote: Activate translation DOF on avatar to improve
+      retargeting quality.\n\t'legLower_l' has scale animation that will be discarded.\n\t'legUpper_r'
       has scale animation that will be discarded.\n\t'legLower_r' has scale animation
-      that will be discarded.\n\t'foot_r' has scale animation that will be discarded.\n\nClip
-      'kickH' has import animation warnings that might lower retargeting quality:\nNote:
+      that will be discarded.\n\t'foot_r' has scale animation that will be discarded.\n\t'toes_r'
+      has scale animation that will be discarded.\n\nClip 'knockdown' has import animation
+      warnings that might lower retargeting quality:\nNote: Activate translation DOF
+      on avatar to improve retargeting quality.\n\t'legUpper_l' has scale animation
+      that will be discarded.\n\t'legLower_l' has scale animation that will be discarded.\n\t'foot_l'
+      has scale animation that will be discarded.\n\t'legUpper_r' has scale animation
+      that will be discarded.\n\t'legLower_r' has scale animation that will be discarded.\n\t'foot_r'
+      has scale animation that will be discarded.\n\nClip 'sprintH' has import animation
+      warnings that might lower retargeting quality:\nNote: Activate translation DOF
+      on avatar to improve retargeting quality.\n\t'legUpper_l' has scale animation
+      that will be discarded.\n\t'legLower_l' has scale animation that will be discarded.\n\t'foot_l'
+      has scale animation that will be discarded.\n\t'toes_l' has scale animation
+      that will be discarded.\n\t'legLower_r' has scale animation that will be discarded.\n\t'foot_r'
+      has scale animation that will be discarded.\n\t'toes_r' has scale animation
+      that will be discarded.\n\nClip 'sprintLoop' has import animation warnings that
+      might lower retargeting quality:\nNote: Activate translation DOF on avatar to
+      improve retargeting quality.\n\t'legUpper_l' has scale animation that will be
+      discarded.\n\t'legLower_l' has scale animation that will be discarded.\n\t'foot_l'
+      has scale animation that will be discarded.\n\t'toes_l' has scale animation
+      that will be discarded.\n\t'legUpper_r' has scale animation that will be discarded.\n\t'legLower_r'
+      has scale animation that will be discarded.\n\t'foot_r' has scale animation
+      that will be discarded.\n\t'toes_r' has scale animation that will be discarded.\n\nClip
+      'viking2HRun' has import animation warnings that might lower retargeting quality:\nNote:
       Activate translation DOF on avatar to improve retargeting quality.\n\t'legUpper_l'
       has scale animation that will be discarded.\n\t'legLower_l' has scale animation
       that will be discarded.\n\t'foot_l' has scale animation that will be discarded.\n\t'toes_l'
       has scale animation that will be discarded.\n\t'legUpper_r' has scale animation
       that will be discarded.\n\t'legLower_r' has scale animation that will be discarded.\n\t'foot_r'
       has scale animation that will be discarded.\n\t'toes_r' has scale animation
-      that will be discarded.\n\nClip 'kickL' has import animation warnings that might
-      lower retargeting quality:\nNote: Activate translation DOF on avatar to improve
-      retargeting quality.\n\t'legLower_l' has scale animation that will be discarded.\n\t'legUpper_r'
-      has scale animation that will be discarded.\n\t'legLower_r' has scale animation
-      that will be discarded.\n\t'foot_r' has scale animation that will be discarded.\n\t'toes_r'
-      has scale animation that will be discarded.\n\nClip 'kickM' has import animation
-      warnings that might lower retargeting quality:\nNote: Activate translation DOF
-      on avatar to improve retargeting quality.\n\t'legLower_l' has scale animation
-      that will be discarded.\n\t'legUpper_r' has scale animation that will be discarded.\n\t'legLower_r'
+      that will be discarded.\n\nClip 'vikingBlock' has import animation warnings
+      that might lower retargeting quality:\nNote: Activate translation DOF on avatar
+      to improve retargeting quality.\n\t'legLower_l' has scale animation that will
+      be discarded.\n\t'foot_l' has scale animation that will be discarded.\n\t'legLower_r'
       has scale animation that will be discarded.\n\t'foot_r' has scale animation
-      that will be discarded.\n\t'toes_r' has scale animation that will be discarded.\n\nClip
-      'knockdown' has import animation warnings that might lower retargeting quality:\nNote:
-      Activate translation DOF on avatar to improve retargeting quality.\n\t'legUpper_l'
-      has scale animation that will be discarded.\n\t'legLower_l' has scale animation
-      that will be discarded.\n\t'foot_l' has scale animation that will be discarded.\n\t'legUpper_r'
-      has scale animation that will be discarded.\n\t'legLower_r' has scale animation
-      that will be discarded.\n\t'foot_r' has scale animation that will be discarded.\n\nClip
-      'sprintH' has import animation warnings that might lower retargeting quality:\nNote:
-      Activate translation DOF on avatar to improve retargeting quality.\n\t'legUpper_l'
-      has scale animation that will be discarded.\n\t'legLower_l' has scale animation
-      that will be discarded.\n\t'foot_l' has scale animation that will be discarded.\n\t'toes_l'
-      has scale animation that will be discarded.\n\t'legLower_r' has scale animation
-      that will be discarded.\n\t'foot_r' has scale animation that will be discarded.\n\t'toes_r'
-      has scale animation that will be discarded.\n\nClip 'sprintLoop' has import
-      animation warnings that might lower retargeting quality:\nNote: Activate translation
-      DOF on avatar to improve retargeting quality.\n\t'legUpper_l' has scale animation
-      that will be discarded.\n\t'legLower_l' has scale animation that will be discarded.\n\t'foot_l'
-      has scale animation that will be discarded.\n\t'toes_l' has scale animation
-      that will be discarded.\n\t'legUpper_r' has scale animation that will be discarded.\n\t'legLower_r'
-      has scale animation that will be discarded.\n\t'foot_r' has scale animation
-      that will be discarded.\n\t'toes_r' has scale animation that will be discarded.\n\nClip
-      'vikingBlock' has import animation warnings that might lower retargeting quality:\nNote:
-      Activate translation DOF on avatar to improve retargeting quality.\n\t'legLower_l'
-      has scale animation that will be discarded.\n\t'foot_l' has scale animation
-      that will be discarded.\n\t'legLower_r' has scale animation that will be discarded.\n\t'foot_r'
-      has scale animation that will be discarded.\n\nClip 'vikingDodgeRun' has import
-      animation warnings that might lower retargeting quality:\nNote: Activate translation
-      DOF on avatar to improve retargeting quality.\n\t'legUpper_l' has scale animation
-      that will be discarded.\n\t'legLower_l' has scale animation that will be discarded.\n\t'foot_l'
+      that will be discarded.\n\nClip 'vikingDodgeRun' has import animation warnings
+      that might lower retargeting quality:\nNote: Activate translation DOF on avatar
+      to improve retargeting quality.\n\t'legUpper_l' has scale animation that will
+      be discarded.\n\t'legLower_l' has scale animation that will be discarded.\n\t'foot_l'
       has scale animation that will be discarded.\n\t'toes_l' has scale animation
       that will be discarded.\n\t'legUpper_r' has scale animation that will be discarded.\n\t'legLower_r'
       has scale animation that will be discarded.\n\t'foot_r' has scale animation
@@ -363,15 +365,15 @@ ModelImporter:
       translation DOF on avatar to improve retargeting quality.\n\t'legLower_l' has
       scale animation that will be discarded.\n\t'legUpper_r' has scale animation
       that will be discarded.\n\t'legLower_r' has scale animation that will be discarded.\n\t'foot_r'
-      has scale animation that will be discarded.\n\nClip 'vikingRunHolding2H' has
-      import animation warnings that might lower retargeting quality:\nNote: Activate
+      has scale animation that will be discarded.\n\nClip 'vikingRunHoldingBigGun'
+      has import animation warnings that might lower retargeting quality:\nNote: Activate
       translation DOF on avatar to improve retargeting quality.\n\t'legUpper_l' has
       scale animation that will be discarded.\n\t'legLower_l' has scale animation
       that will be discarded.\n\t'foot_l' has scale animation that will be discarded.\n\t'toes_l'
       has scale animation that will be discarded.\n\t'legUpper_r' has scale animation
       that will be discarded.\n\t'legLower_r' has scale animation that will be discarded.\n\t'foot_r'
       has scale animation that will be discarded.\n\t'toes_r' has scale animation
-      that will be discarded.\n\nClip 'vikingRunHoldingBigGun' has import animation
+      that will be discarded.\n\nClip 'vikingRunHoldingThrowable' has import animation
       warnings that might lower retargeting quality:\nNote: Activate translation DOF
       on avatar to improve retargeting quality.\n\t'legUpper_l' has scale animation
       that will be discarded.\n\t'legLower_l' has scale animation that will be discarded.\n\t'foot_l'
@@ -379,32 +381,25 @@ ModelImporter:
       that will be discarded.\n\t'legUpper_r' has scale animation that will be discarded.\n\t'legLower_r'
       has scale animation that will be discarded.\n\t'foot_r' has scale animation
       that will be discarded.\n\t'toes_r' has scale animation that will be discarded.\n\nClip
-      'vikingRunHoldingThrowable' has import animation warnings that might lower retargeting
-      quality:\nNote: Activate translation DOF on avatar to improve retargeting quality.\n\t'legUpper_l'
+      'vikingRunLoop' has import animation warnings that might lower retargeting quality:\nNote:
+      Activate translation DOF on avatar to improve retargeting quality.\n\t'legUpper_l'
       has scale animation that will be discarded.\n\t'legLower_l' has scale animation
       that will be discarded.\n\t'foot_l' has scale animation that will be discarded.\n\t'toes_l'
       has scale animation that will be discarded.\n\t'legUpper_r' has scale animation
       that will be discarded.\n\t'legLower_r' has scale animation that will be discarded.\n\t'foot_r'
       has scale animation that will be discarded.\n\t'toes_r' has scale animation
-      that will be discarded.\n\nClip 'vikingRunLoop' has import animation warnings
+      that will be discarded.\n\nClip 'vikingShootBigGun' has import animation warnings
       that might lower retargeting quality:\nNote: Activate translation DOF on avatar
       to improve retargeting quality.\n\t'legUpper_l' has scale animation that will
       be discarded.\n\t'legLower_l' has scale animation that will be discarded.\n\t'foot_l'
-      has scale animation that will be discarded.\n\t'toes_l' has scale animation
-      that will be discarded.\n\t'legUpper_r' has scale animation that will be discarded.\n\t'legLower_r'
-      has scale animation that will be discarded.\n\t'foot_r' has scale animation
-      that will be discarded.\n\t'toes_r' has scale animation that will be discarded.\n\nClip
-      'vikingShootBigGun' has import animation warnings that might lower retargeting
-      quality:\nNote: Activate translation DOF on avatar to improve retargeting quality.\n\t'legUpper_l'
-      has scale animation that will be discarded.\n\t'legLower_l' has scale animation
-      that will be discarded.\n\t'foot_l' has scale animation that will be discarded.\n\t'legUpper_r'
-      has scale animation that will be discarded.\n\t'legLower_r' has scale animation
-      that will be discarded.\n\t'foot_r' has scale animation that will be discarded.\n\nClip
-      'walkLoop' has import animation warnings that might lower retargeting quality:\nNote:
-      Activate translation DOF on avatar to improve retargeting quality.\n\t'legLower_l'
-      has scale animation that will be discarded.\n\t'toes_l' has scale animation
-      that will be discarded.\n\t'legLower_r' has scale animation that will be discarded.\n\t'toes_r'
-      has scale animation that will be discarded.\n"
+      has scale animation that will be discarded.\n\t'legUpper_r' has scale animation
+      that will be discarded.\n\t'legLower_r' has scale animation that will be discarded.\n\t'foot_r'
+      has scale animation that will be discarded.\n\nClip 'walkLoop' has import animation
+      warnings that might lower retargeting quality:\nNote: Activate translation DOF
+      on avatar to improve retargeting quality.\n\t'legLower_l' has scale animation
+      that will be discarded.\n\t'toes_l' has scale animation that will be discarded.\n\t'legLower_r'
+      has scale animation that will be discarded.\n\t'toes_r' has scale animation
+      that will be discarded.\n"
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
@@ -1454,21 +1449,21 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: vikingRunHolding2H
-      takeName: vikingRunHolding2H
+      name: viking2hL
+      takeName: viking2hL
       firstFrame: -1
-      lastFrame: 23
+      lastFrame: 9
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
-      loopBlend: 1
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 1
       keepOriginalOrientation: 1
       keepOriginalPositionY: 1
       keepOriginalPositionXZ: 1

@@ -206,8 +206,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17c8d496a42dec04488730d89a1efd86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rangedWeapon: {fileID: 11400000, guid: 592a827c21661d3418ed1775bbf6cbba, type: 2}
-  remainingAmmo: 5
+  _weapon: {fileID: 11400000, guid: 592a827c21661d3418ed1775bbf6cbba, type: 2}
+  remainingCharges: 0
   _respawnPoint: {fileID: 0}
   timeToRespawn: 3
 --- !u!114 &114988111935685004

@@ -4,11 +4,21 @@ ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
     100000: //RootNode
+    100002: head
+    100004: shaft
     400000: //RootNode
+    400002: head
+    400004: shaft
     2100000: Material
     2300000: //RootNode
+    2300002: head
+    2300004: shaft
     3300000: //RootNode
+    3300002: head
+    3300004: shaft
     4300000: Cube
+    4300002: head
+    4300004: shaft
   externalObjects: {}
   materials:
     importMaterials: 1
