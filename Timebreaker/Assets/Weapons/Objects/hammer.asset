@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c83830ae4080d947adbd72a824faf0c, type: 3}
+  m_Name: hammer
+  m_EditorClassIdentifier: 
+  weaponName: Hammer
+  handLocRotPreset: {fileID: 2655988077585873504, guid: 370c79bd83202654b960ff6d04714080,
+    type: 2}
+  chestLocRotPreset: {fileID: 2655988077585873504, guid: fe73d5f7ba4318a419dfb0da55967814,
+    type: 2}
+  damage: 30
+  uses: 5
+  lightProjectilePrefab: {fileID: 0}
+  heavyProjectilePrefab: {fileID: 0}
+  projectileVelocity: 30
+  weaponType: 0

@@ -77,16 +77,15 @@ public class ThrowObject : MonoBehaviour {
             ReleaseThrowable();
         }
 
-        if (_charManager.IsHoldingWeapon)
+        if (_charManager.IsHoldingRangedWeapon)
         {
             _charControl.Targeting(40f, 75f);
         }
-
-        // throw object
+        
         if (_throwKeyPress)
         {
-            // shoot weapon if holding weapon and not shooting
-            if (_charManager.IsHoldingWeapon && _charManager.CanShoot)
+            // shoot weapon if holding ranged weapon and not shooting
+            if (_charManager.IsHoldingRangedWeapon && _charManager.CanShoot)
             {
                 if (_autolock.Target != null)
                 {
@@ -96,6 +95,7 @@ public class ThrowObject : MonoBehaviour {
                 ShootBigGun();
             }
 
+            // throw object
             if (_charManager.IsGrabbingThrowable)
             {
                 if (_autolock.Target != null)
@@ -105,15 +105,17 @@ public class ThrowObject : MonoBehaviour {
                 }
                 ReleaseThrowable(true);
             }
-            else //try pick things up
+
+            // pickup object
+            else 
             {
                 Collider[] hitColliders = Physics.OverlapSphere(transform.position + transform.forward * 5f + transform.up * 3f, _pickUpRadius, layerMask);
                 if (hitColliders.Length != 0)
                 {
                     foreach (Collider i in hitColliders)
                     {
-                        if (i.gameObject.tag == "Throwable" && !_charManager.IsGrabbingThrowable 
-                            && !_charManager.IsHoldingWeapon && !animator.GetBool("Sprinting"))
+                        if (i.gameObject.tag == "Throwable" && !_charManager.IsGrabbingThrowable
+                            && !_charManager.IsHoldingRangedWeapon && !animator.GetBool("Sprinting"))
                         {
                             throwableObject = i.gameObject;
                             rb = throwableObject.GetComponent<Rigidbody>();
@@ -178,16 +180,16 @@ public class ThrowObject : MonoBehaviour {
         if (_throwKeyPress)
         {
             // attach gun to hand
-            _charManager.RangedWeapon.transform.parent = _charManager.rightHand.transform;
-            _charManager.RangedWeapon._rangedWeapon.handLocRotPreset.ApplyTo(_charManager.RangedWeapon.transform);
+            _charManager.Weapon.transform.parent = _charManager.rightHand.transform;
+            _charManager.Weapon._weapon.handLocRotPreset.ApplyTo(_charManager.Weapon.transform);
             animator.SetBool("ShootingBigGun", true);
             if (_autolock.Target != null)
             {
-                _charManager.RangedWeapon.ShootLight(_autolock);
+                _charManager.Weapon.ShootLight(_autolock);
             }
             else
             {
-                _charManager.RangedWeapon.ShootLight(transform.forward);
+                _charManager.Weapon.ShootLight(transform.forward);
             }
 
             // reattach gun to hand
@@ -199,8 +201,8 @@ public class ThrowObject : MonoBehaviour {
     {
         yield return new WaitForSeconds(time);
         animator.SetBool("ShootingBigGun", false);
-        _charManager.RangedWeapon.transform.parent = _charManager.chest.transform;
-        _charManager.RangedWeapon._rangedWeapon.chestLocRotPreset.ApplyTo(_charManager.RangedWeapon.transform);
+        _charManager.Weapon.transform.parent = _charManager.chest.transform;
+        _charManager.Weapon._weapon.chestLocRotPreset.ApplyTo(_charManager.Weapon.transform);
     }
 
     private void OnDrawGizmos()

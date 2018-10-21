@@ -8,7 +8,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f61e25b62f09cc45a726a4ca3a9ab85, type: 3}
+  m_Script: {fileID: 11500000, guid: 4c83830ae4080d947adbd72a824faf0c, type: 3}
   m_Name: rocketLauncher
   m_EditorClassIdentifier: 
   weaponName: Rocket Launcher
@@ -16,10 +16,11 @@ MonoBehaviour:
     type: 2}
   chestLocRotPreset: {fileID: 2655988077585873504, guid: 055cb8c32626a6f4980260995bb1eeb6,
     type: 2}
+  damage: 30
+  uses: 5
   lightProjectilePrefab: {fileID: 1429283479777328, guid: 6b7d411794516a942a0912e8b7b69792,
     type: 2}
-  heavyProjectilePrefab: {fileID: 1609645369061784, guid: 157262300585e474ba9df051e2e5deb4,
+  heavyProjectilePrefab: {fileID: 1429283479777328, guid: 6b7d411794516a942a0912e8b7b69792,
     type: 2}
-  projectileVelocity: 40
-  damage: 20
-  ammo: 5
+  projectileVelocity: 30
+  weaponType: 1

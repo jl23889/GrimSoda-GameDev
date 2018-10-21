@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 4c83830ae4080d947adbd72a824faf0c
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - handLocRotPreset: {instanceID: 0}
+  - chestLocRotPreset: {instanceID: 0}
+  - lightProjectilePrefab: {instanceID: 0}
+  - heavyProjectilePrefab: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

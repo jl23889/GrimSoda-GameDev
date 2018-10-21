@@ -18,16 +18,16 @@ public class CharacterCollectItem : MonoBehaviour {
         if(other.gameObject.CompareTag("Weapon") && !_charManager.IsHoldingWeapon)
         {
             GameObject _weapon = other.gameObject;
-            RangedWeaponManager _rwManager = _weapon.GetComponent<RangedWeaponManager>();
-            // make gameobject child of player (so it moves with player)
+            WeaponManager _wManager = _weapon.GetComponent<WeaponManager>();
+        
             _weapon.transform.parent = _charManager.chest.transform;
-            _rwManager._rangedWeapon.chestLocRotPreset.ApplyTo(_weapon.transform);
+            _wManager._weapon.chestLocRotPreset.ApplyTo(_weapon.transform);
             
             // set rotation on weapon off
             _weapon.GetComponent<SpinGameObject>().rotationSpeed = 0;
-            _charManager.RangedWeapon = _rwManager;
+            _charManager.Weapon = _wManager;
 
-            _rwManager.GetComponent<Collider>().enabled = false; //disable weapon collider
+            _wManager.GetComponent<Collider>().enabled = false; //disable weapon collider
         }
     }
 

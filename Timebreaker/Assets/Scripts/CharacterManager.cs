@@ -21,7 +21,7 @@ public class CharacterManager : MonoBehaviour {
     private CapsuleCollider pushbox;
     private AudioSource _audioSource;
 
-    private RangedWeaponManager _rwManager = null; // currently equipped weapon; null if false
+    private WeaponManager _weaponManager = null; // currently equipped weapon; null if false
 
     private float startingHealth = 100f; //set 100 as default
     private float startingStamina = 100f;
@@ -81,12 +81,26 @@ public class CharacterManager : MonoBehaviour {
     }
     public bool IsHoldingWeapon
     {
-        get { return _rwManager!=null ? true : false; }
+        get { return _weaponManager!=null ? true : false; }
     }
-    public RangedWeaponManager RangedWeapon
+    public bool IsHoldingMeleeWeapon
     {
-        get { return _rwManager; }
-        set { _rwManager = value; }
+        get{ return _weaponManager != null
+            && _weaponManager._weapon.weaponType.Equals(EquippableWeapon.WeaponType.TwoHandMelee)
+            ? true : false;
+        }
+    }
+    public bool IsHoldingRangedWeapon
+    {
+        get { return _weaponManager != null 
+            && _weaponManager._weapon.weaponType.Equals(EquippableWeapon.WeaponType.BigGun)
+            ? true : false;
+        }
+    }
+    public WeaponManager Weapon
+    {
+        get { return _weaponManager; }
+        set { _weaponManager = value; }
     }
     public bool CanShoot
     {
@@ -115,6 +129,21 @@ public class CharacterManager : MonoBehaviour {
         canShoot =
             _character.canShootAnimationList.Contains(currentClip) ? true : false;
 
+        // set melee animation flag
+        if (IsHoldingWeapon)
+        {
+            switch (_weaponManager._weapon.weaponType)
+            {
+                case EquippableWeapon.WeaponType.TwoHandMelee:
+                    animator.SetInteger("Weapon", 1); // holding weapon
+                    break;
+        }
+            
+        } else
+        {
+            animator.SetInteger("Weapon", 0); // not holding weapon
+        }
+
         // set grounded animation update here
         //  separate the animation update from game logic so character has no lag time
         //  between animations
@@ -134,8 +163,8 @@ public class CharacterManager : MonoBehaviour {
         isGrounded = GroundedCheck();
 
         // check if holding weapon
-        if (IsHoldingWeapon && RangedWeapon.remainingAmmo <= 0)
-        { RangedWeapon = null; }
+        if (IsHoldingWeapon && Weapon.remainingCharges <= 0)
+        { Weapon = null; }
 
         // refill stamina
         _staminaCooldown -= 1;
