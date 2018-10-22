@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: e82f2f0824d7db64594357441a5d15db
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: LORD OF THE RING
+  fontNames:
+  - LORD OF THE RING
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 9841fc5e9ba1841409e8e1a7ee8f890f, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
