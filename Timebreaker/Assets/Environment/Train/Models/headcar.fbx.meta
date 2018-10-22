@@ -10,6 +10,7 @@ ModelImporter:
     100008: wheel2
     100010: wheel3
     100012: wheel4
+    100014: connector
     400000: box
     400002: flatbed
     400004: //RootNode
@@ -17,26 +18,31 @@ ModelImporter:
     400008: wheel2
     400010: wheel3
     400012: wheel4
+    400014: connector
     2100000: Material
     2100002: No Name
+    2100004: Material.001
     2300000: box
     2300002: flatbed
     2300004: wheel1
     2300006: wheel2
     2300008: wheel3
     2300010: wheel4
+    2300012: connector
     3300000: box
     3300002: flatbed
     3300004: wheel1
     3300006: wheel2
     3300008: wheel3
     3300010: wheel4
+    3300012: connector
     4300000: flatbed
     4300002: wheel4
     4300004: wheel3
     4300006: wheel2
     4300008: wheel1
     4300010: box
+    4300012: connector
   externalObjects: {}
   materials:
     importMaterials: 1

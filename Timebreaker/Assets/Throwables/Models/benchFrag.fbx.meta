@@ -1,50 +1,51 @@
 fileFormatVersion: 2
-guid: 38b047c6d853e5644afceaf0fe9665ba
+guid: 196dc0cda480ea94a8ba7891d65e9074
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
-    100000: box
-    100002: flatbed
-    100004: //RootNode
-    100006: wheel1
-    100008: wheel2
-    100010: wheel3
-    100012: wheel4
-    100014: connector
-    400000: box
-    400002: flatbed
-    400004: //RootNode
-    400006: wheel1
-    400008: wheel2
-    400010: wheel3
-    400012: wheel4
-    400014: connector
+    100000: //RootNode
+    100002: Cube
+    100004: Cube.001
+    100006: Cube.002
+    100008: Cube.003
+    100010: Cube.004
+    100012: Cube.005
+    100014: Cube.006
+    100016: Cube.007
+    400000: //RootNode
+    400002: Cube
+    400004: Cube.001
+    400006: Cube.002
+    400008: Cube.003
+    400010: Cube.004
+    400012: Cube.005
+    400014: Cube.006
+    400016: Cube.007
     2100000: Material
-    2100002: unnamed
-    2100004: Material_001
-    2300000: box
-    2300002: flatbed
-    2300004: wheel1
-    2300006: wheel2
-    2300008: wheel3
-    2300010: wheel4
-    2300012: connector
-    3300000: box
-    3300002: flatbed
-    3300004: wheel1
-    3300006: wheel2
-    3300008: wheel3
-    3300010: wheel4
-    3300012: connector
-    4300000: flatbed
-    4300002: wheel4
-    4300004: wheel3
-    4300006: wheel2
-    4300008: wheel1
-    4300010: box
-    4300012: connector
-    7400000: Default Take
-    9500000: //RootNode
+    2300000: Cube
+    2300002: Cube.001
+    2300004: Cube.002
+    2300006: Cube.003
+    2300008: Cube.004
+    2300010: Cube.005
+    2300012: Cube.006
+    2300014: Cube.007
+    3300000: Cube
+    3300002: Cube.001
+    3300004: Cube.002
+    3300006: Cube.003
+    3300008: Cube.004
+    3300010: Cube.005
+    3300012: Cube.006
+    3300014: Cube.007
+    4300000: Cube.007
+    4300002: Cube.006
+    4300004: Cube.005
+    4300006: Cube.004
+    4300008: Cube.003
+    4300010: Cube.002
+    4300012: Cube.001
+    4300014: Cube
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -79,10 +80,10 @@ ModelImporter:
     globalScale: 1
     meshCompression: 0
     addColliders: 0
-    importVisibility: 1
+    importVisibility: 0
     importBlendShapes: 1
-    importCameras: 1
-    importLights: 1
+    importCameras: 0
+    importLights: 0
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
@@ -97,13 +98,13 @@ ModelImporter:
     secondaryUVPackMargin: 4
     useFileScale: 1
     previousCalculatedGlobalScale: 1
-    hasPreviousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
     tangentImportMode: 3
     normalCalculationMode: 4
-  importAnimation: 1
+  importAnimation: 0
   copyAvatar: 0
   humanDescription:
     serializedVersion: 2
@@ -122,7 +123,7 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 2
+  animationType: 0
   humanoidOversampling: 1
   additionalBone: 0
   userData: 
