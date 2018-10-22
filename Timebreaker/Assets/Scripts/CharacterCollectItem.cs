@@ -15,7 +15,7 @@ public class CharacterCollectItem : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.CompareTag("Weapon") && !_charManager.IsHoldingWeapon && other.gameObject.transform.parent == null)
+        if(other.gameObject.CompareTag("Weapon") && !_charManager.IsHoldingWeapon)
         {
             GameObject _weapon = other.gameObject;
             WeaponManager _wManager = _weapon.GetComponent<WeaponManager>();
@@ -36,7 +36,7 @@ public class CharacterCollectItem : MonoBehaviour {
             _weapon.GetComponent<SpinGameObject>().rotationSpeed = 0;
             _charManager.Weapon = _wManager;
 
-            //_wManager.GetComponent<Collider>().enabled = false; //disable weapon collider
+            _wManager.GetComponent<Collider>().enabled = false; //disable weapon collider
         }
     }
 
