@@ -26,7 +26,7 @@ public class FragObject : MonoBehaviour {
 	void OnCollisionEnter (Collision collision) {
         if (collision.relativeVelocity.magnitude > velocityToFrag)
         {
-            _hitbox.HitboxCenterPosition(gameObject);
+            _hitbox.HitboxCenterGameObject(gameObject);
             _hitbox.ResizeHitbox(_throwable.hitboxSize);
             _hitbox.StartHitboxCollision();
             TriggerHit(_hitbox.GetHurtboxCollisions());

@@ -13,43 +13,43 @@ Preset:
   m_Properties:
   - target: {fileID: 0}
     propertyPath: m_LocalRotation.x
-    value: -0.109323725
+    value: 0.5207743
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: m_LocalRotation.y
-    value: -0.38471925
+    value: -0.1053317
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: m_LocalRotation.z
-    value: -0.0045379177
+    value: 0.31802034
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: m_LocalRotation.w
-    value: 0.9165254
+    value: 0.7852149
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: m_LocalPosition.x
-    value: -0.0085
+    value: 0.0096
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: m_LocalPosition.y
-    value: 0.0069
+    value: 0.0015
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: m_LocalPosition.z
-    value: 0.0097
+    value: -0.0085
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: m_LocalScale.x
-    value: 0.25
+    value: 0.005
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: m_LocalScale.y
-    value: 0.6
+    value: 0.005
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: m_LocalScale.z
-    value: 0.26
+    value: 0.005
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: m_RootOrder
@@ -57,13 +57,13 @@ Preset:
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: m_LocalEulerAnglesHint.x
-    value: -168.236
+    value: -242.231
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: m_LocalEulerAnglesHint.y
-    value: 134.001
+    value: 200.849
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: m_LocalEulerAnglesHint.z
-    value: -175.559
+    value: 236.77
     objectReference: {fileID: 0}

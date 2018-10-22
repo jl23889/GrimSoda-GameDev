@@ -134,8 +134,16 @@ public class CharacterControl : MonoBehaviour
 
     private void TakeInput()
     {
-        _dodgeKeyHold = Input.GetButton(player + "Dodge");
-        _dodgeKeyUp = Input.GetButtonUp(player + "Dodge");
+        // only allow dodge and sprint when not holding weapon
+        if (!_charManager.IsHoldingMeleeWeapon)
+        {
+            _dodgeKeyHold = Input.GetButton(player + "Dodge");
+            _dodgeKeyUp = Input.GetButtonUp(player + "Dodge");
+        } else
+        {
+            _dodgeKeyHold = false;
+            _dodgeKeyUp = false;
+        }
 
         if (!_dodgeKeyHold && !_dodgeKeyUp)
         {
@@ -352,6 +360,10 @@ public class CharacterControl : MonoBehaviour
         if (_heavyAttackPress)
         {
             animator.SetBool("HeavyAttack", true);
+            if (_charManager.IsHoldingMeleeWeapon)
+            {
+                return;
+            }
         }
 
         if (_heavyAttackHold && _isGrounded && !animator.GetBool("Sprinting"))
@@ -367,8 +379,6 @@ public class CharacterControl : MonoBehaviour
         if (_lightAttackPress)
         {
             animator.SetBool("LightAttack", true);
-            if (_charManager.IsHoldingMeleeWeapon)
-                SwingWeapon();
         }
     }
 
@@ -390,23 +400,5 @@ public class CharacterControl : MonoBehaviour
         yield return new WaitForSeconds(duration);
         _charManager.IsInvincible = false;
         animator.SetBool("Recovery", false);
-    }
-
-    // attach weapon model to hand
-    public void SwingWeapon()
-    {
-        // attach weapon to hand
-        _charManager.Weapon.transform.parent = _charManager.rightHand.transform;
-        _charManager.Weapon._weapon.handLocRotPreset.ApplyTo(_charManager.Weapon.transform);
-
-        // reattach weapon to back
-        StartCoroutine(PlaceWeaponChest(.8f));
-    }
-
-    IEnumerator PlaceWeaponChest(float time)
-    {
-        yield return new WaitForSeconds(time);
-        _charManager.Weapon.transform.parent = _charManager.chest.transform;
-        _charManager.Weapon._weapon.chestLocRotPreset.ApplyTo(_charManager.Weapon.transform);
     }
 }

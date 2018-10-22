@@ -12,6 +12,7 @@ public class CharacterAttack : MonoBehaviour
     private Animator animator;
     private AnimationClip currentClip;
     private GameObject vfxBone;         // this is the bone that has the vfx to be played
+    private int audioPlaying = -1;  
 
     [HideInInspector]
     private Attack _attack; // the current attack
@@ -42,6 +43,15 @@ public class CharacterAttack : MonoBehaviour
 
         if (attackIndex >= 0)
         {
+            // play startup Audio
+            if (audioPlaying != attackIndex && _char.IsHoldingMeleeWeapon)
+            {
+                _char.Weapon.PlayAudio();
+                audioPlaying = attackIndex;
+            }
+
+
+
             // check if animation is the same attack
             //  if not, we clear the hurtbox buffer so we can triggerhits again
             if (_attack != null)
@@ -58,19 +68,20 @@ public class CharacterAttack : MonoBehaviour
             switch (_attack.attackLimb) //TODO: we shouldn't need to lookup the attack limb using strings, rather we should just be able to assign limbs as gameobjects in inspector
             {
                 case "leftArm":
-                    _charHitbox.HitboxCenterPosition(_char.leftArm);
+                    _charHitbox.HitboxCenterGameObject(_char.leftArm);
                     vfxBone = _char.leftHand;
                     break;
                 case "rightArm":
-                    _charHitbox.HitboxCenterPosition(_char.rightArm);
+                    _charHitbox.HitboxCenterGameObject(_char.rightArm);
                     vfxBone = _char.rightHand;
                     break;
                 case "head":
-                    _charHitbox.HitboxCenterPosition(_char.head);
+                    _charHitbox.HitboxCenterGameObject(_char.head);
                     vfxBone = _char.headEnd;
                     break;
                 case "weapon":
-                    _charHitbox.HitboxCenterPosition(_char.Weapon.gameObject.transform.GetChild(0).gameObject);
+                    if (_char.IsHoldingMeleeWeapon)
+                        _charHitbox.HitboxCollider(_char.Weapon.GetComponent<BoxCollider>());
                     break;
             }
             _charHitbox.ResizeHitbox(_attack.hitboxSize);
@@ -82,6 +93,7 @@ public class CharacterAttack : MonoBehaviour
             _charHitbox.StopHitboxCollision();
             ClearHurtboxBuffer();
             _attack = null;
+            audioPlaying = -1;
         }
     }
 
@@ -107,6 +119,10 @@ public class CharacterAttack : MonoBehaviour
                         // make the character that is hit take damage from attack
                         _charHit.TakeDamage(_attack, transform);
                         _charHitbox.DetectCollision();
+
+                        // subtract a charge from weapon
+                        if (_char.IsHoldingMeleeWeapon)
+                            _char.Weapon.UseCharge();
                     }
 
                     // add the colider to the buffer so that it is not affected by the same attack

@@ -14,11 +14,11 @@ MonoBehaviour:
   attackName: 2hL
   animationClip: {fileID: 7400118, guid: 870ae1cf9a6294d87bdc61b40eb2fba0, type: 3}
   damage: 30
-  hitStunDuration: 0.5
+  hitStunDuration: 1
   attackLimb: weapon
-  hitboxSize: {x: 1, y: 1, z: 1}
-  knockback: 0
+  hitboxSize: {x: 5, y: 5, z: 7}
+  knockback: 1
   knockdown: 0
-  knockup: 0
-  knockbackVelocity: 0
-  knockupVelocity: 0
+  knockup: 1
+  knockbackVelocity: 120
+  knockupVelocity: 15
