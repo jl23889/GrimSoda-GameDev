@@ -20,11 +20,14 @@ public class DestroyTimer : MonoBehaviour {
         //play sound
         GetComponent<AudioSource>().Play();
         // Instantiate particle effects
-        if (_throwable.isExplosive)
+        if (_throwable != null)
         {
-            explosionFxInstance = (GameObject)Instantiate(explosionFx, gameObject.transform.position, Quaternion.identity);
+            if (_throwable.isExplosive)
+            {
+                explosionFxInstance = (GameObject)Instantiate(explosionFx, gameObject.transform.position, Quaternion.identity);
+            }
+            Destroy(explosionFxInstance, timeToDestroy);
         }
-        Destroy(explosionFxInstance, timeToDestroy);
 
         // Start Respawn timer 
         StartCoroutine(Respawn());
