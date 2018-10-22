@@ -28,7 +28,7 @@ public class WeaponManager : MonoBehaviour {
         
         remainingCharges = _weapon.uses;
         isResetting = false;
-        offsetY = transform.position.y;
+        offsetY = transform.localPosition.y;
         initialSpinSpeed = _spinScript.rotationSpeed;
         initialRotation = transform.rotation.eulerAngles;
 	}

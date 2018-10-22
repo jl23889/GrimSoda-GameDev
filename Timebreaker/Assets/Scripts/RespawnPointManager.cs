@@ -4,9 +4,13 @@ using UnityEngine;
 
 public class RespawnPointManager : MonoBehaviour
 {
-
     [SerializeField]
     private GameObject currentGob;  // this represents the gameObject currently occupying the respawn point;
+
+    void Start()
+    {
+
+    }
 
     // Use this for initialization
     void FixedUpdate()
