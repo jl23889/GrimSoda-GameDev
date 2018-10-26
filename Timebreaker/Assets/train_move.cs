@@ -20,6 +20,8 @@ public class train_move : MonoBehaviour {
     private float time_counter2 = 0;
     private bool _isAccelerating = false;
 
+    public AudioClip _trainWhistleLongClip;
+    public AudioSource _trainWhistleAudio;
 
 	// Use this for initialization
 	void Start () {
@@ -27,6 +29,7 @@ public class train_move : MonoBehaviour {
         _moving_in_direction = new Vector3(0f, 0f, _currentSpeed * _direction);
         _turnAroundStopTime = Random.Range(_turnAroundTimeMin, _turnAroundTimeMax);
         _inStationStopTime = Random.Range(_inStationTimeMin, _inStationTimeMax);
+       
     }
 
     void FixedUpdate()
@@ -108,6 +111,8 @@ public class train_move : MonoBehaviour {
     private void TurnAround()
     {
         transform.rotation = Quaternion.Euler(0f, (90f + 90f *_direction), 0f);
+        _trainWhistleAudio.clip = _trainWhistleLongClip;
+        _trainWhistleAudio.Play();
         time_counter2 = 0;
     }
 }
