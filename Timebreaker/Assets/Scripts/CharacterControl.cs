@@ -62,29 +62,44 @@ public class CharacterControl : MonoBehaviour
         Physics.gravity = new Vector3(0f, gravity, 0f);
         _movement = Vector3.zero;
         dodgeButtonTime = 0f;
+
         switch (_player)
         {
             case Player.P1:
+                if (_playerUI != null)
+                {
+                    _playerUI.transform.GetChild(2).GetComponent<RawImage>().color = Color.red;
+                    GetComponentInChildren<Image>().color = Color.red;
+                }
                 player = "P1";
-                _playerUI.transform.GetChild(2).GetComponent<RawImage>().color = Color.red;
-                GetComponentInChildren<Image>().color = Color.red;
                 break;
             case Player.P2:
                 player = "P2";
-                _playerUI.transform.GetChild(2).GetComponent<RawImage>().color = Color.green;
-                GetComponentInChildren<Image>().color = Color.green;
+                if (_playerUI != null)
+                {
+                    _playerUI.transform.GetChild(2).GetComponent<RawImage>().color = Color.green;
+                    GetComponentInChildren<Image>().color = Color.green;
+                }
                 break;
             case Player.P3:
                 player = "P3";
-                GetComponentInChildren<Image>().color = _playerUI.transform.GetChild(2).GetComponent<RawImage>().color;
-                break;
+                if (_playerUI != null)
+                {
+                    GetComponentInChildren<Image>().color = _playerUI.transform.GetChild(2).GetComponent<RawImage>().color;
+                }
+                    break;
             case Player.P4:
                 player = "P4";
-                _playerUI.transform.GetChild(2).GetComponent<RawImage>().color = new Color(255,176,0,255);
-                GetComponentInChildren<Image>().color = new Color(255, 176, 0, 255);
-                break;
+                if (_playerUI != null)
+                {
+                    _playerUI.transform.GetChild(2).GetComponent<RawImage>().color = new Color(255, 176, 0, 255);
+                    GetComponentInChildren<Image>().color = new Color(255, 176, 0, 255);
+                }
+                    break;
         }
+
         transform.GetChild(1).GetComponent<SkinnedMeshRenderer>().material = material;
+        
     }
 
     //buttons should be prioritized from top to bottom
@@ -251,6 +266,8 @@ public class CharacterControl : MonoBehaviour
     private void CalculateMovement()
     {
         MovementByCamera();
+
+        Debug.Log("Moving");
 
         if (_charManager.IsHitStunned || animator.GetBool("ChargingAttack") || animator.GetBool("Blocking") || animator.GetBool("ShootingBigGun"))
         {
