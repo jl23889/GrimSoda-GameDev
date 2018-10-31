@@ -594,6 +594,7 @@ GameObject:
   - component: {fileID: 114985288753969948}
   - component: {fileID: 114214297747658992}
   - component: {fileID: 82020992911802020}
+  - component: {fileID: 114234425405758510}
   m_Layer: 9
   m_Name: vikingPrefab
   m_TagString: Player
@@ -2394,7 +2395,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1386627508743444}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.1508522, y: 0, z: -11.989166}
+  m_LocalPosition: {x: 30, y: 0, z: 35}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4630676053658876}
@@ -2651,6 +2652,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffc10b375a20c0d41a38f2c60171797b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114234425405758510
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1386627508743444}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 928c480a764ac874aac681340ef4e5ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114434859947558980
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2767,9 +2779,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c2f74fea2217b74f92925c325ad3636, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: 1
+  _player: 0
   _playerUI: {fileID: 0}
-  material: {fileID: 2100000, guid: 7158cf0a5e1d82342ac16caac34a53a5, type: 2}
+  material: {fileID: 2100000, guid: 64ede67527f083a49be003d686b2868d, type: 2}
   gravity: -35
   _cameraRig: {fileID: 0}
 --- !u!114 &114985288753969948
@@ -3033,6 +3045,7 @@ SkinnedMeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
+  - {fileID: 2100000, guid: a6aa1d551cd1fef44977c4cda58a8bb6, type: 3}
   - {fileID: 2100000, guid: a6aa1d551cd1fef44977c4cda58a8bb6, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -21877,6 +21890,6 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0.1}
+  m_AnchoredPosition: {x: 0, y: 0.2}
   m_SizeDelta: {x: 4, y: 4}
   m_Pivot: {x: 0.5, y: 0.5}

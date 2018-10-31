@@ -39,7 +39,6 @@ GameObject:
   - component: {fileID: 95827864994143004}
   - component: {fileID: 65773800008906064}
   - component: {fileID: 65428041975928800}
-  - component: {fileID: 114187471572228174}
   m_Layer: 0
   m_Name: boxcar
   m_TagString: Untagged
@@ -181,8 +180,8 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1259318782909688}
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0, y: 0, z: 0.11}
+  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -0.22}
   m_LocalScale: {x: 0.5, y: 5, z: 0.020000001}
   m_Children:
   - {fileID: 4639205915670128}
@@ -596,14 +595,3 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &114187471572228174
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1259318782909688}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 928c480a764ac874aac681340ef4e5ee, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

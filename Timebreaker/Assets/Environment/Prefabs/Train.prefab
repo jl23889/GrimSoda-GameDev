@@ -193,7 +193,6 @@ GameObject:
   - component: {fileID: 95416283365343886}
   - component: {fileID: 65854510954402864}
   - component: {fileID: 65565078454440364}
-  - component: {fileID: 114292448458669560}
   m_Layer: 0
   m_Name: flatcar (2)
   m_TagString: Untagged
@@ -212,10 +211,9 @@ GameObject:
   - component: {fileID: 95143060007441338}
   - component: {fileID: 65247884446841596}
   - component: {fileID: 65102681490414102}
-  - component: {fileID: 114572833368419608}
   m_Layer: 0
   m_Name: boxcar (3)
-  m_TagString: Untagged
+  m_TagString: Platform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -282,10 +280,9 @@ GameObject:
   - component: {fileID: 95152429102234424}
   - component: {fileID: 65060242650175274}
   - component: {fileID: 65790272922187512}
-  - component: {fileID: 114487168390051712}
   m_Layer: 0
   m_Name: boxcar
-  m_TagString: Untagged
+  m_TagString: Platform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -839,10 +836,9 @@ GameObject:
   - component: {fileID: 95832702372386720}
   - component: {fileID: 65431298988844338}
   - component: {fileID: 65167856198842148}
-  - component: {fileID: 114392055731844646}
   m_Layer: 0
   m_Name: flatcar
-  m_TagString: Untagged
+  m_TagString: Platform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -926,10 +922,9 @@ GameObject:
   - component: {fileID: 95385126231160226}
   - component: {fileID: 65349951666470910}
   - component: {fileID: 65589208807363616}
-  - component: {fileID: 114386361163628670}
   m_Layer: 0
   m_Name: flatcar (1)
-  m_TagString: Untagged
+  m_TagString: Platform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1030,7 +1025,6 @@ GameObject:
   - component: {fileID: 95813278189451150}
   - component: {fileID: 65276851665334276}
   - component: {fileID: 65201306950946834}
-  - component: {fileID: 114555090243749490}
   m_Layer: 0
   m_Name: boxcar (2)
   m_TagString: Untagged
@@ -5045,50 +5039,6 @@ MonoBehaviour:
   remainingCharges: 0
   _respawnPoint: {fileID: 114185246380330600}
   timeToRespawn: 3
---- !u!114 &114292448458669560
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1162832552831272}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 928c480a764ac874aac681340ef4e5ee, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &114386361163628670
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1807741392452860}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 928c480a764ac874aac681340ef4e5ee, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &114392055731844646
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1675418625670774}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 928c480a764ac874aac681340ef4e5ee, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &114487168390051712
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1213486380912050}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 928c480a764ac874aac681340ef4e5ee, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114496700053323534
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5102,17 +5052,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotationSpeed: 20
   rotationVector: {x: 0, y: 0, z: 1}
---- !u!114 &114555090243749490
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1916590377713656}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 928c480a764ac874aac681340ef4e5ee, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114565044100020210
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5128,17 +5067,6 @@ MonoBehaviour:
   remainingCharges: 0
   _respawnPoint: {fileID: 114640470417660418}
   timeToRespawn: 3
---- !u!114 &114572833368419608
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1163068850107578}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 928c480a764ac874aac681340ef4e5ee, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114616488776683540
 MonoBehaviour:
   m_ObjectHideFlags: 1

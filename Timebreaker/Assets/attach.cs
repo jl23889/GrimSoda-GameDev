@@ -5,11 +5,17 @@ using UnityEngine;
 public class attach : MonoBehaviour {
     void OnTriggerEnter(Collider other)
     {
-        other.gameObject.transform.parent = transform;
+        if (other.gameObject.tag == "Platform")
+        {
+            transform.parent = other.transform;
+        }
     }
 
     void OnTriggerExit(Collider other)
     {
-        other.gameObject.transform.parent = null;
+        if (other.gameObject.tag == "Platform")
+        {
+            transform.parent = null;
+        }
     }
 }

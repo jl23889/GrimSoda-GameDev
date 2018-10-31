@@ -315,7 +315,8 @@ public class CharacterControl : MonoBehaviour
 
     private void Move()
     {
-        rb.MovePosition(transform.position + _movement * _char.runSpeed * Time.fixedDeltaTime);
+        //rb.MovePosition(transform.position + _movement * _char.runSpeed * Time.fixedDeltaTime);
+        rb.AddForce(_movement * _char.runSpeed * Time.fixedDeltaTime * 20000);
 
         // faces target if attacking and has a target 
         if (animator.GetBool("Attacking") && _autoLock.Target != null)

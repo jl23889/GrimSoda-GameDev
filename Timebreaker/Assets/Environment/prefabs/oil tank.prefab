@@ -160,7 +160,6 @@ GameObject:
   - component: {fileID: 95026280720980996}
   - component: {fileID: 65926915343606300}
   - component: {fileID: 65014911805212688}
-  - component: {fileID: 114263671107117544}
   m_Layer: 0
   m_Name: oil tank
   m_TagString: Untagged
@@ -745,17 +744,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &114263671107117544
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1863044679364254}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 928c480a764ac874aac681340ef4e5ee, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!135 &135723270502131800
 SphereCollider:
   m_ObjectHideFlags: 1
