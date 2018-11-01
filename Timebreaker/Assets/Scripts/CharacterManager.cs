@@ -13,6 +13,8 @@ public class CharacterManager : MonoBehaviour {
     public GameObject leftHand;     //left hand bone
     public GameObject rightHand;    //right hand bone
     public GameObject headEnd;         //head_end bone
+
+    public GameObject landFx;
     public LayerMask groundLayer;
 
     private Animator animator;
@@ -160,7 +162,12 @@ public class CharacterManager : MonoBehaviour {
     void FixedUpdate()
     {
         // check if character is grounded on regular interval
-        isGrounded = GroundedCheck();
+        bool landed = GroundedCheck();
+        if (!isGrounded && landed)
+        {
+            StartCoroutine(PlayLandingFx(.5f));
+        }
+        isGrounded = landed;
 
         // check if holding weapon
         if (IsHoldingWeapon && Weapon.remainingCharges <= 0)
@@ -295,6 +302,20 @@ public class CharacterManager : MonoBehaviour {
     public bool GroundedCheck()
     {
         return Physics.CheckCapsule(pushbox.bounds.center, new Vector3(pushbox.bounds.center.x, pushbox.bounds.min.y, pushbox.bounds.center.z), pushbox.radius, groundLayer);
+    }
+
+    IEnumerator PlayLandingFx(float time)
+    {
+        // enable the ground effect to play
+        float playTime = time;
+        landFx.GetComponent<MeshRenderer>().enabled = true;
+        while (playTime > 0)
+        {
+            playTime -= Time.deltaTime;
+            yield return null;
+        }
+        landFx.GetComponent<MeshRenderer>().enabled = false;
+
     }
 
     // disables player input for length of hsd

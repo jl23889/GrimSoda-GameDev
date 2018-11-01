@@ -24,7 +24,7 @@ public class DestroyTimer : MonoBehaviour {
         {
             if (_throwable.isExplosive)
             {
-                explosionFxInstance = (GameObject)Instantiate(explosionFx, gameObject.transform.position, Quaternion.identity);
+                explosionFxInstance = (GameObject)Instantiate(explosionFx, gameObject.transform.position, gameObject.transform.rotation);
             }
             Destroy(explosionFxInstance, timeToDestroy);
         }
