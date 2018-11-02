@@ -12,6 +12,7 @@ public class CharacterControl : MonoBehaviour
     private string player;
     public GameObject _playerUI;
     public GameObject walkingFx;
+    public GameObject jumpingFx;
     private float walkingFxTimer;
     public Material material;
 
@@ -377,6 +378,9 @@ public class CharacterControl : MonoBehaviour
                 // this will always make the player jump the same height
                 rb.AddForce(Vector3.up * Mathf.Sqrt(2 * -Physics.gravity.y * _char.jumpHeight), ForceMode.VelocityChange);
                 animator.SetBool("Jumping", true);
+
+                // create the jump vfx
+                PlayJumpingFx(1.0f);
             }
         }
 
@@ -389,6 +393,12 @@ public class CharacterControl : MonoBehaviour
         {
             rb.velocity += Vector3.up * Physics.gravity.y * (_char.lowJumpMultiplier - 1) * Time.fixedDeltaTime;
         }
+    }
+
+    private void PlayJumpingFx(float timeToDestroy)
+    {
+        GameObject jumpingFxInstance = (GameObject)Instantiate(jumpingFx, gameObject.transform.position, Quaternion.Euler(-90f, 0f, 0f));
+        Destroy(jumpingFxInstance, timeToDestroy);
     }
 
     private void Attack()

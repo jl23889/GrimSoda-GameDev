@@ -2771,6 +2771,7 @@ MonoBehaviour:
   _player: 0
   _playerUI: {fileID: 0}
   walkingFx: {fileID: 1760786355554088, guid: dbaf77bf2789a614ebd8991b66d86911, type: 2}
+  jumpingFx: {fileID: 1548463021795436, guid: 886997090a9366b409634edff1984207, type: 2}
   material: {fileID: 2100000, guid: 64ede67527f083a49be003d686b2868d, type: 2}
   gravity: -35
   _cameraRig: {fileID: 0}
