@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 199917481857661210}
   - component: {fileID: 135325859380446436}
   m_Layer: 0
-  m_Name: LightningOrb 1
+  m_Name: LightningOrb
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

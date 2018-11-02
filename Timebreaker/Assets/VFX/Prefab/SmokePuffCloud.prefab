@@ -39,7 +39,7 @@ GameObject:
   - component: {fileID: 198463024918468986}
   - component: {fileID: 199511626198460978}
   m_Layer: 0
-  m_Name: SmokePuff
+  m_Name: SmokePuffCloud
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9349,7 +9349,7 @@ ParticleSystemRenderer:
   m_EnableGPUInstancing: 1
   m_ApplyActiveColorSpace: 1
   m_VertexStreams: 00010304
-  m_Mesh: {fileID: 4300002, guid: 103612e5e1ff43a4e896c567a2cb3ae1, type: 3}
+  m_Mesh: {fileID: 4300000, guid: 978d56774ae940e4f8643d780bec8ce6, type: 3}
   m_Mesh1: {fileID: 0}
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
