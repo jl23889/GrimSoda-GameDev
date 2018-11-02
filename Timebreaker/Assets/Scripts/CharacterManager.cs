@@ -14,7 +14,7 @@ public class CharacterManager : MonoBehaviour {
     public GameObject rightHand;    //right hand bone
     public GameObject headEnd;         //head_end bone
 
-    public GameObject landFx;
+    public GameObject landingFx;
     public LayerMask groundLayer;
 
     private Animator animator;
@@ -165,7 +165,8 @@ public class CharacterManager : MonoBehaviour {
         bool landed = GroundedCheck();
         if (!isGrounded && landed)
         {
-            StartCoroutine(PlayLandingFx(.5f));
+            // play landing visual effect
+            PlayLandingFx(2.0f);
         }
         isGrounded = landed;
 
@@ -304,17 +305,10 @@ public class CharacterManager : MonoBehaviour {
         return Physics.CheckCapsule(pushbox.bounds.center, new Vector3(pushbox.bounds.center.x, pushbox.bounds.min.y, pushbox.bounds.center.z), pushbox.radius, groundLayer);
     }
 
-    IEnumerator PlayLandingFx(float time)
+    private void PlayLandingFx(float timeToDestroy)
     {
-        // enable the ground effect to play
-        float playTime = time;
-        landFx.GetComponent<MeshRenderer>().enabled = true;
-        while (playTime > 0)
-        {
-            playTime -= Time.deltaTime;
-            yield return null;
-        }
-        landFx.GetComponent<MeshRenderer>().enabled = false;
+        GameObject landingFxInstance = (GameObject) Instantiate(landingFx, gameObject.transform.position, Quaternion.Euler(-90f, 0f, 0f));
+        Destroy(landingFxInstance, timeToDestroy);
 
     }
 

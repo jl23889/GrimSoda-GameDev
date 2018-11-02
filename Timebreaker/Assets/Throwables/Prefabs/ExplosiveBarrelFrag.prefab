@@ -1609,7 +1609,7 @@ MonoBehaviour:
     type: 2}
   respawnPoint: {fileID: 1144053491429750, guid: dac39d30ecabc7c478f6c2bb0d9b4ac8,
     type: 2}
-  explosionFx: {fileID: 1600029338919568, guid: 68f1d8912995adc4c9b8df952584fbc2,
+  explosionFx: {fileID: 1148494079024614, guid: 7cf7889faf55b1f449ea2412f5c71e96,
     type: 2}
   timeToDestroy: 3
   explosionRadius: 5
