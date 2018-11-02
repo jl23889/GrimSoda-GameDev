@@ -309,7 +309,6 @@ public class CharacterManager : MonoBehaviour {
     {
         GameObject landingFxInstance = (GameObject) Instantiate(landingFx, gameObject.transform.position, Quaternion.Euler(-90f, 0f, 0f));
         Destroy(landingFxInstance, timeToDestroy);
-
     }
 
     // disables player input for length of hsd

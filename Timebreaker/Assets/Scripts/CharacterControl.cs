@@ -11,6 +11,8 @@ public class CharacterControl : MonoBehaviour
     public Player _player;
     private string player;
     public GameObject _playerUI;
+    public GameObject walkingFx;
+    private float walkingFxTimer;
     public Material material;
 
     public float gravity = -20f;
@@ -62,6 +64,7 @@ public class CharacterControl : MonoBehaviour
         Physics.gravity = new Vector3(0f, gravity, 0f);
         _movement = Vector3.zero;
         dodgeButtonTime = 0f;
+
         switch (_player)
         {
             case Player.P1:
@@ -337,8 +340,20 @@ public class CharacterControl : MonoBehaviour
         // otherwise move in the direction of input
         else if (_movement != Vector3.zero)
         {
+            walkingFxTimer+= Time.deltaTime;
+            if (walkingFxTimer >= .3f && _isGrounded)
+            {
+                PlayMovingFx(1.5f);
+                walkingFxTimer = 0;
+            }
             transform.forward = _movement;
         }
+    }
+
+    private void PlayMovingFx(float timeToDestroy)
+    {
+        GameObject walkingFxInstance = (GameObject)Instantiate(walkingFx, gameObject.transform.position, Quaternion.Euler(-90f, 0f, 0f));
+        Destroy(walkingFxInstance, timeToDestroy);
     }
 
     private void Jump()
