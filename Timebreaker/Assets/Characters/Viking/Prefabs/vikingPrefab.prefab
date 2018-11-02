@@ -2637,7 +2637,7 @@ MonoBehaviour:
   leftHand: {fileID: 1480418996528200}
   rightHand: {fileID: 1009822780528094}
   headEnd: {fileID: 1366552554208766}
-  landingFx: {fileID: 1600029338919568, guid: 68f1d8912995adc4c9b8df952584fbc2, type: 2}
+  landingFx: {fileID: 1898288432090278, guid: 03105012b146c504a8aa0abf2732cd1c, type: 2}
   groundLayer:
     serializedVersion: 2
     m_Bits: 1
