@@ -341,10 +341,19 @@ public class CharacterControl : MonoBehaviour
         else if (_movement != Vector3.zero)
         {
             walkingFxTimer+= Time.deltaTime;
-            if (walkingFxTimer >= .3f && _isGrounded)
+            if (_isGrounded)
             {
-                PlayMovingFx(1.5f);
-                walkingFxTimer = 0;
+                // running 
+                if (animator.GetBool("Sprinting"))
+                {
+                    PlayMovingFx(1.5f);
+                }
+                // walking
+                else if (walkingFxTimer >= .3f)
+                {
+                    PlayMovingFx(1.5f);
+                    walkingFxTimer = 0;
+                }
             }
             transform.forward = _movement;
         }
