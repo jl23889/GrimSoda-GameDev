@@ -14,7 +14,7 @@ MonoBehaviour:
   throwableName: ExplosiveBarrel
   fragObject: {fileID: 1027308808627398, guid: d56eb1cb8e5e06b45a5a9974cf565098, type: 2}
   isExplosive: 1
-  velocityToFrag: 3
+  velocityToFrag: 5
   damage: 10
   hitStunDuration: 2
   hitboxSize: {x: 10, y: 10, z: 10}

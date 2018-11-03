@@ -13,6 +13,8 @@ public class CharacterManager : MonoBehaviour {
     public GameObject leftHand;     //left hand bone
     public GameObject rightHand;    //right hand bone
     public GameObject headEnd;         //head_end bone
+
+    public GameObject landingFx;
     public LayerMask groundLayer;
 
     private Animator animator;
@@ -107,6 +109,10 @@ public class CharacterManager : MonoBehaviour {
         get { return canShoot; }
         set { canShoot = value; }
     }
+    public AnimationClip CurrentClip
+    {
+        get { return currentClip; }
+    }
 
     // Use this for initialization
     void Awake () {
@@ -160,7 +166,13 @@ public class CharacterManager : MonoBehaviour {
     void FixedUpdate()
     {
         // check if character is grounded on regular interval
-        isGrounded = GroundedCheck();
+        bool landed = GroundedCheck();
+        if (!isGrounded && landed)
+        {
+            // play landing visual effect
+            PlayLandingFx(2.0f);
+        }
+        isGrounded = landed;
 
         // check if holding weapon
         if (IsHoldingWeapon && Weapon.remainingCharges <= 0)
@@ -295,6 +307,12 @@ public class CharacterManager : MonoBehaviour {
     public bool GroundedCheck()
     {
         return Physics.CheckCapsule(pushbox.bounds.center, new Vector3(pushbox.bounds.center.x, pushbox.bounds.min.y, pushbox.bounds.center.z), pushbox.radius, groundLayer);
+    }
+
+    private void PlayLandingFx(float timeToDestroy)
+    {
+        GameObject landingFxInstance = (GameObject) Instantiate(landingFx, gameObject.transform.position, Quaternion.Euler(-90f, 0f, 0f));
+        Destroy(landingFxInstance, timeToDestroy);
     }
 
     // disables player input for length of hsd

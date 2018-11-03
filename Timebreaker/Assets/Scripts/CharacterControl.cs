@@ -11,6 +11,9 @@ public class CharacterControl : MonoBehaviour
     public Player _player;
     private string player;
     public GameObject _playerUI;
+    public GameObject walkingFx;
+    public GameObject jumpingFx;
+    private float walkingFxTimer;
     public Material material;
 
     public float gravity = -20f;
@@ -62,27 +65,40 @@ public class CharacterControl : MonoBehaviour
         Physics.gravity = new Vector3(0f, gravity, 0f);
         _movement = Vector3.zero;
         dodgeButtonTime = 0f;
+
         switch (_player)
         {
             case Player.P1:
                 player = "P1";
-                _playerUI.transform.GetChild(2).GetComponent<RawImage>().color = Color.red;
-                GetComponentInChildren<Image>().color = Color.red;
+                if (_playerUI != null)
+                {
+                    _playerUI.transform.GetChild(2).GetComponent<RawImage>().color = Color.red;
+                    GetComponentInChildren<Image>().color = Color.red;
+                }
                 break;
             case Player.P2:
                 player = "P2";
-                _playerUI.transform.GetChild(2).GetComponent<RawImage>().color = Color.green;
-                GetComponentInChildren<Image>().color = Color.green;
-                break;
+                if (_playerUI != null)
+                {
+                    _playerUI.transform.GetChild(2).GetComponent<RawImage>().color = Color.green;
+                    GetComponentInChildren<Image>().color = Color.green;
+                }
+                    break;
             case Player.P3:
                 player = "P3";
-                GetComponentInChildren<Image>().color = _playerUI.transform.GetChild(2).GetComponent<RawImage>().color;
-                break;
+                if (_playerUI != null)
+                {
+                    GetComponentInChildren<Image>().color = _playerUI.transform.GetChild(2).GetComponent<RawImage>().color;
+                }
+                    break;
             case Player.P4:
                 player = "P4";
-                _playerUI.transform.GetChild(2).GetComponent<RawImage>().color = new Color(255,176,0,255);
-                GetComponentInChildren<Image>().color = new Color(255, 176, 0, 255);
-                break;
+                if (_playerUI != null)
+                {
+                    _playerUI.transform.GetChild(2).GetComponent<RawImage>().color = new Color(255, 176, 0, 255);
+                    GetComponentInChildren<Image>().color = new Color(255, 176, 0, 255);
+                }
+                    break;
         }
         transform.GetChild(1).GetComponent<SkinnedMeshRenderer>().material = material;
     }
@@ -326,8 +342,29 @@ public class CharacterControl : MonoBehaviour
         // otherwise move in the direction of input
         else if (_movement != Vector3.zero)
         {
+            walkingFxTimer+= Time.deltaTime;
+            if (_isGrounded)
+            {
+                // running 
+                if (animator.GetBool("Sprinting"))
+                {
+                    PlayMovingFx(1.5f);
+                }
+                // walking
+                else if (walkingFxTimer >= .3f)
+                {
+                    PlayMovingFx(1.5f);
+                    walkingFxTimer = 0;
+                }
+            }
             transform.forward = _movement;
         }
+    }
+
+    private void PlayMovingFx(float timeToDestroy)
+    {
+        GameObject walkingFxInstance = (GameObject)Instantiate(walkingFx, gameObject.transform.position, Quaternion.Euler(-90f, 0f, 0f));
+        Destroy(walkingFxInstance, timeToDestroy);
     }
 
     private void Jump()
@@ -342,6 +379,9 @@ public class CharacterControl : MonoBehaviour
                 // this will always make the player jump the same height
                 rb.AddForce(Vector3.up * Mathf.Sqrt(2 * -Physics.gravity.y * _char.jumpHeight), ForceMode.VelocityChange);
                 animator.SetBool("Jumping", true);
+
+                // create the jump vfx
+                PlayJumpingFx(1.0f);
             }
         }
 
@@ -354,6 +394,12 @@ public class CharacterControl : MonoBehaviour
         {
             rb.velocity += Vector3.up * Physics.gravity.y * (_char.lowJumpMultiplier - 1) * Time.fixedDeltaTime;
         }
+    }
+
+    private void PlayJumpingFx(float timeToDestroy)
+    {
+        GameObject jumpingFxInstance = (GameObject)Instantiate(jumpingFx, gameObject.transform.position, Quaternion.Euler(-90f, 0f, 0f));
+        Destroy(jumpingFxInstance, timeToDestroy);
     }
 
     private void Attack()
