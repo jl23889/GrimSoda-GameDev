@@ -109,6 +109,10 @@ public class CharacterManager : MonoBehaviour {
         get { return canShoot; }
         set { canShoot = value; }
     }
+    public AnimationClip CurrentClip
+    {
+        get { return currentClip; }
+    }
 
     // Use this for initialization
     void Awake () {

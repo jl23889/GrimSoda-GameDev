@@ -11,6 +11,7 @@ public class WeaponManager : MonoBehaviour {
     public RespawnPointManager _respawnPoint;
     private SpinGameObject _spinScript;
     private MeshRenderer _renderer;
+    private CharacterManager _charManager;
     public float timeToRespawn = 3f; // set value to negative if should not respawn
     private bool isResetting;
     private float offsetY;
@@ -41,6 +42,12 @@ public class WeaponManager : MonoBehaviour {
         }
 	}
 
+    public CharacterManager CharacterManager
+    {
+        get { return _charManager; }
+        set { _charManager = value; }
+    }
+
     // either reset the weapon or destroy it
     private void ResetWeapon()
     {
@@ -51,6 +58,7 @@ public class WeaponManager : MonoBehaviour {
                 StartCoroutine(StartResetWeapon());
                 _renderer.enabled = false;
                 isResetting = true;
+                _charManager = null;
             }
             else Destroy(gameObject);
         }
