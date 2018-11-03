@@ -13,6 +13,9 @@ public class CharacterControl : MonoBehaviour
     public GameObject _playerUI;
     public GameObject walkingFx;
     public GameObject jumpingFx;
+    public GameObject chargingFx;
+    private GameObject chargingFxInstance;
+    public GameObject releaseFx;
     private float walkingFxTimer;
     public Material material;
 
@@ -23,6 +26,7 @@ public class CharacterControl : MonoBehaviour
 
     //used to figure out how long button is held down;
     private float dodgeButtonTime;
+    private float heavyButtonTime;
 
     private bool _isGrounded;
 
@@ -363,8 +367,11 @@ public class CharacterControl : MonoBehaviour
 
     private void PlayMovingFx(float timeToDestroy)
     {
-        GameObject walkingFxInstance = (GameObject)Instantiate(walkingFx, gameObject.transform.position, Quaternion.Euler(-90f, 0f, 0f));
-        Destroy(walkingFxInstance, timeToDestroy);
+        if (walkingFx != null)
+        {
+            GameObject walkingFxInstance = (GameObject)Instantiate(walkingFx, gameObject.transform.position, Quaternion.Euler(-90f, 0f, 0f));
+            Destroy(walkingFxInstance, timeToDestroy);
+        }
     }
 
     private void Jump()
@@ -398,8 +405,11 @@ public class CharacterControl : MonoBehaviour
 
     private void PlayJumpingFx(float timeToDestroy)
     {
-        GameObject jumpingFxInstance = (GameObject)Instantiate(jumpingFx, gameObject.transform.position, Quaternion.Euler(-90f, 0f, 0f));
-        Destroy(jumpingFxInstance, timeToDestroy);
+        if (jumpingFx != null)
+        {
+            GameObject jumpingFxInstance = (GameObject)Instantiate(jumpingFx, gameObject.transform.position, Quaternion.Euler(-90f, 0f, 0f));
+            Destroy(jumpingFxInstance, timeToDestroy);
+        }
     }
 
     private void Attack()
@@ -414,13 +424,30 @@ public class CharacterControl : MonoBehaviour
         }
 
         if (_heavyAttackHold && _isGrounded && !animator.GetBool("Sprinting"))
-        {
+        { 
+            // instantiate charging attack vfx
+            if (chargingFx != null && chargingFxInstance == null && heavyButtonTime >= 1.0f && animator.GetBool("ChargingAttack"))
+            {
+                chargingFxInstance = (GameObject)Instantiate(chargingFx, gameObject.transform.position + Vector3.up, Quaternion.Euler(-90f,0f,0f));
+            }
+
+            heavyButtonTime += Time.fixedDeltaTime;
             animator.SetBool("ChargingAttack", true);
         }
              
         if (_heavyAttackUp)
         {
+            // destroy charging attack vfx
+            if (releaseFx != null && chargingFxInstance != null)
+            {
+                GameObject releaseFxInstance = (GameObject)Instantiate(releaseFx, gameObject.transform.position + Vector3.up, transform.rotation);
+                Destroy(chargingFxInstance);
+                Destroy(releaseFxInstance, 1.0f);
+                chargingFxInstance = null;
+            }
+
             animator.SetBool("ChargingAttack", false);
+            heavyButtonTime = 0f;
         }
 
         if (_lightAttackPress)
