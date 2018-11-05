@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
-using UnityEditor.Presets;
 using UnityEngine;
 
 public class WeaponManager : MonoBehaviour {

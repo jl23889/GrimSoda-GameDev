@@ -3,15 +3,14 @@ using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
-using UnityEditor.Presets;
 
 [System.Serializable]
 [CreateAssetMenu(fileName = "Weapon", menuName = "Define New Weapon")]
 public class EquippableWeapon : ScriptableObject
 {
     public string weaponName = "New Weapon";
-    public Preset handLocRotPreset;
-    public Preset chestLocRotPreset;
+    public GameObject handLocRotPreset;
+    public GameObject chestLocRotPreset;
     public int damage = 30;
     public int uses = 5;
     public GameObject lightProjectilePrefab;

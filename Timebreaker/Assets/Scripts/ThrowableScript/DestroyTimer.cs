@@ -22,7 +22,7 @@ public class DestroyTimer : MonoBehaviour {
         // Instantiate particle effects
         if (_throwable != null)
         {
-            if (_throwable.isExplosive)
+            if (explosionFx != null)
             {
                 explosionFxInstance = (GameObject)Instantiate(explosionFx, gameObject.transform.position, Quaternion.Euler(-90f, 0f, 0f));
             }

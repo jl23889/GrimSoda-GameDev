@@ -119,7 +119,7 @@ public class ThrowObject : MonoBehaviour {
                         {
                             throwableObject = i.gameObject;
                             rb = throwableObject.GetComponent<Rigidbody>();
-                            col = throwableObject.GetComponent<MeshCollider>();
+                            col = throwableObject.GetComponent<Collider>();
 
                             // make gameobject child of player (so it moves with player)
                             throwableObject.transform.parent = _charManager.rightHand.transform;
@@ -181,7 +181,9 @@ public class ThrowObject : MonoBehaviour {
         {
             // attach gun to hand
             _charManager.Weapon.transform.parent = _charManager.rightHand.transform;
-            _charManager.Weapon._weapon.handLocRotPreset.ApplyTo(_charManager.Weapon.transform);
+            _charManager.Weapon.transform.localPosition = _charManager.Weapon._weapon.handLocRotPreset.transform.position;
+            _charManager.Weapon.transform.localRotation = _charManager.Weapon._weapon.handLocRotPreset.transform.rotation;
+            _charManager.Weapon.transform.localScale = _charManager.Weapon._weapon.handLocRotPreset.transform.localScale;
             animator.SetBool("ShootingBigGun", true);
             if (_autolock.Target != null)
             {
@@ -202,7 +204,9 @@ public class ThrowObject : MonoBehaviour {
         yield return new WaitForSeconds(time);
         animator.SetBool("ShootingBigGun", false);
         _charManager.Weapon.transform.parent = _charManager.chest.transform;
-        _charManager.Weapon._weapon.chestLocRotPreset.ApplyTo(_charManager.Weapon.transform);
+        _charManager.Weapon.transform.localPosition = _charManager.Weapon._weapon.chestLocRotPreset.transform.position;
+        _charManager.Weapon.transform.localRotation = _charManager.Weapon._weapon.chestLocRotPreset.transform.rotation;
+        _charManager.Weapon.transform.localScale = _charManager.Weapon._weapon.chestLocRotPreset.transform.localScale;
     }
 
     private void OnDrawGizmos()

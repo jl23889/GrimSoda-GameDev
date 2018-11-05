@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Name: hammer
   m_EditorClassIdentifier: 
   weaponName: Hammer
-  handLocRotPreset: {fileID: 2655988077585873504, guid: 370c79bd83202654b960ff6d04714080,
+  handLocRotPreset: {fileID: 1888935595977104, guid: 250b18b8840f2a745a3b2842fdbafbe2,
     type: 2}
-  chestLocRotPreset: {fileID: 2655988077585873504, guid: fe73d5f7ba4318a419dfb0da55967814,
+  chestLocRotPreset: {fileID: 1468549542379498, guid: ef666efa0230b6742a3bef1f79981113,
     type: 2}
   damage: 30
   uses: 5

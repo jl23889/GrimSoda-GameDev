@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Name: rocketLauncher
   m_EditorClassIdentifier: 
   weaponName: Rocket Launcher
-  handLocRotPreset: {fileID: 2655988077585873504, guid: cf4a0d1fa64f70945bdd4d24be04d9ed,
+  handLocRotPreset: {fileID: 1197117771030416, guid: f8b921caec758e343bb36e9f570ba0d3,
     type: 2}
-  chestLocRotPreset: {fileID: 2655988077585873504, guid: 055cb8c32626a6f4980260995bb1eeb6,
+  chestLocRotPreset: {fileID: 1154659247486004, guid: 8b6f0413738a1674a9ed315e523c09eb,
     type: 2}
   damage: 30
   uses: 5

@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
-using UnityEditor.Presets;
 using UnityEngine;
 
 public class CharacterCollectItem : MonoBehaviour {
@@ -24,11 +23,15 @@ public class CharacterCollectItem : MonoBehaviour {
             {
                 case EquippableWeapon.WeaponType.TwoHandMelee:
                     _weapon.transform.parent = _charManager.rightHand.transform;
-                    _wManager._weapon.handLocRotPreset.ApplyTo(_weapon.transform);
+                    _weapon.transform.localPosition = _wManager._weapon.handLocRotPreset.transform.position;
+                    _weapon.transform.localRotation = _wManager._weapon.handLocRotPreset.transform.rotation;
+                    _weapon.transform.localScale = _wManager._weapon.handLocRotPreset.transform.localScale;
                     break;
                 case EquippableWeapon.WeaponType.BigGun:
                     _weapon.transform.parent = _charManager.chest.transform;
-                    _wManager._weapon.chestLocRotPreset.ApplyTo(_weapon.transform);
+                    _weapon.transform.localPosition = _wManager._weapon.chestLocRotPreset.transform.position;
+                    _weapon.transform.localRotation = _wManager._weapon.chestLocRotPreset.transform.rotation;
+                    _weapon.transform.localScale = _wManager._weapon.chestLocRotPreset.transform.localScale;
                     break;
             }
             
