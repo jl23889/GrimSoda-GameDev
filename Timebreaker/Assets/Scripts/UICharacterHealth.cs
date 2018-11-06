@@ -14,7 +14,7 @@ public class UICharacterHealth : MonoBehaviour
     private int currentHealth;
     private int maxHealth;
 
-    private void OnEnable()
+    private void Start()
     {
         _playerUI = GetComponent<CharacterControl>()._playerUI;
         m_Slider = _playerUI.transform.GetChild(0).GetComponent<Slider>();

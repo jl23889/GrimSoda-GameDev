@@ -10,7 +10,7 @@ public class CharacterControl : MonoBehaviour
     public enum Player { P1, P2, P3, P4 };
     public Player _player;
     public GameObject _hudUI;
-    public  GameObject _playerUI;
+    public GameObject _playerUI;
     private string player;
     public GameObject walkingFx;
     public GameObject jumpingFx;
@@ -75,40 +75,40 @@ public class CharacterControl : MonoBehaviour
         {
             case Player.P1:
                 player = "P1";
-                if (_charManager._character.playerUI != null)
+                if (_playerUI != null)
                 {
-                    GameObject _playerUIinstance = 
+                    _playerUI = 
                         (GameObject) Instantiate(_playerUI, _hudUI.transform.GetChild(0).transform, false);
-                    _playerUIinstance.transform.GetChild(2).GetComponent<RawImage>().color = Color.red;
+                    _playerUI.transform.GetChild(2).GetComponent<RawImage>().color = Color.red;
                     GetComponentInChildren<Image>().color = Color.red;
                 }
                 break;
             case Player.P2:
                 player = "P2";
-                if (_charManager._character.playerUI != null)
+                if (_playerUI != null)
                 {
-                    GameObject _playerUIinstance = 
+                    _playerUI = 
                         (GameObject) Instantiate(_playerUI, _hudUI.transform.GetChild(1).transform, false);
-                    _playerUIinstance.transform.GetChild(2).GetComponent<RawImage>().color = Color.green;
+                    _playerUI.transform.GetChild(2).GetComponent<RawImage>().color = Color.green;
                     GetComponentInChildren<Image>().color = Color.green;
                 }
                 break;
             case Player.P3:
                 player = "P3";
-                if (_charManager._character.playerUI != null)
+                if (_playerUI != null)
                 {
-                    GameObject _playerUIinstance = 
+                    _playerUI = 
                         (GameObject) Instantiate(_playerUI, _hudUI.transform.GetChild(2).transform, false);
                     GetComponentInChildren<Image>().color = _playerUI.transform.GetChild(2).GetComponent<RawImage>().color;
                 }
                 break;
             case Player.P4:
                 player = "P4";
-                if (_charManager._character.playerUI != null)
+                if (_playerUI != null)
                 {
-                    GameObject _playerUIinstance = 
+                    _playerUI = 
                         (GameObject) Instantiate(_playerUI, _hudUI.transform.GetChild(3).transform, false);
-                    _playerUIinstance.transform.GetChild(2).GetComponent<RawImage>().color = new Color(255, 176, 0, 255);
+                    _playerUI.transform.GetChild(2).GetComponent<RawImage>().color = new Color(255, 176, 0, 255);
                     GetComponentInChildren<Image>().color = new Color(255, 176, 0, 255);
                 }
                 break;
@@ -345,7 +345,7 @@ public class CharacterControl : MonoBehaviour
     private void Move()
     {
         //rb.MovePosition(transform.position + _movement * _char.runSpeed * Time.fixedDeltaTime);
-        rb.AddForce(_movement * _char.runSpeed * Time.fixedDeltaTime * 20000);
+        rb.AddForce(_movement * _char.runSpeed * Time.fixedDeltaTime * 10000);
 
         // faces target if attacking and has a target 
         if (animator.GetBool("Attacking") && _autoLock.Target != null)

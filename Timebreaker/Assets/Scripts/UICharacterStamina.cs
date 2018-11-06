@@ -14,7 +14,7 @@ public class UICharacterStamina : MonoBehaviour
     private int currentStamina;
     private int maxStamina;
 
-    private void OnEnable()
+    private void Start()
     {
         _playerUI = GetComponent<CharacterControl>()._playerUI;
         m_Slider = _playerUI.transform.GetChild(4).GetComponent<Slider>();
@@ -37,6 +37,9 @@ public class UICharacterStamina : MonoBehaviour
     {
         // Set the slider's value appropriately.
         m_Slider.value = _charManager.CurrentStamina;
+        Debug.Log("slider: " + m_Slider.value);
+        Debug.Log("true value: " + _charManager.CurrentStamina);
+        Debug.Log("Mslider" + m_Slider.gameObject.name);
 
         // Interpolate the color of the bar between the choosen colours based on the current percentage of the starting Stamina.
         m_FillImage.color = Color.Lerp(m_ZeroStaminaColor, m_FullStaminaColor, (_charManager.CurrentStamina * 1.0f) / (_charManager.StartingStamina * 1.0f));

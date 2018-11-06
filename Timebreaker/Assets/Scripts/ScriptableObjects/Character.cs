@@ -9,7 +9,6 @@ public class Character : ScriptableObject
     public string charName = "New Character";
     public int healthTotal = 100;
     public int staminaTotal = 100;
-    public GameObject playerUI;
     public float throwVelocity = 50f;
     public float grabbingThrowableOffsetY = 7f;
     public float runSpeed = 8f;
