@@ -146,6 +146,7 @@ public class ThrowObject : MonoBehaviour {
         {
             rb.isKinematic = false; //enable unity physics
             col.enabled = true;   // enable collider
+            rb.useGravity = true; // enable gravity
 
             // unparent the player to the throwable
             throwableObject.transform.parent = null;
