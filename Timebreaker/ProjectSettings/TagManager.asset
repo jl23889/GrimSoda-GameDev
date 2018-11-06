@@ -10,6 +10,7 @@ TagManager:
   - Terrain
   - Platform
   - Transparentable
+  - Border
   layers:
   - Default
   - TransparentFX

@@ -17,8 +17,8 @@ MonoBehaviour:
   playerUI: {fileID: 1568820738865450, guid: 02b2fc00086a3c04ab290e9425cfeaa9, type: 2}
   throwVelocity: 17
   grabbingThrowableOffsetY: 7
-  runSpeed: 8
-  jumpHeight: 10
+  runSpeed: 5
+  jumpHeight: 12
   fallMultiplier: 2.5
   lowJumpMultiplier: 2
   sprintMultiplier: 1.8
