@@ -19,8 +19,16 @@ public class FragEnvironment : MonoBehaviour
     {
         if (collision.relativeVelocity.magnitude > velocityToFrag)
         {
-            Instantiate(fragObject, transform.position, transform.rotation);
-            Destroy(gameObject);
+            if (transform.parent != null)
+            {
+                Instantiate(fragObject, transform.parent.position, transform.parent.rotation);
+                Destroy(transform.parent.gameObject);
+            }
+            else
+            {
+                Instantiate(fragObject, transform.position, transform.rotation);
+                Destroy(gameObject);
+            }
         }
     }
 }
