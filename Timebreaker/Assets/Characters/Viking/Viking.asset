@@ -14,6 +14,7 @@ MonoBehaviour:
   charName: Viking
   healthTotal: 200
   staminaTotal: 200
+  playerUI: {fileID: 1568820738865450, guid: 02b2fc00086a3c04ab290e9425cfeaa9, type: 2}
   throwVelocity: 17
   grabbingThrowableOffsetY: 7
   runSpeed: 8

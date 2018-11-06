@@ -14,6 +14,7 @@ MonoBehaviour:
   charName: Shroedinger
   healthTotal: 100
   staminaTotal: 100
+  playerUI: {fileID: 1014707703817144, guid: 7188de220b1c1c1488f78dc6c7f4c303, type: 2}
   throwVelocity: 50
   grabbingThrowableOffsetY: 7
   runSpeed: 8

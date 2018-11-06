@@ -9,8 +9,9 @@ public class CharacterControl : MonoBehaviour
 {
     public enum Player { P1, P2, P3, P4 };
     public Player _player;
+    public GameObject _hudUI;
+    public  GameObject _playerUI;
     private string player;
-    public GameObject _playerUI;
     public GameObject walkingFx;
     public GameObject jumpingFx;
     public GameObject chargingFx;
@@ -74,35 +75,43 @@ public class CharacterControl : MonoBehaviour
         {
             case Player.P1:
                 player = "P1";
-                if (_playerUI != null)
+                if (_charManager._character.playerUI != null)
                 {
-                    _playerUI.transform.GetChild(2).GetComponent<RawImage>().color = Color.red;
+                    GameObject _playerUIinstance = 
+                        (GameObject) Instantiate(_playerUI, _hudUI.transform.GetChild(0).transform, false);
+                    _playerUIinstance.transform.GetChild(2).GetComponent<RawImage>().color = Color.red;
                     GetComponentInChildren<Image>().color = Color.red;
                 }
                 break;
             case Player.P2:
                 player = "P2";
-                if (_playerUI != null)
+                if (_charManager._character.playerUI != null)
                 {
-                    _playerUI.transform.GetChild(2).GetComponent<RawImage>().color = Color.green;
+                    GameObject _playerUIinstance = 
+                        (GameObject) Instantiate(_playerUI, _hudUI.transform.GetChild(1).transform, false);
+                    _playerUIinstance.transform.GetChild(2).GetComponent<RawImage>().color = Color.green;
                     GetComponentInChildren<Image>().color = Color.green;
                 }
-                    break;
+                break;
             case Player.P3:
                 player = "P3";
-                if (_playerUI != null)
+                if (_charManager._character.playerUI != null)
                 {
+                    GameObject _playerUIinstance = 
+                        (GameObject) Instantiate(_playerUI, _hudUI.transform.GetChild(2).transform, false);
                     GetComponentInChildren<Image>().color = _playerUI.transform.GetChild(2).GetComponent<RawImage>().color;
                 }
-                    break;
+                break;
             case Player.P4:
                 player = "P4";
-                if (_playerUI != null)
+                if (_charManager._character.playerUI != null)
                 {
-                    _playerUI.transform.GetChild(2).GetComponent<RawImage>().color = new Color(255, 176, 0, 255);
+                    GameObject _playerUIinstance = 
+                        (GameObject) Instantiate(_playerUI, _hudUI.transform.GetChild(3).transform, false);
+                    _playerUIinstance.transform.GetChild(2).GetComponent<RawImage>().color = new Color(255, 176, 0, 255);
                     GetComponentInChildren<Image>().color = new Color(255, 176, 0, 255);
                 }
-                    break;
+                break;
         }
         transform.GetChild(1).GetComponent<SkinnedMeshRenderer>().material = material;
     }

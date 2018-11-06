@@ -595,6 +595,7 @@ GameObject:
   - component: {fileID: 114214297747658992}
   - component: {fileID: 82020992911802020}
   - component: {fileID: 114234425405758510}
+  - component: {fileID: 114516512552774608}
   m_Layer: 9
   m_Name: vikingPrefab
   m_TagString: Player
@@ -2395,7 +2396,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1386627508743444}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -20.06, y: 0, z: -23.99}
+  m_LocalPosition: {x: 50.8, y: 0, z: -47.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4630676053658876}
@@ -2706,6 +2707,17 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114516512552774608
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1386627508743444}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 079704baebacaff41ab88f9cad0d3d75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114534201870079558
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2781,9 +2793,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _player: 0
+  _hudUI: {fileID: 0}
   _playerUI: {fileID: 0}
   walkingFx: {fileID: 1760786355554088, guid: dbaf77bf2789a614ebd8991b66d86911, type: 2}
   jumpingFx: {fileID: 1548463021795436, guid: 886997090a9366b409634edff1984207, type: 2}
+  chargingFx: {fileID: 0}
+  releaseFx: {fileID: 0}
   material: {fileID: 2100000, guid: 64ede67527f083a49be003d686b2868d, type: 2}
   gravity: -35
   _cameraRig: {fileID: 0}
@@ -3049,7 +3064,6 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: 64ede67527f083a49be003d686b2868d, type: 2}
-  - {fileID: 2100000, guid: a6aa1d551cd1fef44977c4cda58a8bb6, type: 3}
   - {fileID: 2100000, guid: a6aa1d551cd1fef44977c4cda58a8bb6, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
