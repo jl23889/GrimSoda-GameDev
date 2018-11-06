@@ -10216,7 +10216,7 @@ GameObject:
   - component: {fileID: 529062523}
   - component: {fileID: 529062522}
   - component: {fileID: 529062521}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Sphere
   m_TagString: Border
   m_Icon: {fileID: 0}

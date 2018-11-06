@@ -16,8 +16,8 @@ MonoBehaviour:
   staminaTotal: 200
   throwVelocity: 17
   grabbingThrowableOffsetY: 7
-  runSpeed: 8
-  jumpHeight: 10
+  runSpeed: 5
+  jumpHeight: 12
   fallMultiplier: 2.5
   lowJumpMultiplier: 2
   sprintMultiplier: 1.8
