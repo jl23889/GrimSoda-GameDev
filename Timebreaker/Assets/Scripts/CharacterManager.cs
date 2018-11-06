@@ -226,7 +226,10 @@ public class CharacterManager : MonoBehaviour {
         }
 
         animator.SetTrigger("GetHit");
-        chest.GetComponent<ParticleSystem>().Play(false);
+        if (chest.GetComponent<ParticleSystem>() != null)
+        {
+            chest.GetComponent<ParticleSystem>().Play(false);
+        }
         StartCoroutine(DisableInput(attack.hitStunDuration));
 
         if (attack.knockdown)

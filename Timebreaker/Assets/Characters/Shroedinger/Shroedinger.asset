@@ -22,5 +22,20 @@ MonoBehaviour:
   lowJumpMultiplier: 2
   sprintMultiplier: 2
   dodgeMultiplier: 2
-  attackList: []
-  canShootAnimationList: []
+  attackList:
+  - {fileID: 11400000, guid: 1cca3c72d53e6ab47a527c1cdb8c3138, type: 2}
+  - {fileID: 11400000, guid: 65a4b9377aa7a5347add5e219a13faa8, type: 2}
+  - {fileID: 11400000, guid: 69bde5049d92ccd41a68575c396a2310, type: 2}
+  - {fileID: 11400000, guid: 0ea35d8601f31b94ba6d744190be54f6, type: 2}
+  - {fileID: 11400000, guid: d1a0a406542517c40a67ca03965467a2, type: 2}
+  - {fileID: 11400000, guid: 2b03344218e0aa645af21e1a38e2f0a0, type: 2}
+  - {fileID: 11400000, guid: 9e7f2425c18ba3e4b98d85125bbf7400, type: 2}
+  - {fileID: 11400000, guid: 933a250388d91c340844c63d6ee82a2b, type: 2}
+  - {fileID: 11400000, guid: 00dbfbefe603015499f1d390f8d19fae, type: 2}
+  - {fileID: 11400000, guid: b7edc83506d31474aa797e6511156861, type: 2}
+  - {fileID: 11400000, guid: 1a626926b8eecf34b8613c9892ea74c4, type: 2}
+  - {fileID: 11400000, guid: 26038de1e4eb6154fbf60ad3867202d3, type: 2}
+  - {fileID: 11400000, guid: 64b2a3229a150a041b44c540ec8f6f12, type: 2}
+  canShootAnimationList:
+  - {fileID: 7400024, guid: b20f6fb98256d4e4e82b86ccb5ee477f, type: 3}
+  - {fileID: 7400034, guid: b20f6fb98256d4e4e82b86ccb5ee477f, type: 3}
