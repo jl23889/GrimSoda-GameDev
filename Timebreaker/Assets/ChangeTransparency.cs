@@ -6,11 +6,18 @@ public class ChangeTransparency : MonoBehaviour {
     public bool _playerIsUnder;
     public float _transparency = 0.4f;
     private List<GameObject> _transparentable = new List<GameObject>();
+    public Material _solidMaterial;
+    public Material _transMaterial;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
         _playerIsUnder = false;
         searchInChildren();
+        foreach (var item in _transparentable)
+        {
+            Renderer renderer = item.GetComponent<Renderer>();
+            renderer.material = _solidMaterial;
+        }        
     }
 	
 	// Update is called once per frame
@@ -44,12 +51,18 @@ public class ChangeTransparency : MonoBehaviour {
         foreach (var item in _transparentable)
         {
             Renderer renderer = item.GetComponent<Renderer>();
+            if (renderer.material.color.a == 1f)
+            {
+                renderer.material = _transMaterial;
+            }
             Color textureColor = renderer.material.color;
+            Debug.Log(textureColor.a);
             if (textureColor.a > _transparency)
             {
                 textureColor.a = textureColor.a - 0.025f;
-            }           
-            renderer.material.color = textureColor;
+                Debug.Log(textureColor.a);
+            }
+            renderer.material.color = textureColor;    
         }
     }
 
@@ -58,10 +71,16 @@ public class ChangeTransparency : MonoBehaviour {
         foreach (var item in _transparentable)
         {
             Renderer renderer = item.GetComponent<Renderer>();
+
             Color textureColor = renderer.material.color;
             if (textureColor.a < 1f)
             {
                 textureColor.a = textureColor.a + 0.025f;
+            }
+            else if (textureColor.a >= 1f)
+            {
+                textureColor.a = 1f;
+                renderer.material = _solidMaterial;
             }
             renderer.material.color = textureColor;
         }

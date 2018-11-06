@@ -8,6 +8,7 @@ TagManager:
   - Weapon
   - Destructible
   - Terrain
+  - Platform
   layers:
   - Default
   - TransparentFX
@@ -19,7 +20,7 @@ TagManager:
   - 
   - PostProcessing
   - Character
-  - 
+  - Transparentable
   - 
   - 
   - 
