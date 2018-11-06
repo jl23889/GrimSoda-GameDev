@@ -11,7 +11,7 @@ public class ChangeTransparency : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        _playerIsUnder = false;
+        _playerIsUnder = true;
         searchInChildren();
         foreach (var item in _transparentable)
         {
@@ -39,7 +39,7 @@ public class ChangeTransparency : MonoBehaviour {
         for (int i = 0; i<parent.childCount; i++)
         {
             Transform child = parent.GetChild(i);
-            if (child.gameObject.layer == LayerMask.NameToLayer("Transparentable"))
+            if (child.gameObject.tag == "Transparentable")
             {
                 _transparentable.Add(child.gameObject);
             }
