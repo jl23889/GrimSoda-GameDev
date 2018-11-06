@@ -11,7 +11,7 @@ public class ChangeTransparency : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        _playerIsUnder = true;
+        _playerIsUnder = false;
         searchInChildren();
         foreach (var item in _transparentable)
         {
@@ -19,9 +19,9 @@ public class ChangeTransparency : MonoBehaviour {
             renderer.material = _solidMaterial;
         }        
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update () {
 		if(_playerIsUnder)
         {
             BecomeTransparent();
@@ -31,6 +31,11 @@ public class ChangeTransparency : MonoBehaviour {
             BecomeSolid();
         }
 	}
+
+    private void LateUpdate()
+    {
+        _playerIsUnder = false;
+    }
 
     private void searchInChildren()
     {
@@ -56,11 +61,9 @@ public class ChangeTransparency : MonoBehaviour {
                 renderer.material = _transMaterial;
             }
             Color textureColor = renderer.material.color;
-            Debug.Log(textureColor.a);
             if (textureColor.a > _transparency)
             {
                 textureColor.a = textureColor.a - 0.025f;
-                Debug.Log(textureColor.a);
             }
             renderer.material.color = textureColor;    
         }
