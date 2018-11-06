@@ -5,6 +5,7 @@ using UnityEngine;
 public class ChangeTransparency : MonoBehaviour {
     public bool _playerIsUnder;
     public float _transparency = 0.4f;
+    public float _smoothSpeed = 0.025f;
     private List<GameObject> _transparentable = new List<GameObject>();
     public Material _solidMaterial;
     public Material _transMaterial;
@@ -34,7 +35,7 @@ public class ChangeTransparency : MonoBehaviour {
 
     private void LateUpdate()
     {
-        _playerIsUnder = false;
+        //_playerIsUnder = false;
     }
 
     private void searchInChildren()
@@ -63,7 +64,7 @@ public class ChangeTransparency : MonoBehaviour {
             Color textureColor = renderer.material.color;
             if (textureColor.a > _transparency)
             {
-                textureColor.a = textureColor.a - 0.025f;
+                textureColor.a = textureColor.a - _smoothSpeed;
             }
             renderer.material.color = textureColor;    
         }
@@ -78,7 +79,7 @@ public class ChangeTransparency : MonoBehaviour {
             Color textureColor = renderer.material.color;
             if (textureColor.a < 1f)
             {
-                textureColor.a = textureColor.a + 0.025f;
+                textureColor.a = textureColor.a + _smoothSpeed;
             }
             else if (textureColor.a >= 1f)
             {
