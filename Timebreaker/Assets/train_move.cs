@@ -48,10 +48,13 @@ public class train_move : MonoBehaviour {
 
         StopAtTurning(_turnAroundStopTime);
 
-        if (!_isAccelerating)
-            Stoping();
-        else
-            Accelerating();
+        if (_inStationStopTime != 0)
+        {
+            if (!_isAccelerating)
+                Stoping();
+            else
+                Accelerating();
+        }
 
         _moving_in_direction = new Vector3(0f, 0f, _currentSpeed * _direction);
         transform.position = transform.position + _moving_in_direction;
