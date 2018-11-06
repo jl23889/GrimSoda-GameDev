@@ -17,9 +17,9 @@ MonoBehaviour:
   velocityToFrag: 20
   damage: 5
   hitStunDuration: 2
-  hitboxSize: {x: 4, y: 4, z: 4}
-  knockback: 1
-  knockdown: 0
-  knockup: 1
+  hitboxSize: {x: 6, y: 6, z: 6}
+  knockback: 0
+  knockdown: 1
+  knockup: 0
   knockbackVelocity: 10
   knockupVelocity: 10
