@@ -33,7 +33,10 @@ public class CharacterAttack : MonoBehaviour
     void FixedUpdate()
     {
         // get the current clip playing 
-        currentClip = animator.GetCurrentAnimatorClipInfo(0)[0].clip;
+        if (animator.GetCurrentAnimatorClipInfo(0).Length != 0)
+        {
+            currentClip = animator.GetCurrentAnimatorClipInfo(0)[0].clip;
+        }
 
         // check if currentclip matches an attack animation clip in the attackList
         int attackIndex = _charAttacks.FindIndex(attack => attack.animationClip == currentClip);

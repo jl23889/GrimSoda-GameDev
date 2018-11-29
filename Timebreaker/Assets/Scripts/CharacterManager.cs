@@ -130,7 +130,10 @@ public class CharacterManager : MonoBehaviour {
     private void Update()
     {
         // get the current clip playing 
-        currentClip = animator.GetCurrentAnimatorClipInfo(0)[0].clip;
+        if (animator.GetCurrentAnimatorClipInfo(0).Length != 0)
+        {
+            currentClip = animator.GetCurrentAnimatorClipInfo(0)[0].clip;
+        }
         // set canShoot flag
         canShoot =
             _character.canShootAnimationList.Contains(currentClip) ? true : false;
