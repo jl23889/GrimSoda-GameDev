@@ -8,6 +8,7 @@ public class BorderCheck : MonoBehaviour {
     private Rigidbody _rb;
     private Animator animator;
     private float inputTimer;
+    private train_move train;
 
     // Use this for initialization
     void Start () {
@@ -15,6 +16,7 @@ public class BorderCheck : MonoBehaviour {
         _selfCC = GetComponent<CharacterControl>();
         animator = GetComponent<Animator>();
         _rb = GetComponent<Rigidbody>();
+        inputTimer = 0f;
     }
 	
 	// Update is called once per frame
@@ -27,9 +29,10 @@ public class BorderCheck : MonoBehaviour {
         if (other.gameObject.tag == "Border")
         {
             //transform.position = new Vector3(16.1f, 7.3f, 48.3f);
-            _selfCM.CurrentHealth = _selfCM.CurrentHealth - 40f;
+            _selfCM.CurrentHealth = _selfCM.CurrentHealth - 20f;
             _selfCC.Movement = Vector3.zero;
 
+            transform.LookAt(2 * transform.position - other.transform.position);
             animator.SetTrigger("GetHit");
             StartCoroutine(DisableInput(0.4f));
 
@@ -40,6 +43,45 @@ public class BorderCheck : MonoBehaviour {
         if (_selfCM.CurrentHealth <= 0 && !_selfCM.IsDead)
         {
             _selfCM.OnDeath();
+        }
+    }
+
+    void OnCollisionStay(Collision other)
+    {        
+        if (other.collider.gameObject.tag == "Train" || other.collider.gameObject.tag == "Platform")
+        {            
+            train = other.collider.gameObject.GetComponentInParent<train_move>();
+
+            if (Mathf.Abs(train.CurrentSpeed) > 0.4 && inputTimer <= 0f)
+            {
+                _selfCM.CurrentHealth = _selfCM.CurrentHealth - 40f;
+                _selfCC.Movement = Vector3.zero;
+                
+                animator.SetTrigger("GetHit");
+                animator.SetBool("Knockdown", true);
+                StartCoroutine(DisableInput(0.8f));
+
+                Vector3 pushback_direction;
+
+                float relative_positionX = transform.position.x - other.collider.transform.position.x;
+                if (relative_positionX <= 0f)
+                {
+                    pushback_direction = new Vector3(5f, 0, train.CurrentSpeed);
+                    transform.LookAt(transform.position + pushback_direction);
+                }
+                else
+                {
+                    pushback_direction = new Vector3(-5f, 0, train.CurrentSpeed);
+                    transform.LookAt(transform.position + pushback_direction);
+                }
+
+                _rb.AddForce(pushback_direction * -500f, ForceMode.Impulse);
+
+                if (_selfCM.CurrentHealth <= 0 && !_selfCM.IsDead)
+                {
+                    _selfCM.OnDeath();
+                }
+            }
         }
     }
 

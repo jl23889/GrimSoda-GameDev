@@ -4509,8 +4509,8 @@ MonoBehaviour:
   _speed: 1
   _inStationTimeMin: 0
   _inStationTimeMax: 0
-  _turnAroundTimeMin: 2
-  _turnAroundTimeMax: 10
+  _turnAroundTimeMin: 0
+  _turnAroundTimeMax: 0
   _trainWhistleLongClip: {fileID: 8300000, guid: 5f12b5d5a30ea2242aed08cda7eb076c,
     type: 3}
   _trainWhistleAudio: {fileID: 240522784}
@@ -6249,6 +6249,10 @@ Prefab:
     - target: {fileID: 4953257760594716, guid: fa8cf083a3a89fd489b890a42c16b117, type: 2}
       propertyPath: m_RootOrder
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1863044679364254, guid: fa8cf083a3a89fd489b890a42c16b117, type: 2}
+      propertyPath: m_TagString
+      value: Platform
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fa8cf083a3a89fd489b890a42c16b117, type: 2}
@@ -8997,6 +9001,10 @@ Prefab:
       propertyPath: m_Name
       value: boxcar (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 1259318782909688, guid: 79e2125beaec20549ae72311e050843e, type: 2}
+      propertyPath: m_TagString
+      value: Platform
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 79e2125beaec20549ae72311e050843e, type: 2}
   m_IsPrefabAsset: 0
@@ -10305,7 +10313,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03fb6c54d553cc945aa8cb9b7be27979, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _minSize: 120
+  _minSize: 150
   _shrinkRate: 1
 --- !u!135 &529062522
 SphereCollider:
@@ -14311,6 +14319,10 @@ Prefab:
       propertyPath: m_Name
       value: boxcar (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1259318782909688, guid: 79e2125beaec20549ae72311e050843e, type: 2}
+      propertyPath: m_TagString
+      value: Platform
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 79e2125beaec20549ae72311e050843e, type: 2}
   m_IsPrefabAsset: 0
@@ -16785,6 +16797,10 @@ Prefab:
     - target: {fileID: 1358183732271574, guid: f5f6b8efd12ee0a48aec46879ce39dbf, type: 2}
       propertyPath: m_Name
       value: flatcar (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1358183732271574, guid: f5f6b8efd12ee0a48aec46879ce39dbf, type: 2}
+      propertyPath: m_TagString
+      value: Platform
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f5f6b8efd12ee0a48aec46879ce39dbf, type: 2}
@@ -23597,6 +23613,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 1358183732271574, guid: f5f6b8efd12ee0a48aec46879ce39dbf, type: 2}
+      propertyPath: m_TagString
+      value: Platform
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f5f6b8efd12ee0a48aec46879ce39dbf, type: 2}
   m_IsPrefabAsset: 0
@@ -24781,6 +24801,10 @@ Prefab:
     - target: {fileID: 1259318782909688, guid: 79e2125beaec20549ae72311e050843e, type: 2}
       propertyPath: m_Name
       value: boxcar (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1259318782909688, guid: 79e2125beaec20549ae72311e050843e, type: 2}
+      propertyPath: m_TagString
+      value: Platform
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 79e2125beaec20549ae72311e050843e, type: 2}
@@ -26728,6 +26752,10 @@ Prefab:
     - target: {fileID: 4196817867456542, guid: 79e2125beaec20549ae72311e050843e, type: 2}
       propertyPath: m_RootOrder
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1259318782909688, guid: 79e2125beaec20549ae72311e050843e, type: 2}
+      propertyPath: m_TagString
+      value: Platform
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 79e2125beaec20549ae72311e050843e, type: 2}
@@ -30923,6 +30951,18 @@ Prefab:
       propertyPath: _inStationTimeMax
       value: 25
       objectReference: {fileID: 0}
+    - target: {fileID: 1162832552831272, guid: 65b8e7cebe93c5e448d282e4c89245f3, type: 2}
+      propertyPath: m_TagString
+      value: Platform
+      objectReference: {fileID: 0}
+    - target: {fileID: 1916590377713656, guid: 65b8e7cebe93c5e448d282e4c89245f3, type: 2}
+      propertyPath: m_TagString
+      value: Platform
+      objectReference: {fileID: 0}
+    - target: {fileID: 1600006851478602, guid: 65b8e7cebe93c5e448d282e4c89245f3, type: 2}
+      propertyPath: m_TagString
+      value: Train
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 65b8e7cebe93c5e448d282e4c89245f3, type: 2}
   m_IsPrefabAsset: 0
@@ -32498,6 +32538,10 @@ Prefab:
     - target: {fileID: 4953257760594716, guid: fa8cf083a3a89fd489b890a42c16b117, type: 2}
       propertyPath: m_LocalScale.z
       value: 0.020000003
+      objectReference: {fileID: 0}
+    - target: {fileID: 1863044679364254, guid: fa8cf083a3a89fd489b890a42c16b117, type: 2}
+      propertyPath: m_TagString
+      value: Platform
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fa8cf083a3a89fd489b890a42c16b117, type: 2}
@@ -36912,7 +36956,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4950996506004572, guid: 9a6c33ac87fc52947a4ec607588f341d, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 37.8
+      value: 70.38
       objectReference: {fileID: 0}
     - target: {fileID: 4950996506004572, guid: 9a6c33ac87fc52947a4ec607588f341d, type: 2}
       propertyPath: m_LocalPosition.y

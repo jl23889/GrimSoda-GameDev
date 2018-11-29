@@ -23,8 +23,13 @@ public class train_move : MonoBehaviour {
     public AudioClip _trainWhistleLongClip;
     public AudioSource _trainWhistleAudio;
 
-	// Use this for initialization
-	void Start () {
+    public float CurrentSpeed
+    {
+        get { return _currentSpeed; }
+    }
+
+    // Use this for initialization
+    void Start () {
         _currentSpeed = _speed;
         _moving_in_direction = new Vector3(0f, 0f, _currentSpeed * _direction);
         _turnAroundStopTime = Random.Range(_turnAroundTimeMin, _turnAroundTimeMax);
