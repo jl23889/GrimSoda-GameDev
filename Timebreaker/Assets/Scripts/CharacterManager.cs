@@ -330,7 +330,7 @@ public class CharacterManager : MonoBehaviour {
         animator.SetBool("HitStun", false);
     }
 
-    private void OnDeath()
+    public void OnDeath()
     {
         isDead = true;
 
