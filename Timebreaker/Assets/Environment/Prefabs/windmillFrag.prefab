@@ -3481,6 +3481,6 @@ MonoBehaviour:
   respawnPoint: {fileID: 0}
   explosionFx: {fileID: 0}
   timeToDestroy: 3
-  explosionRadius: 20
-  power: 1000
+  explosionRadius: 50
+  power: 2000
   upForce: 6
