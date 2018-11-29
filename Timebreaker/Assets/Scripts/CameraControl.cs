@@ -14,6 +14,7 @@ public class CameraControl : MonoBehaviour
     private float m_ZoomSpeed;                      // Reference speed for the smooth damping of the orthographic size.
     private Vector3 m_MoveVelocity;                 // Reference velocity for the smooth damping of the position.
     private Vector3 m_DesiredPosition;              // The position the camera is moving towards.
+    private CharacterManager _cm;
 
 
     private void Awake()
@@ -53,7 +54,9 @@ public class CameraControl : MonoBehaviour
         for (int i = 0; i < m_Targets.Length; i++)
         {
             // If the target isn't active, go on to the next one.
-            if (!m_Targets[i].gameObject.activeSelf)
+            _cm = m_Targets[i].gameObject.GetComponent<CharacterManager>();
+
+            if (_cm.IsDead)
                 continue;
 
             // Add to the average and increment the number of targets in the average.
@@ -93,7 +96,9 @@ public class CameraControl : MonoBehaviour
         for (int i = 0; i < m_Targets.Length; i++)
         {
             // ... and if they aren't active continue on to the next target.
-            if (!m_Targets[i].gameObject.activeSelf)
+            _cm = m_Targets[i].gameObject.GetComponent<CharacterManager>();
+
+            if (_cm.IsDead)
                 continue;
 
             // Otherwise, find the position of the target in the camera's local space.
